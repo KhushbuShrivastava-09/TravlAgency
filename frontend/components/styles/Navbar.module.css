@@ -1,0 +1,291 @@
+.header {
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 0 100px;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative; /* Ensure header establishes a stacking context */
+  z-index: 2000; /* Higher than hero section to ensure dropdowns are above */
+}
+
+.topBar {
+  background-color: #FAFAFA;
+  color: #acacac;
+  padding: 8px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.contactInfo {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.flag {
+  margin-right: 4px;
+  vertical-align: middle;
+}
+
+.contactItem {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.languageSocial {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.languageDropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.language {
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.dropdownContent {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px; /* Increased for nav dropdowns */
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 2001; /* Higher than header to ensure visibility */
+  font-size: 12px;
+  top: 100%; /* Position below the trigger */
+  left: 0;
+}
+
+.dropdownContent a {
+  color: black;
+  padding: 10px 14px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdownContent a:hover {
+  background-color: #f1f1f1;
+}
+
+.languageDropdown:hover .dropdownContent {
+  display: block;
+}
+
+.socialIcons {
+  display: flex;
+  gap: 8px;
+}
+
+.icon {
+  cursor: pointer;
+  font-size: 16px;
+  color: #acacac;
+  transition: color 0.3s;
+}
+
+.icon:hover {
+  color: #007bff;
+}
+
+.mainNav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.logo {
+  text-align: center;
+}
+
+.logoImage {
+  width: 120px;
+  height: auto;
+}
+
+.navLinks {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.navLink {
+  color: grey;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 18px; /* Increased for better visibility */
+  transition: color 0.3s, border-bottom 0.3s;
+  position: relative;
+}
+
+.navLink:hover {
+  color: #55C3BC;
+  border-bottom: 4px solid #55C3BC;
+}
+
+.navDropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.navDropdown:hover .dropdownContent {
+  display: block;
+}
+
+.navDropdown .dropdownContent {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 2001; /* Ensure dropdown is above hero section */
+  font-size: 12px;
+  top: 100%;
+  left: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .header {
+    padding: 0 10px;
+  }
+
+  .topBar {
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px;
+  }
+
+  .contactInfo,
+  .languageSocial {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .mainNav {
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px 0;
+  }
+
+  .logo {
+    order: 1;
+  }
+
+  .navLinks {
+    flex-direction: column;
+    gap: 12px;
+    order: 2;
+    text-align: center;
+  }
+
+  .navDropdown {
+    width: 100%;
+  }
+
+  .dropdownContent {
+    position: static;
+    width: 100%;
+    box-shadow: none;
+  }
+
+  .dropdownContent a {
+    padding: 8px;
+  }
+
+  .navLink {
+    font-size: 16px; /* Adjusted for mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 0 5px;
+  }
+
+  .logoImage {
+    width: 120px;
+  }
+
+  .contactItem {
+    font-size: 12px;
+  }
+
+  .icon {
+    font-size: 14px;
+  }
+
+  .navLink {
+    font-size: 14px; /* Adjusted for smaller screens */
+  }
+
+  .dropdownContent {
+    font-size: 10px;
+  }
+}
+
+.mainNav {
+  display: flex;
+  justify-content: space-between; /* logo left, hamburger right */
+  align-items: center;
+  padding: 0 20px;
+}
+
+/* Logo always left */
+.logo {
+  margin-right: auto;
+}
+
+.logo img {
+  width: 140px;
+  height: auto;
+}
+
+/* Hamburger always right */
+.hamburger {
+  display: none;
+  margin-left: auto;
+  font-size: 28px;
+  cursor: pointer;
+  color: #333;
+}
+
+/* Show hamburger on smaller screens */
+@media (max-width: 960px) {
+  .hamburger {
+    display: block;
+  }
+  .navLinks {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .logo img {
+    width: 120px;
+  }
+  .hamburger {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 576px) {
+  .logo img {
+    width: 100px;
+  }
+  .hamburger {
+    font-size: 22px;
+  }
+}

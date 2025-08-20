@@ -1,0 +1,29 @@
+.container {
+    padding: 16px;
+  }
+  
+  .bannerWrapper {
+    width: 100%;
+  }
+  
+  .bannerImage {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+  }
+  
+  .content {
+    margin-top: 24px;
+  }
+  
+  .content h1 {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .content p {
+    margin-top: 8px;
+    color: #555;
+  }
+  

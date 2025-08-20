@@ -1,0 +1,176 @@
+.contactContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 40px;
+  background: #fff;
+}
+
+/* Scroll Animation for Sections */
+.contactInfo,
+.contactForm {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.contactInfo.visible,
+.contactForm.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Headings */
+.contactInfo h2,
+.contactForm h2 {
+  font-size: 2rem;
+  margin-bottom: 25px;
+  font-weight: 700;
+  color: #222;
+  letter-spacing: 1px;
+  transition: transform 0.3s ease;
+}
+
+.contactInfo h2:hover,
+.contactForm h2:hover {
+  transform: scale(1.02); /* Slight zoom on hover */
+}
+
+.contactInfo p {
+  color: #555;
+  line-height: 1.7;
+  font-size: 1rem;
+  margin-bottom: 25px;
+}
+
+.infoBlock {
+  margin-bottom: 30px;
+}
+
+.infoBlock h3 {
+  color: #009688;
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.infoBlock a {
+  color: #009688;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.infoBlock a:hover {
+  text-decoration: underline;
+}
+
+/* Form */
+.contactForm form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.contactForm input,
+.contactForm textarea {
+  padding: 14px 16px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.contactForm input:focus,
+.contactForm textarea:focus {
+  border-color: #009688;
+  transform: scale(1.02); /* Slight zoom on focus */
+  box-shadow: 0 0 5px rgba(0, 150, 136, 0.3); /* Subtle glow */
+}
+
+.contactForm textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+/* Button */
+.contactForm button {
+  background: #009688;
+  color: #fff;
+  border: none;
+  padding: 14px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  width: 30%;
+  letter-spacing: 1px;
+}
+
+.contactForm button:hover {
+  background: #00796b;
+  transform: translateY(-2px) scale(1.05); /* Lift and slight zoom */
+}
+
+/* Social Icons */
+.socials {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.socialIcon {
+  font-size: 16px;
+  color: #777;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.socialIcon:hover {
+  color: #009688;
+  transform: scale(1.2);
+}
+
+.socialIcon:not(:hover) {
+  color: #777;
+  transform: scale(1);
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .contactContainer {
+    grid-template-columns: 1fr;
+    padding: 60px 20px;
+    gap: 40px;
+  }
+
+  .contactForm button {
+    width: 100%;
+  }
+
+  .infoBlock .socials {
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .socialIcon {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 600px) {
+  .contactInfo h2,
+  .contactForm h2 {
+    font-size: 1.5rem;
+  }
+
+  .contactForm input,
+  .contactForm textarea {
+    padding: 12px;
+  }
+}
