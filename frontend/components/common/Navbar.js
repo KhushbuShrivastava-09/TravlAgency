@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import styles from '../styles/Navbar.module.css';
-import { FaEnvelope, FaPhoneAlt, FaFacebookF, FaTwitter, FaGooglePlusG, FaInstagram, FaVimeoV, FaBars, FaTimes } from 'react-icons/fa';
+import { FaEnvelope, FaPhoneAlt, FaFacebookF, FaInstagram, FaLinkedinIn, FaBars, FaTimes } from 'react-icons/fa';
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -27,11 +27,15 @@ const Navbar = () => {
             </div>
           </div>
           <div className={styles.socialIcons}>
-            <FaFacebookF className={styles.icon} />
-            <FaTwitter className={styles.icon} />
-            <FaGooglePlusG className={styles.icon} />
-            <FaInstagram className={styles.icon} />
-            <FaVimeoV className={styles.icon} />
+              <a href="https://www.facebook.com/people/Travabay-Holidays/61555526094194/" className={styles.facebook}>
+                <FaFacebookF />
+              </a>
+              <a href="https://www.instagram.com/travabay/" className={styles.instagram}>
+                <FaInstagram />
+              </a>
+              <a href="https://www.linkedin.com/company/102466205/admin/page-posts/published/" className={styles.linkedin}>
+                <FaLinkedinIn />
+              </a>
           </div>
         </div>
       </div>
@@ -40,7 +44,7 @@ const Navbar = () => {
       <div className={styles.mainNav}>
         {/* Logo */}
         <div className={styles.logo}>
-          <Image src="/images/logo.jpg" alt="Travel Agency Logo" width={150} height={50} className={styles.logoImage} />
+          <Image src="/images/logo.png" alt="Travel Agency Logo" width={150} height={50} className={styles.logoImage} />
         </div>
 
         {/* Hamburger Icon for Mobile */}
@@ -51,30 +55,31 @@ const Navbar = () => {
         {/* Links */}
         <nav className={`${styles.navLinks} ${menuOpen ? styles.showMenu : ''}`}>
           <div className={styles.navDropdown}>
-            <Link href="/" className={styles.navLink} style={{ color: '#55C3BC' }}>Home ▾</Link>
-            <div className={styles.dropdownContent}>
+            <Link href="/" className={styles.navLink} style={{ color: '#55C3BC' }}>Home</Link>
+            {/* <div className={styles.dropdownContent}>
               <Link href="#">Home 1</Link>
               <Link href="#">Home 2</Link>
               <Link href="#">Home 3</Link>
-            </div>
+            </div> */}
           </div>
           <Link href="/about" className={styles.navLink}>About Us</Link>
-          <Link href="#" className={styles.navLink}>Gallery</Link>
+          <Link href="/gallery" className={styles.navLink}>Gallery</Link>
           <div className={styles.navDropdown}>
             <Link href="#" className={styles.navLink}>Pages ▾</Link>
             <div className={styles.dropdownContent}>
-              <Link href="#">Page 1</Link>
-              <Link href="#">Page 2</Link>
-              <Link href="#">Page 3</Link>
+              <Link href="#">Flights</Link>
+              <Link href="#">Hotels</Link>
+              <Link href="#">Rent a Car</Link>
+              <Link href="#">Cruises</Link>
             </div>
           </div>
           <div className={styles.navDropdown}>
-            <Link href="#" className={styles.navLink}>Blog ▾</Link>
-            <div className={styles.dropdownContent}>
+            <Link href="#" className={styles.navLink}>Blog</Link>
+            {/* <div className={styles.dropdownContent}>
               <Link href="#">Blog Post 1</Link>
               <Link href="#">Blog Post 2</Link>
               <Link href="#">Blog Post 3</Link>
-            </div>
+            </div> */}
           </div>
           <Link href="/contact" className={styles.navLink}>Contacts</Link>
         </nav>

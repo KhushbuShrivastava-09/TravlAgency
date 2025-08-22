@@ -3,8 +3,15 @@
 import React, { useEffect, useRef } from "react";
 import styles from "../../styles/Contact/contact.module.css";
 // import Image from "next/image";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFacebookF, faTwitter, faGooglePlusG, faDribbble, faInstagram } from "@fortawesome/free-brands-svg-icons";
+import {
+  FaFacebookF,
+  // FaTwitter,
+  FaInstagram,
+  FaLinkedinIn,
+  // FaPinterestP,
+  // FaYoutube,
+} from "react-icons/fa"; // Social icons
+
 
 const Contact = () => {
   const contactRef = useRef(null);
@@ -54,13 +61,26 @@ const Contact = () => {
           <h3>PHONE</h3>
           <p>+440 875369208</p>
           <p>+440 353363114</p>
-          <div className={styles.socials}>
-            <FontAwesomeIcon icon={faFacebookF} className={styles.socialIcon} />
-            <FontAwesomeIcon icon={faTwitter} className={styles.socialIcon} />
-            <FontAwesomeIcon icon={faGooglePlusG} className={styles.socialIcon} />
-            <FontAwesomeIcon icon={faDribbble} className={styles.socialIcon} />
-            <FontAwesomeIcon icon={faInstagram} className={styles.socialIcon} />
-          </div>
+          <div className={styles.socialIcons}>
+              <a href="https://www.facebook.com/people/Travabay-Holidays/61555526094194/" className={styles.facebook}>
+                <FaFacebookF />
+              </a>
+              {/* <a href="#" className={styles.twitter}>
+                <FaTwitter />
+              </a> */}
+              <a href="https://www.instagram.com/travabay/" className={styles.instagram}>
+                <FaInstagram />
+              </a>
+              <a href="https://www.linkedin.com/company/102466205/admin/page-posts/published/" className={styles.linkedin}>
+                <FaLinkedinIn />
+              </a>
+              {/* <a href="#" className={styles.pinterest}>
+                <FaPinterestP />
+              </a>
+              <a href="#" className={styles.youtube}>
+                <FaYoutube />
+              </a> */}
+            </div>
         </div>
       </div>
 

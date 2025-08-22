@@ -1,11 +1,11 @@
 import styles from "../styles/Footer.module.css";
 import {
   FaFacebookF,
-  FaTwitter,
+  // FaTwitter,
   FaInstagram,
   FaLinkedinIn,
-  FaPinterestP,
-  FaYoutube,
+  // FaPinterestP,
+  // FaYoutube,
 } from "react-icons/fa"; // Social icons
 
 const Footer = () => {
@@ -44,24 +44,24 @@ const Footer = () => {
               </li>
             </ul>
             <div className={styles.socialIcons}>
-              <a href="#" className={styles.facebook}>
+              <a href="https://www.facebook.com/people/Travabay-Holidays/61555526094194/" className={styles.facebook}>
                 <FaFacebookF />
               </a>
-              <a href="#" className={styles.twitter}>
+              {/* <a href="#" className={styles.twitter}>
                 <FaTwitter />
-              </a>
-              <a href="#" className={styles.instagram}>
+              </a> */}
+              <a href="https://www.instagram.com/travabay/" className={styles.instagram}>
                 <FaInstagram />
               </a>
-              <a href="#" className={styles.linkedin}>
+              <a href="https://www.linkedin.com/company/102466205/admin/page-posts/published/" className={styles.linkedin}>
                 <FaLinkedinIn />
               </a>
-              <a href="#" className={styles.pinterest}>
+              {/* <a href="#" className={styles.pinterest}>
                 <FaPinterestP />
               </a>
               <a href="#" className={styles.youtube}>
                 <FaYoutube />
-              </a>
+              </a> */}
             </div>
           </div>
           {/* Column 3: Our Twitter */}

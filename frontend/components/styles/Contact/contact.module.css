@@ -123,23 +123,51 @@
   margin-top: 15px;
 }
 
-.socialIcon {
-  font-size: 16px;
-  color: #777;
-  cursor: pointer;
-  transition: color 0.3s ease, transform 0.3s ease;
+.socialIcons {
+  display: flex;
+  gap: 12px;
+  margin-top: 15px;
 }
 
-.socialIcon:hover {
-  color: #009688;
-  transform: scale(1.2);
+.socialIcons a {
+  color: #fff;
+  font-size: 1.4em;         
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;              
+  height: 40px;
+  background: #333;         
+  border-radius: 8px;       
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
-.socialIcon:not(:hover) {
-  color: #777;
-  transform: scale(1);
-  transition: color 0.3s ease, transform 0.3s ease;
+/* ✅ Hover background + animation */
+.socialIcons a:hover {
+  background: #fff; /* icon ke liye white bg */
+  transform: translateY(-5px); /* fade-up effect */
+  transition: all 0.4s ease;
 }
+
+/* ✅ Hover hone par icon ka apna original color show */
+.socialIcons a.facebook:hover {
+  color: #1877f2; /* Facebook Blue */
+}
+
+
+.socialIcons a.instagram:hover {
+  color: #e4405f; /* Instagram Pink */
+}
+
+.socialIcons a.linkedin:hover {
+  color: #0a66c2; /* LinkedIn Blue */
+}
+
+
+
 
 /* Responsive */
 @media (max-width: 900px) {
