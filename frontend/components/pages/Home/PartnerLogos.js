@@ -1,4 +1,4 @@
-import styles from '../../styles/Customers.module.css';
+import styles from '../../styles/Home/Customers.module.css';
 import Image from 'next/image';
 
 const PartnerLogos = () => {

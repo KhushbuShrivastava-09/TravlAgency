@@ -74,7 +74,7 @@ const Navbar = () => {
             </div>
           </div>
           <div className={styles.navDropdown}>
-            <Link href="#" className={styles.navLink}>Blog</Link>
+            <Link href="/blogs" className={styles.navLink}>Blog</Link>
             {/* <div className={styles.dropdownContent}>
               <Link href="#">Blog Post 1</Link>
               <Link href="#">Blog Post 2</Link>

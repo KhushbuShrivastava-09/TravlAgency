@@ -127,10 +127,6 @@
   color: #1877f2; /* Facebook Blue */
 }
 
-/* .socialIcons a.twitter:hover {
-  color: #1da1f2;
-} */
-
 .socialIcons a.instagram:hover {
   color: #e4405f; /* Instagram Pink */
 }
@@ -138,15 +134,6 @@
 .socialIcons a.linkedin:hover {
   color: #0a66c2; /* LinkedIn Blue */
 }
-
-/* .socialIcons a.youtube:hover {
-  color: #ff0000; 
-}
-.pinterest:hover {
-  color: #bd081c;
-  background: #fff;
-} */
-
 
 .bottomBar {
   display: flex;

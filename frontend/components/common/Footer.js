@@ -1,12 +1,10 @@
 import styles from "../styles/Footer.module.css";
 import {
   FaFacebookF,
-  // FaTwitter,
   FaInstagram,
   FaLinkedinIn,
-  // FaPinterestP,
-  // FaYoutube,
-} from "react-icons/fa"; // Social icons
+} from "react-icons/fa"; 
+import Link from "next/link";
 
 const Footer = () => {
   return (
@@ -47,35 +45,32 @@ const Footer = () => {
               <a href="https://www.facebook.com/people/Travabay-Holidays/61555526094194/" className={styles.facebook}>
                 <FaFacebookF />
               </a>
-              {/* <a href="#" className={styles.twitter}>
-                <FaTwitter />
-              </a> */}
               <a href="https://www.instagram.com/travabay/" className={styles.instagram}>
                 <FaInstagram />
               </a>
               <a href="https://www.linkedin.com/company/102466205/admin/page-posts/published/" className={styles.linkedin}>
                 <FaLinkedinIn />
               </a>
-              {/* <a href="#" className={styles.pinterest}>
-                <FaPinterestP />
-              </a>
-              <a href="#" className={styles.youtube}>
-                <FaYoutube />
-              </a> */}
             </div>
           </div>
-          {/* Column 3: Our Twitter */}
+          {/* Column 3: Quick links */}
           <div className={styles.footerSection}>
-            <h3>Our Twitter</h3>
+            <h3>Quick Links</h3>
             <ul>
               <li>
-                <a href="#">@travel Lorem ipsum dolor sit amet.</a>
+                <Link href="/">Home</Link>
               </li>
               <li>
-                consectetur adipiscing elit <span>5 minutes ago</span>
+              <Link href="/about">About Us</Link>
               </li>
               <li>
-                <a href="#">@leo Nam liber tempor cum soluta</a>
+              <Link href="/gallery">Gallery</Link>
+              </li>
+              <li>
+              <Link href="/blogs">Blog</Link>
+              </li>
+              <li>
+              <Link href="/contact">Contact</Link>
               </li>
             </ul>
           </div>
@@ -99,7 +94,7 @@ const Footer = () => {
       <div className={styles.bottomBarWrapper}>
         <div className={styles.bottomBar}>
           <p>
-            Copyright © 2017 MECOVACHE | <a href="#">Privacy Policy</a> |{" "}
+            Copyright © 2025 MECOVACHE | <a href="#">Privacy Policy</a> |{" "}
             <a href="#">About Us</a> | <a href="#">FAQ</a> |{" "}
             <a href="#">Contact Support</a>
           </p>

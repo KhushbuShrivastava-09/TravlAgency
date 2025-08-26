@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // Import carousel CSS
 import { FaPlane, FaHotel, FaCar, FaShip } from 'react-icons/fa'; // Professional icons
-import styles from '../../styles/Hero.module.css';
+import styles from '../../styles/Home/Hero.module.css';
 
 const Hero = () => {
   const [activeTab, setActiveTab] = useState('Flights');

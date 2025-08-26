@@ -1,11 +1,11 @@
 .header {
   background-color: #ffffff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 0 100px;
   width: 100%;
   box-sizing: border-box;
-  position: relative; /* Ensure header establishes a stacking context */
-  z-index: 2000; /* Higher than hero section to ensure dropdowns are above */
+  position: relative;
+  z-index: 2000; /* Higher than hero section for dropdowns */
+  padding: 0; /* Removed fixed padding */
 }
 
 .topBar {
@@ -58,11 +58,11 @@
   display: none;
   position: absolute;
   background-color: #f9f9f9;
-  min-width: 160px; /* Increased for nav dropdowns */
+  min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 2001; /* Higher than header to ensure visibility */
+  z-index: 2001;
   font-size: 12px;
-  top: 100%; /* Position below the trigger */
+  top: 100%;
   left: 0;
 }
 
@@ -101,17 +101,17 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 0;
+  padding: 10px 20px; /* Adjusted padding for containment */
   width: 100%;
   box-sizing: border-box;
 }
 
 .logo {
-  text-align: center;
+  margin-right: auto; /* Pushes logo to left */
 }
 
-.logoImage {
-  width: 120px;
+.logo img {
+  width: 140px;
   height: auto;
 }
 
@@ -125,7 +125,7 @@
   color: grey;
   text-decoration: none;
   font-weight: 500;
-  font-size: 18px; /* Increased for better visibility */
+  font-size: 18px;
   transition: color 0.3s, border-bottom 0.3s;
   position: relative;
 }
@@ -150,18 +150,53 @@
   background-color: #f9f9f9;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 2001; /* Ensure dropdown is above hero section */
+  z-index: 2001;
   font-size: 12px;
   top: 100%;
   left: 0;
 }
 
+/* Hamburger Menu */
+.hamburger {
+  display: none;
+  margin-left: auto;
+  font-size: 28px;
+  cursor: pointer;
+  color: #333;
+}
+
+.navLinks.active {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: #ffffff;
+  padding: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
 /* Responsive Design */
-@media (max-width: 768px) {
-  .header {
-    padding: 0 10px;
+@media (max-width: 960px) {
+  .hamburger {
+    display: block;
   }
 
+  .navLinks {
+    display: none;
+  }
+
+  .navLinks.active {
+    display: flex;
+  }
+
+  .mainNav {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 768px) {
   .topBar {
     flex-direction: column;
     gap: 8px;
@@ -177,46 +212,51 @@
   .mainNav {
     flex-direction: column;
     gap: 16px;
-    padding: 16px 0;
+    padding: 16px 10px;
   }
 
-  .logo {
-    order: 1;
+  .logo img {
+    width: 120px;
+  }
+
+  .hamburger {
+    font-size: 24px;
+  }
+
+  .navLinks.active {
+    position: static;
+    padding: 0;
+    box-shadow: none;
   }
 
   .navLinks {
     flex-direction: column;
     gap: 12px;
-    order: 2;
     text-align: center;
   }
 
-  .navDropdown {
-    width: 100%;
-  }
-
-  .dropdownContent {
+  .navDropdown .dropdownContent {
     position: static;
     width: 100%;
     box-shadow: none;
   }
 
-  .dropdownContent a {
+  .navDropdown .dropdownContent a {
     padding: 8px;
   }
 
   .navLink {
-    font-size: 16px; /* Adjusted for mobile */
+    font-size: 16px;
   }
 }
 
-@media (max-width: 480px) {
-  .header {
-    padding: 0 5px;
+@media (max-width: 576px) {
+  .logo img {
+    width: 100px;
   }
 
-  .logoImage {
-    width: 120px;
+  .hamburger {
+    font-size: 22px;
   }
 
   .contactItem {
@@ -228,64 +268,10 @@
   }
 
   .navLink {
-    font-size: 14px; /* Adjusted for smaller screens */
+    font-size: 14px;
   }
 
   .dropdownContent {
     font-size: 10px;
-  }
-}
-
-.mainNav {
-  display: flex;
-  justify-content: space-between; /* logo left, hamburger right */
-  align-items: center;
-  padding: 0 20px;
-}
-
-/* Logo always left */
-.logo {
-  margin-right: auto;
-}
-
-.logo img {
-  width: 140px;
-  height: auto;
-}
-
-/* Hamburger always right */
-.hamburger {
-  display: none;
-  margin-left: auto;
-  font-size: 28px;
-  cursor: pointer;
-  color: #333;
-}
-
-/* Show hamburger on smaller screens */
-@media (max-width: 960px) {
-  .hamburger {
-    display: block;
-  }
-  .navLinks {
-    display: none;
-  }
-}
-
-@media (max-width: 768px) {
-  .logo img {
-    width: 120px;
-  }
-  .hamburger {
-    font-size: 24px;
-  }
-}
-
-@media (max-width: 576px) {
-  .logo img {
-    width: 100px;
-  }
-  .hamburger {
-    font-size: 22px;
   }
 }

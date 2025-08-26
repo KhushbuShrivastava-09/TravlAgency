@@ -5,7 +5,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import Image from "next/image";
-import styles from "../../styles/HeroSlider.module.css";
+import styles from "../../styles/Blogs/HeroSlider.module.css";
 
 const HeroSlider = ({ slides }) => {
   return (

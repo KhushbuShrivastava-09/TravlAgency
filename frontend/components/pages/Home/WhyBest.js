@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import styles from '../../styles/WhyBest.module.css';
+import styles from '../../styles/Home/WhyBest.module.css';
 import { FaPlane, FaCompass, FaFlag, FaComments } from 'react-icons/fa';
 
 
@@ -38,8 +38,6 @@ const WhyBest = () => {
       <p className={styles.subtitle}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut
         laoreet dolore magna aliquam erat volutpat.
-        
-
       </p>
       <div className={styles.cardsContainer}>
         {features.map((feature, index) => (
