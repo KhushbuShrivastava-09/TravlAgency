@@ -3,7 +3,7 @@ import React from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import styles from '../../styles/Home/CruiseSlider.module.css';
+import styles from '../../styles/Home/GallerySlider.module.css';
 
 const cruisesData = [
   {
@@ -44,7 +44,7 @@ const cruisesData = [
   },
 ];
 
-const CruisesSlider = () => {
+const GallerySlider = () => {
   const settings = {
     dots: true,
     infinite: true,
@@ -74,7 +74,7 @@ const CruisesSlider = () => {
   return (
     <div className={styles.sliderContainer}>
       <div className={styles.headerSection}>
-        <h2>Popular Cruises</h2>
+        <h2>Gallery</h2>
         <p className={styles.subtitle}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod
           tincidunt ut laoreet dolore magna aliquam erat volutpat.
@@ -105,4 +105,4 @@ const CruisesSlider = () => {
   );
 };
 
-export default CruisesSlider;
+export default GallerySlider;

@@ -34,7 +34,7 @@ const WhyBest = () => {
 
   return (
     <section className={styles.whyBestSection}>
-      <h2 className={styles.title}>WHY WE ARE THE BEST</h2>
+      <h2 className={styles.title}>WHY TO CHOOSE US</h2>
       <p className={styles.subtitle}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut
         laoreet dolore magna aliquam erat volutpat.
@@ -49,24 +49,7 @@ const WhyBest = () => {
           </div>
         ))}
       </div>
-
-      {/* Caucasus Vacation Packages Banner with Background Image */}
-      <div className={styles.vacationBanner}>
-        <div className={styles.bannerContent}>
-          <div className={styles.textContainer}>
-            <h2 className={styles.bannerTitle}>Caucasus Vacation Packages</h2>
-            <p className={styles.bannerDescription}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut
-              laoreet dolore magna aliquam erat voluptat. Ut wisi enim ad minim veniam, quis nostrud exerci tation
-              ullamcorper.
-            </p>
-            <p className={styles.bannerPrice}>From: Khazbegi (Georgia) <span>$159.00</span> per person</p>
-          </div>
-          <div className={styles.buttonContainer}>
-            <a href="#" className={styles.bannerButton}>DETAILS</a>
-          </div>
-        </div>
-      </div>
+      
     </section>
   );
 };

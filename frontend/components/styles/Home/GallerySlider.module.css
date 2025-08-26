@@ -1,0 +1,323 @@
+.sliderContainer {
+  text-align: center;
+  padding: 60px 20px;
+  background-color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.headerSection {
+  width: 90%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 30px;
+}
+
+.title {
+  font-size: 32px;
+  color: #1a3c5e;
+  margin-bottom: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.subtitle {
+  color: #666;
+  font-size: 16px;
+  margin-bottom: 0;
+  font-style: italic;
+}
+
+.sliderWrapper {
+  width: 90%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Card Load Animation */
+.slide {
+  padding: 15px;
+  box-sizing: border-box;
+  opacity: 0;
+  transform: translateY(50px) scale(0.95);
+  animation: fadeInUp 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.slide:nth-child(1) { animation-delay: 0.2s; }
+.slide:nth-child(2) { animation-delay: 0.4s; }
+.slide:nth-child(3) { animation-delay: 0.6s; }
+.slide:nth-child(4) { animation-delay: 0.8s; }
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.cardImage {
+  height: 280px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px 8px 0 0;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.5s ease-in-out, box-shadow 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.cardImage::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.3) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.slide:hover .cardImage {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.slide:hover .cardImage::after {
+  opacity: 1;
+}
+
+.cardContent {
+  background-color: #ffffff;
+  padding: 20px;
+  border: 1px solid #f0f0f0;
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  text-align: left;
+  transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.3s ease;
+}
+
+.slide:hover .cardContent {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  background-color: #fafafa;
+  border-bottom: 3px solid #E5A13E;
+}
+
+.cardTitle {
+  color: #d32f2f;
+  font-size: 1.3em;
+  margin: 0 0 8px;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.slide:hover .cardTitle {
+  color: #b71c1c;
+}
+
+.cardDescription {
+  color: #666;
+  font-size: 0.95em;
+  margin: 0 0 12px;
+  line-height: 1.6;
+  transition: color 0.3s ease;
+}
+
+.slide:hover .cardDescription {
+  color: #444;
+}
+
+.rating {
+  color: #ff9800;
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+.rating span {
+  color: #666;
+  font-size: 14px;
+  margin-left: 8px;
+}
+
+/* Professional Animated Button */
+.seeAllButton {
+  background-color: #00C4CC;
+  color: #fff;
+  border: none;
+  padding: 12px 25px;
+  cursor: pointer;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.4s ease;
+  box-shadow: 0 4px 12px rgba(0, 196, 204, 0.3);
+}
+
+.seeAllButton:hover {
+  background-color: #0099a8;
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 15px rgba(0, 196, 204, 0.4);
+}
+
+/* Slick Dots */
+.slick-dots {
+  bottom: -40px;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+}
+
+.slick-dots li {
+  margin: 0 8px;
+}
+
+.slick-dots li button {
+  width: 12px;
+  height: 12px;
+  background: #ccc;
+  border: none;
+  border-radius: 50%;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+.slick-dots li button:before {
+  content: '';
+  display: none;
+}
+
+.slick-dots li.slick-active button {
+  background: #00C4CC;
+  opacity: 1;
+  transform: scale(1.4);
+}
+
+/* Ensure slider content has proper horizontal padding */
+.slick-list {
+  padding: 0 15px !important;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .sliderContainer {
+    padding: 50px 15px;
+  }
+
+  .headerSection,
+  .sliderWrapper {
+    width: 95%;
+  }
+
+  .cardImage {
+    height: 240px;
+  }
+
+  .cardContent {
+    padding: 15px;
+  }
+
+  .seeAllButton {
+    padding: 10px 20px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sliderContainer {
+    padding: 30px 10px;
+  }
+
+  .title {
+    font-size: 28px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+  }
+
+  .cardImage {
+    height: 200px;
+  }
+
+  .cardContent {
+    padding: 12px;
+  }
+
+  .cardTitle {
+    font-size: 1.1em;
+  }
+
+  .cardDescription {
+    font-size: 0.85em;
+  }
+
+  .seeAllButton {
+    padding: 8px 16px;
+    font-size: 11px;
+  }
+
+  .slick-dots {
+    bottom: -25px;
+  }
+
+  .slick-dots li button {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sliderContainer {
+    padding: 20px 5px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .subtitle {
+    font-size: 12px;
+  }
+
+  .cardImage {
+    height: 150px;
+  }
+
+  .cardContent {
+    padding: 10px;
+  }
+
+  .cardTitle {
+    font-size: 1em;
+  }
+
+  .cardDescription {
+    font-size: 0.8em;
+  }
+
+  .seeAllButton {
+    padding: 6px 12px;
+    font-size: 10px;
+  }
+
+  .slick-dots {
+    bottom: -15px;
+  }
+
+  .slick-dots li button {
+    width: 8px;
+    height: 8px;
+  }
+}

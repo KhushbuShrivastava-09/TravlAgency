@@ -10,7 +10,7 @@ const Navbar = () => {
 
   return (
     <header className={styles.header}>
-      {/* Top Bar */}
+      {/* Part 1: Contact Info with Language and Social Icons */}
       <div className={styles.topBar}>
         <div className={styles.contactInfo}>
           <span className={styles.contactItem}><FaEnvelope /> support@travelagency.com |</span>
@@ -27,62 +27,76 @@ const Navbar = () => {
             </div>
           </div>
           <div className={styles.socialIcons}>
-              <a href="https://www.facebook.com/people/Travabay-Holidays/61555526094194/" className={styles.facebook}>
-                <FaFacebookF />
-              </a>
-              <a href="https://www.instagram.com/travabay/" className={styles.instagram}>
-                <FaInstagram />
-              </a>
-              <a href="https://www.linkedin.com/company/102466205/admin/page-posts/published/" className={styles.linkedin}>
-                <FaLinkedinIn />
-              </a>
+            <a href="https://www.facebook.com/people/Travabay-Holidays/61555526094194/" className={styles.facebook}>
+              <FaFacebookF />
+            </a>
+            <a href="https://www.instagram.com/travabay/" className={styles.instagram}>
+              <FaInstagram />
+            </a>
+            <a href="https://www.linkedin.com/company/102466205/admin/page-posts/published/" className={styles.linkedin}>
+              <FaLinkedinIn />
+            </a>
           </div>
         </div>
       </div>
 
-      {/* Main Navbar */}
+      {/* Part 2: Main Navbar with Logo and Links */}
       <div className={styles.mainNav}>
-        {/* Logo */}
         <div className={styles.logo}>
-          <Image src="/images/logo.png" alt="Travel Agency Logo" width={150} height={50} className={styles.logoImage} />
+          <Link href = "/" className={styles.logoLink}><Image src="/images/logo.png" alt="Travel Agency Logo" width={150} height={50} className={styles.logoImage} /></Link>
         </div>
-
-        {/* Hamburger Icon for Mobile */}
         <div className={styles.hamburger} onClick={() => setMenuOpen(!menuOpen)}>
           {menuOpen ? <FaTimes /> : <FaBars />}
         </div>
-
-        {/* Links */}
         <nav className={`${styles.navLinks} ${menuOpen ? styles.showMenu : ''}`}>
           <div className={styles.navDropdown}>
-            <Link href="/" className={styles.navLink} style={{ color: '#55C3BC' }}>Home</Link>
-            {/* <div className={styles.dropdownContent}>
-              <Link href="#">Home 1</Link>
-              <Link href="#">Home 2</Link>
-              <Link href="#">Home 3</Link>
-            </div> */}
+            <Link href="/" className={styles.navLink} style={{ color: '#55C3BC' }}>Upcoming Trips</Link>
           </div>
           <Link href="/about" className={styles.navLink}>About Us</Link>
           <Link href="/gallery" className={styles.navLink}>Gallery</Link>
-          <div className={styles.navDropdown}>
-            <Link href="#" className={styles.navLink}>Pages ▾</Link>
-            <div className={styles.dropdownContent}>
-              <Link href="#">Flights</Link>
-              <Link href="#">Hotels</Link>
-              <Link href="#">Rent a Car</Link>
-              <Link href="#">Cruises</Link>
+          <Link href="/gallery" className={styles.navLink}>Corporate Bookings</Link>
+          <Link href="/blogs" className={styles.navLink}>Blog</Link>
+          <Link href="/contact" className={styles.navLink}>Contact Us</Link>
+        </nav>
+      </div>
+
+      {/* Part 3: Category Links Only */}
+      <div className={styles.bottomBar}>
+        <div className={styles.categoryLinks}>
+          <div className={styles.categoryDropdown}>
+            <Link href="/international" className={styles.categoryLink}>International Trips ▾</Link>
+            <div className={styles.categoryDropdownContent}>
+              <Link href="/international/europe" className={styles.dropdownItem}>Europe</Link>
+              <Link href="/international/asia" className={styles.dropdownItem}>Asia</Link>
+              <Link href="/international/america" className={styles.dropdownItem}>America</Link>
             </div>
           </div>
-          <div className={styles.navDropdown}>
-            <Link href="/blogs" className={styles.navLink}>Blog</Link>
-            {/* <div className={styles.dropdownContent}>
-              <Link href="#">Blog Post 1</Link>
-              <Link href="#">Blog Post 2</Link>
-              <Link href="#">Blog Post 3</Link>
-            </div> */}
+          <div className={styles.categoryDropdown}>
+            <Link href="/india" className={styles.categoryLink}>India Trips ▾</Link>
+            <div className={styles.categoryDropdownContent}>
+              <Link href="/india/north" className={styles.dropdownItem}>North India</Link>
+              <Link href="/india/south" className={styles.dropdownItem}>South India</Link>
+              <Link href="/india/east" className={styles.dropdownItem}>East India</Link>
+            </div>
           </div>
-          <Link href="/contact" className={styles.navLink}>Contacts</Link>
-        </nav>
+          <div className={styles.categoryDropdown}>
+            <Link href="/weekend" className={styles.categoryLink}>Weekend Trips ▾</Link>
+            <div className={styles.categoryDropdownContent}>
+              <Link href="/weekend/hills" className={styles.dropdownItem}>Hill Stations</Link>
+              <Link href="/weekend/beach" className={styles.dropdownItem}>Beaches</Link>
+              <Link href="/weekend/city" className={styles.dropdownItem}>City Breaks</Link>
+            </div>
+          </div>
+          <div className={styles.categoryDropdown}>
+            <Link href="/group" className={styles.categoryLink}>Group Tours ▾</Link>
+            <div className={styles.categoryDropdownContent}>
+              <Link href="/group/family" className={styles.dropdownItem}>Family Tours</Link>
+              <Link href="/group/friends" className={styles.dropdownItem}>Friends Tours</Link>
+              <Link href="/group/corporate" className={styles.dropdownItem}>Corporate Tours</Link>
+            </div>
+          </div>
+          <Link href="/honeymoon" className={styles.categoryLink}>Honeymoon Packages</Link>
+        </div>
       </div>
     </header>
   );

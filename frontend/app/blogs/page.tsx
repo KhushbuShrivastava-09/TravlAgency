@@ -3,7 +3,7 @@ import BlogsGrid from "../../components/pages/Blogs/BlogsGrid";
 
 const slidesData = [
   {
-    image: "/images/blog1.jpg",
+    image: "/images/leh.jpg",
     title: "My First Blog",
     tags: ["React", "Next.js"],
     date: "Aug 20, 2025",
@@ -12,7 +12,7 @@ const slidesData = [
     readTime: "3 min read",
   },
   {
-    image: "/images/blog2.jpg",
+    image: "/images/spain.jpg",
     title: "Another Post",
     tags: ["JavaScript", "Frontend"],
     date: "Aug 21, 2025",

@@ -12,7 +12,7 @@ const Footer = () => {
       <footer className={styles.footer}>
         <div className={styles.footerContainer}>
           <div className={styles.footerSection}>
-            <h3>Travel Agency</h3>
+            <h3>Travabay</h3>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam
               nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam
@@ -21,23 +21,35 @@ const Footer = () => {
           </div>
           {/* Column 2: Travel Specialists */}
           <div className={styles.footerSection}>
-            <h3>Travel Specialists</h3>
+            <h3>Categories</h3>
             <ul>
               <li>
                 <a href="#">
-                  First Class Flights <span>&rarr;</span>
+                  International Trips <span>&rarr;</span>
                 </a>
                 <hr className={styles.ruler} />
               </li>
               <li>
                 <a href="#">
-                  Accessible Travel <span>&rarr;</span>
+                  India Trips <span>&rarr;</span>
                 </a>
                 <hr className={styles.ruler} />
               </li>
               <li>
                 <a href="#">
-                  Amazing Cruises <span>&rarr;</span>
+                  Weekend Trips <span>&rarr;</span>
+                </a>
+                <hr className={styles.ruler} />
+              </li>
+              <li>
+                <a href="#">
+                  Group Tours <span>&rarr;</span>
+                </a>
+                <hr className={styles.ruler} />
+              </li>
+              <li>
+                <a href="#">
+                  Honeymoon Packages <span>&rarr;</span>
                 </a>
               </li>
             </ul>
@@ -76,9 +88,9 @@ const Footer = () => {
           </div>
           {/* Column 4: Newsletter */}
           <div className={styles.footerSection}>
-            <h3>Newsletter</h3>
+            <h3>Blogs</h3>
             <p>Inspiration, ideas, news and your feedback.</p>
-            <input
+            {/* <input
               type="email"
               placeholder="Email Address"
               className={styles.emailInput}
@@ -87,7 +99,7 @@ const Footer = () => {
             <p>
               1-917-338-6831 <br />
               <a href="#">support@templates-support.com</a>
-            </p>
+            </p> */}
           </div>
         </div>
       </footer>

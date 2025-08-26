@@ -7,7 +7,7 @@ import styles from "../../styles/Blogs/BlogsGrid.module.css";
 const blogs = [
   {
     id: 1,
-    image: "/images/blog1.jpg",
+    image: "/images/leh.jpg",
     date: "22 Aug, 2025",
     readTime: "4 minutes read",
     title: "Shopping in Hoi An, Vietnam: Unique Things to Buy in 2025",
@@ -18,7 +18,7 @@ const blogs = [
   },
   {
     id: 2,
-    image: "/images/blog2.jpg",
+    image: "/images/shimla.jpg",
     date: "22 Aug, 2025",
     readTime: "5 minutes read",
     title: "Best Places to Visit in India in October: Top Travel Picks",
@@ -29,7 +29,7 @@ const blogs = [
   },
   {
     id: 3,
-    image: "/images/blog3.jpg",
+    image: "/images/spain.jpg",
     date: "21 Aug, 2025",
     readTime: "6 minutes read",
     title: "55 Fantastic Places To Visit In Delhi 2025",

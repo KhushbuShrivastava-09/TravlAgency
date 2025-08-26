@@ -1,11 +1,7 @@
 .heroContainer {
   position: relative;
-  height: 700px;
+  height: 500px;
   overflow: hidden;
-  background-image: url('/images/hero.jpeg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   width: 100%;
   box-sizing: border-box;
   z-index: 1000;
@@ -23,6 +19,9 @@
   position: relative;
   height: 500px;
   width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .overlayText {
@@ -56,120 +55,8 @@
   padding: 5px;
 }
 
-.searchSection {
-  position: absolute;
-  bottom: 0px;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-  width: 90%;
-  max-width: 1200px;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 8px;
-  border-bottom: 2px solid #E5A13E;
-  padding: 20px;
-  box-sizing: border-box;
-  z-index: 1500;
-}
-
-.tabs {
-  display: flex;
-  justify-content: flex-start; /* Center the tabs */
-  margin-bottom: 20px;
-  gap: 10px; /* Space between tabs */
-}
-
-.tab {
-  background: #E5A13E;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  border-radius: 4px;
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-  gap: 5px; /* Space between icon and text */
-  transition: background-color 0.3s;
-}
-
-.tab svg {
-  font-size: 16px; /* Consistent icon size */
-}
-
-.tab.active {
-  background: white;
-  color: #E5A13E;
-}
-
-.searchForm {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-
-.formFields {
-  display: flex;
-  width: 100%;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.formGroup {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  min-width: 150px;
-}
-
-.formGroup label {
-  font-size: 14px;
-  color: #333;
-  margin-bottom: 5px;
-  font-weight: 500;
-}
-
-.formFields input,
-.formFields select {
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  box-sizing: border-box;
-  width: 100%;
-}
-
-.searchButton {
-  background: #E5A13E;
-  color: white;
-  border: none;
-  padding: 2px 20px;
-  cursor: pointer;
-  border-radius: 4px;
-  min-width: 100px;
-  font-size: 14px;
-  transition: background-color 0.3s;
-}
-
-.searchButton:hover {
-  background-color: #008C9E;
-}
-
 /* Responsive */
 @media (max-width: 768px) {
-  .formFields {
-    flex-direction: column;
-  }
-
-  .formGroup {
-    width: 100%;
-  }
-
-  .formFields input,
-  .formFields select,
-  .searchButton {
-    margin-bottom: 10px;
-  }
-
   .heroContainer {
     height: 600px;
   }
@@ -194,20 +81,6 @@
 
   .overlayText p {
     font-size: 16px;
-  }
-
-  .searchSection {
-    width: 95%;
-    bottom: 10px;
-    padding: 15px;
-  }
-
-  .tabs {
-    justify-content: flex-start;
-  }
-
-  .tab {
-    margin: 0 5px 10px 0;
   }
 }
 
@@ -236,22 +109,5 @@
 
   .overlayText p {
     font-size: 14px;
-  }
-
-  .searchSection {
-    width: 98%;
-    padding: 10px;
-    bottom: 5px;
-  }
-
-  .tabs {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .tab {
-    width: 100%;
-    margin-bottom: 10px;
-    margin-right: 0;
   }
 }
