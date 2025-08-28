@@ -1,0 +1,390 @@
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+    gap: 20px;
+  }
+  
+  .banner {
+    background-image: url("/images/leh.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 2em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+  }
+  
+  .mainContent {
+    display: flex;
+    width: 100%;
+    gap: 20px;
+  }
+  
+  .filters {
+    width: 250px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .filterSection {
+    margin-bottom: 20px;
+  }
+  
+  .filterSection label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #333;
+    font-size: 14px;
+  }
+  
+  .destinationButtons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .destButton {
+    background-color: #f0f0f0;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s, color 0.3s;
+    color: #333;
+  }
+  
+  .destButton:hover,
+  .destButton.activeDest {
+    background-color: #55C3BC;
+    color: #fff;
+  }
+  
+  /* Dual Range Slider CSS (without conditional logic) */
+  .rangeSlider {
+    position: relative;
+    width: 100%;
+    height: 35px;
+    text-align: center;
+  }
+  
+  .rangeInput {
+    pointer-events: none;
+    position: absolute;
+    overflow: hidden;
+    left: 0;
+    top: 15px;
+    width: 100%;
+    outline: none;
+    height: 18px;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+  }
+  
+  .rangeInput::-webkit-slider-thumb {
+    pointer-events: all;
+    position: relative;
+    z-index: 1;
+    outline: 0;
+    -webkit-appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #55C3BC;
+    cursor: pointer;
+  }
+  
+  .rangeInput::-moz-range-thumb {
+    pointer-events: all;
+    position: relative;
+    z-index: 10;
+    -moz-appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #55C3BC;
+    cursor: pointer;
+  }
+  
+  .rangeInput::-moz-range-track {
+    position: relative;
+    z-index: -1;
+    background-color: #55C3BC; /* Initial color */
+    border: 0;
+  }
+  
+  .rangeInput:last-of-type::-moz-range-track {
+    -moz-appearance: none;
+    background: none transparent;
+    border: 0;
+  }
+  
+  .rangeInput[type="range"]::-moz-focus-outer {
+    border: 0;
+  }
+  
+  .rangeInput[type="range"] {
+    -webkit-appearance: none;
+    background: transparent;
+  }
+  
+  .rangeInput[type="range"]::-webkit-slider-runnable-track {
+    height: 4px;
+    border-radius: 2px;
+  }
+  
+  .rangeInput[type="range"]::-moz-range-progress {
+    background-color: #55C3BC; /* Initial color */
+  }
+  
+  .rangeValues {
+    font-size: 14px;
+    margin-top: 10px;
+    text-align: center;
+    color: #333;
+  }
+  
+  .monthCheckboxes {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    max-height: 150px;
+    overflow-y: auto;
+  }
+  
+  .checkboxLabel {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .checkboxLabel input[type="checkbox"] {
+    margin: 0;
+    accent-color: #55C3BC;
+  }
+  
+  .filterButtons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .clearButton {
+    background-color: #f0f0f0;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    flex: 1;
+    color: #333;
+    font-size: 14px;
+  }
+  
+  .applyButton {
+    background-color: #55C3BC;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    flex: 1;
+    font-size: 14px;
+  }
+  
+  .rightContent {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .monthCarousel {
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 10px 0;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .carouselInner {
+    display: inline-flex;
+    gap: 10px;
+    padding: 10px;
+  }
+  
+  .monthButton {
+    background-color: #f0f0f0;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+    color: #333;
+    font-weight: 500;
+  }
+  
+  .monthButton:hover,
+  .monthButton.activeMonth {
+    background-color: #55C3BC;
+    color: #fff;
+  }
+  
+  .tripsGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+  .tripCard {
+    display: flex;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    padding: 15px;
+    align-items: center;
+  }
+  
+  .tripImageContainer {
+    flex: 0 0 40%;
+    margin-right: 15px;
+  }
+  
+  .tripImage {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+  
+  .tripInfo {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .tripInfo h3 {
+    font-size: 16px;
+    color: #333;
+    margin: 0 0 10px;
+    font-weight: 600;
+  }
+  
+  .tripInfo p {
+    font-size: 14px;
+    color: #666;
+    margin: 5px 0;
+  }
+  
+  .price {
+    color: #ff0000;
+    text-decoration: line-through;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  .arrow {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    font-size: 20px;
+    color: #333;
+  }
+  
+  .subDestinationsOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .subDestinationsPanel {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    max-height: 70vh;
+    overflow-y: auto;
+    position: relative;
+    width: 300px;
+  }
+  
+  .closeIcon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    color: #333;
+    font-size: 18px;
+  }
+  
+  .closeIcon:hover {
+    color: #55C3BC;
+  }
+  
+  .subDestinations {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  @media (max-width: 768px) {
+    .container {
+      padding: 10px;
+      flex-direction: column;
+    }
+  
+    .filters {
+      width: 100%;
+    }
+  
+    .rightContent {
+      width: 100%;
+    }
+  
+    .monthCarousel {
+      padding: 0 5px;
+    }
+  
+    .tripsGrid {
+      grid-template-columns: 1fr;
+    }
+  
+    .tripCard {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .tripImageContainer {
+      flex: 0 0 100%;
+      margin-right: 0;
+      margin-bottom: 15px;
+    }
+  
+    .subDestinationsPanel {
+      width: 90%;
+      max-height: 60vh;
+    }
+  }
