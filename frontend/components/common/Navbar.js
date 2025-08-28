@@ -108,7 +108,7 @@ const Navbar = () => {
 
         {/* Desktop Nav Links */}
         <nav className={styles.navLinks}>
-          <Link href="/upcomingtrips" className={styles.navLink} style={{ color: "#55C3BC" }}>
+          <Link href="/upcomingtrips" className={styles.navLink} style={{ color: "#157DC2" }}>
             Upcoming Trips
           </Link>
           <Link href="/about" className={styles.navLink}>
