@@ -57,13 +57,13 @@
 }
 
 .icon {
-  color: #E5A13E;
+  color: #EF8F49;
   margin-right: 12px;
   font-size: 14px;
 }
 
 .rightText {
-  border-left: 3px solid #E5A13E;
+  border-left: 3px solid #EF8F49;
   padding-left: 20px;
   color: #777;
   font-size: 15px;
@@ -105,7 +105,7 @@
   .rightText {
     border-left: none;
     padding-left: 0;
-    border-top: 3px solid #E5A13E;
+    border-top: 3px solid #EF8F49;
     padding-top: 20px;
     transform: translateY(30px);
     animation: fadeTop 1s ease forwards;
