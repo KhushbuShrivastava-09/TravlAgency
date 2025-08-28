@@ -52,17 +52,24 @@ const GallerySlider = () => {
     slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 5000,
+    autoplaySpeed: 4000,
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1024, // Tablet
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
         },
       },
       {
-        breakpoint: 600,
+        breakpoint: 768, // Mobile landscape
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 480, // Mobile portrait
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -74,7 +81,7 @@ const GallerySlider = () => {
   return (
     <div className={styles.sliderContainer}>
       <div className={styles.headerSection}>
-        <h2>Gallery</h2>
+        <h2 className={styles.title}>Gallery</h2>
         <p className={styles.subtitle}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod
           tincidunt ut laoreet dolore magna aliquam erat volutpat.
