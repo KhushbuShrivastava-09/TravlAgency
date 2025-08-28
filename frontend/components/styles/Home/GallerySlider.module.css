@@ -13,14 +13,11 @@
 .headerSection {
   width: 90%;
   max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 30px;
+  margin: 0 auto 30px auto;
 }
 
 .title {
-  font-size: 32px;
-  color: #1a3c5e;
+  font-size: 2rem; /* Responsive font */
   margin-bottom: 10px;
   font-weight: 700;
   text-transform: uppercase;
@@ -29,7 +26,7 @@
 
 .subtitle {
   color: #666;
-  font-size: 16px;
+  font-size: 1rem;
   margin-bottom: 0;
   font-style: italic;
 }
@@ -37,11 +34,10 @@
 .sliderWrapper {
   width: 90%;
   max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
 }
 
-/* Card Load Animation */
+/* Cards */
 .slide {
   padding: 15px;
   box-sizing: border-box;
@@ -49,7 +45,6 @@
   transform: translateY(50px) scale(0.95);
   animation: fadeInUp 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
-
 .slide:nth-child(1) { animation-delay: 0.2s; }
 .slide:nth-child(2) { animation-delay: 0.4s; }
 .slide:nth-child(3) { animation-delay: 0.6s; }
@@ -63,7 +58,8 @@
 }
 
 .cardImage {
-  height: 280px;
+  aspect-ratio: 16/9; /* auto height responsive */
+  width: 100%;
   background-size: cover;
   background-position: center;
   border-radius: 8px 8px 0 0;
@@ -76,10 +72,7 @@
 .cardImage::after {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background: linear-gradient(to top, rgba(0, 0, 0, 0.3) 0%, transparent 70%);
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -108,24 +101,21 @@
   transform: translateY(-6px);
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
   background-color: #fafafa;
-  border-bottom: 3px solid #E5A13E;
+  border-bottom: 3px solid #EF8F49;
 }
 
 .cardTitle {
-  color: #d32f2f;
-  font-size: 1.3em;
+  color: #157DC2;
+  font-size: 1.2rem;
   margin: 0 0 8px;
   font-weight: 600;
   transition: color 0.3s ease;
 }
 
-.slide:hover .cardTitle {
-  color: #b71c1c;
-}
 
 .cardDescription {
   color: #666;
-  font-size: 0.95em;
+  font-size: 0.9rem;
   margin: 0 0 12px;
   line-height: 1.6;
   transition: color 0.3s ease;
@@ -137,25 +127,25 @@
 
 .rating {
   color: #ff9800;
-  font-size: 18px;
+  font-size: 1rem;
   margin-bottom: 12px;
 }
 
 .rating span {
   color: #666;
-  font-size: 14px;
+  font-size: 0.85rem;
   margin-left: 8px;
 }
 
-/* Professional Animated Button */
+/* Animated Button */
 .seeAllButton {
-  background-color: #00C4CC;
+  background-color: #157DC2;
   color: #fff;
   border: none;
   padding: 12px 25px;
   cursor: pointer;
   border-radius: 25px;
-  font-size: 14px;
+  font-size: 0.9rem;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -171,153 +161,56 @@
 
 /* Slick Dots */
 .slick-dots {
-  bottom: -40px;
-  display: flex;
+  bottom: -30px !important;
+  display: flex !important;
   justify-content: center;
-  padding: 0;
 }
-
 .slick-dots li {
-  margin: 0 8px;
+  margin: 0 6px;
 }
-
 .slick-dots li button {
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
   background: #ccc;
   border: none;
   border-radius: 50%;
   opacity: 0.7;
   transition: all 0.3s ease;
 }
-
 .slick-dots li button:before {
-  content: '';
   display: none;
 }
-
 .slick-dots li.slick-active button {
-  background: #00C4CC;
+  background: #157DC2;
   opacity: 1;
-  transform: scale(1.4);
+  transform: scale(1.3);
 }
 
-/* Ensure slider content has proper horizontal padding */
+/* Fix extra padding */
 .slick-list {
-  padding: 0 15px !important;
-  width: 100%;
-  box-sizing: border-box;
+  margin: 0 -10px;
+}
+.slick-slide > div {
+  padding: 0 10px;
 }
 
-/* Responsive Design */
+/* Responsive */
 @media (max-width: 1024px) {
-  .sliderContainer {
-    padding: 50px 15px;
-  }
-
-  .headerSection,
-  .sliderWrapper {
-    width: 95%;
-  }
-
-  .cardImage {
-    height: 240px;
-  }
-
-  .cardContent {
-    padding: 15px;
-  }
-
-  .seeAllButton {
-    padding: 10px 20px;
-    font-size: 12px;
-  }
+  .title { font-size: 1.8rem; }
+  .cardContent { padding: 15px; }
 }
-
 @media (max-width: 768px) {
-  .sliderContainer {
-    padding: 30px 10px;
-  }
-
-  .title {
-    font-size: 28px;
-  }
-
-  .subtitle {
-    font-size: 14px;
-  }
-
-  .cardImage {
-    height: 200px;
-  }
-
-  .cardContent {
-    padding: 12px;
-  }
-
-  .cardTitle {
-    font-size: 1.1em;
-  }
-
-  .cardDescription {
-    font-size: 0.85em;
-  }
-
-  .seeAllButton {
-    padding: 8px 16px;
-    font-size: 11px;
-  }
-
-  .slick-dots {
-    bottom: -25px;
-  }
-
-  .slick-dots li button {
-    width: 10px;
-    height: 10px;
-  }
+  .title { font-size: 1.5rem; }
+  .subtitle { font-size: 0.9rem; }
+  .seeAllButton { padding: 10px 20px; font-size: 0.8rem; }
+  .slick-dots { bottom: -20px !important; }
 }
-
 @media (max-width: 480px) {
-  .sliderContainer {
-    padding: 20px 5px;
-  }
-
-  .title {
-    font-size: 24px;
-  }
-
-  .subtitle {
-    font-size: 12px;
-  }
-
-  .cardImage {
-    height: 150px;
-  }
-
-  .cardContent {
-    padding: 10px;
-  }
-
-  .cardTitle {
-    font-size: 1em;
-  }
-
-  .cardDescription {
-    font-size: 0.8em;
-  }
-
-  .seeAllButton {
-    padding: 6px 12px;
-    font-size: 10px;
-  }
-
-  .slick-dots {
-    bottom: -15px;
-  }
-
-  .slick-dots li button {
-    width: 8px;
-    height: 8px;
-  }
+  .title { font-size: 1.3rem; }
+  .subtitle { font-size: 0.8rem; }
+  .cardContent { padding: 12px; }
+  .cardTitle { font-size: 1rem; }
+  .cardDescription { font-size: 0.8rem; }
+  .seeAllButton { padding: 8px 15px; font-size: 0.7rem; }
+  .slick-dots { bottom: -15px !important; }
 }

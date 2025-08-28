@@ -85,7 +85,7 @@
 }
 
 .card:hover .icon {
-  color: #E5A13E;
+  color: #EF8F49;
   transform: rotate(20deg) scale(1.1); /* icon animation on hover */
 }
 
@@ -110,7 +110,7 @@
 
 .readMore:hover {
   text-decoration: underline;
-  color: #E5A13E;
+  color: #EF8F49;
 }
 
 /* 🔥 Animations */
@@ -212,7 +212,7 @@
 .bannerButton {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #E5A13E;
+  background-color: #EF8F49;
   color: #fff;
   text-decoration: none;
   border-radius: 5px;
@@ -221,7 +221,7 @@
 }
 
 .bannerButton:hover {
-  background-color: #E5A13E;
+  background-color: #EF8F49;
 }
 
 /* Responsive Design */
@@ -396,7 +396,7 @@
 .bannerButton {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #E5A13E;
+  background-color: #EF8F49;
   color: #fff;
   text-decoration: none;
   border-radius: 5px;
