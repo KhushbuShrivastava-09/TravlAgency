@@ -5,7 +5,7 @@ import styles from "../../styles/About/Ourteams.module.css";
 import Image from "next/image";
 import team2 from "../../../public/images/team02.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFacebookF, faTwitter, faGooglePlusG, faDribbble, faInstagram } from "@fortawesome/free-brands-svg-icons";
+import { faFacebookF, faInstagram, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 
 const teamMembers = [
   {
@@ -59,7 +59,7 @@ const Team = () => {
 
   return (
     <section className={styles.team}>
-      <h2 className={styles.title}>OUR TEAM</h2>
+      <h2 className={styles.title}>TEAM OF EXPERTS</h2>
       <p className={styles.subtitle}>
         Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
         nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat
@@ -74,9 +74,7 @@ const Team = () => {
             <p className={styles.role}>{member.role}</p>
             <div className={styles.socials}>
               <FontAwesomeIcon icon={faFacebookF} className={styles.socialIcon} />
-              <FontAwesomeIcon icon={faTwitter} className={styles.socialIcon} />
-              <FontAwesomeIcon icon={faGooglePlusG} className={styles.socialIcon} />
-              <FontAwesomeIcon icon={faDribbble} className={styles.socialIcon} />
+              <FontAwesomeIcon icon={faLinkedin} className={styles.socialIcon} />
               <FontAwesomeIcon icon={faInstagram} className={styles.socialIcon} />
             </div>
           </div>

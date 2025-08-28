@@ -9,10 +9,10 @@ export default function AboutPage() {
       {/* Flags Image */}
       <div className={styles.bannerWrapper}>
         <Image
-          src="/images/about_banner.jpg"  
+          src="/images/leh.jpg"  
           alt="Flags Banner"
           width={1200}
-          height={300}
+          height={100}
           className={styles.bannerImage}
           priority
         />
