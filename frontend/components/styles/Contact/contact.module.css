@@ -50,14 +50,14 @@
 }
 
 .infoBlock h3 {
-  color: #009688;
+  color: #157DC2;
   margin-bottom: 10px;
   font-size: 1.1rem;
   font-weight: 600;
 }
 
 .infoBlock a {
-  color: #009688;
+  color: #157DC2;
   text-decoration: none;
   font-size: 0.95rem;
 }
@@ -85,7 +85,7 @@
 
 .contactForm input:focus,
 .contactForm textarea:focus {
-  border-color: #009688;
+  border-color: #157DC2;
   transform: scale(1.02); /* Slight zoom on focus */
   box-shadow: 0 0 5px rgba(0, 150, 136, 0.3); /* Subtle glow */
 }
@@ -97,7 +97,7 @@
 
 /* Button */
 .contactForm button {
-  background: #009688;
+  background: #157DC2;
   color: #fff;
   border: none;
   padding: 14px;
