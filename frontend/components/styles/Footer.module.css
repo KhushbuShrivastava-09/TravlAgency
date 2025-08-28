@@ -26,11 +26,6 @@
   word-spacing: 2px;   
 }
 
-.logoImage {
-  width: 150px;
-  height: auto;
-}
-
 .footerSection h3 {
   color: #fff;
   margin-bottom: 10px;
@@ -67,31 +62,6 @@
   margin: 10px 0;
 }
 
-.emailInput {
-  width: 100%;
-  padding: 8px;
-  margin: 10px 0;
-  background: #333;
-  border: 1px solid #444;
-  color: #ccc;
-  border-radius: 4px;
-}
-
-.submitButton {
-  background-color: #ff4500;
-  color: #fff;
-  border: none;
-  padding: 8px 15px;
-  cursor: pointer;
-  border-radius: 4px;
-  font-size: 0.9em;
-}
-
-.submitButton:hover {
-  background-color: #e03a00;
-}
-
-/* ✅ Social Icons */
 /* ✅ Social Icons */
 .socialIcons {
   display: flex;
@@ -135,32 +105,70 @@
   color: #0a66c2; /* LinkedIn Blue */
 }
 
+.bottomBarWrapper {
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #157DC2;
+}
+
 .bottomBar {
   display: flex;
   justify-content: space-evenly;
-  background-color: #75cec8;
+  background-color: #157DC2;
   color: #fff;
   text-align: center;
   padding: 15px;
   width: 100%;
   box-sizing: border-box;
   margin: 0;
+  flex-wrap: wrap; /* Allow wrapping for responsiveness */
+  gap: 10px; /* Add spacing between elements */
 }
 
 .bottomBar p {
   margin: 5px 0;
+  font-size: 14px; /* Base font size for readability */
 }
 
 .bottomBar a {
   color: #fff;
   text-decoration: none;
-  margin: 0 10px;
+  margin: 0 8px; /* Slightly reduced margin for smaller screens */
 }
 
 .bottomBar a:hover {
   text-decoration: underline;
 }
+@media (max-width: 768px) {
+  .bottomBar {
+    flex-direction: column; /* Stack items vertically on medium screens */
+    padding: 12px;
+    gap: 8px;
+  }
 
+  .bottomBar p {
+    font-size: 13px; /* Slightly smaller font for medium screens */
+  }
+
+  .bottomBar a {
+    margin: 0 5px; /* Reduced margin for tighter spacing */
+  }
+}
+
+@media (max-width: 576px) {
+  .bottomBar {
+    padding: 10px;
+    gap: 6px;
+  }
+
+  .bottomBar p {
+    font-size: 12px; /* Smaller font for small screens */
+  }
+
+  .bottomBar a {
+    margin: 0 4px; /* Further reduced margin */
+  }
+}
 #root {
   flex: 1 0 auto;
 }
