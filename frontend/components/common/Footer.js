@@ -14,9 +14,7 @@ const Footer = () => {
           <div className={styles.footerSection}>
             <h3>Travabay</h3>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam
-              nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam
-              erat volutpat.
+            Travabay Holidays Your gateway to unforgettable journeys! From breathtaking domestic escapes to mesmerizing international adventures, we craft tailor-made travel experiences designed just for you. Explore. Dream. Discover with Travabay.
             </p>
           </div>
           {/* Column 2: Travel Specialists */}
@@ -90,16 +88,7 @@ const Footer = () => {
           <div className={styles.footerSection}>
             <h3>Blogs</h3>
             <p>Inspiration, ideas, news and your feedback.</p>
-            {/* <input
-              type="email"
-              placeholder="Email Address"
-              className={styles.emailInput}
-            />
-            <button className={styles.submitButton}>SUBMIT</button>
-            <p>
-              1-917-338-6831 <br />
-              <a href="#">support@templates-support.com</a>
-            </p> */}
+           
           </div>
         </div>
       </footer>
