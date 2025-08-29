@@ -95,11 +95,11 @@ const Footer = () => {
       <div className={styles.bottomBarWrapper}>
         <div className={styles.bottomBar}>
           <p>
-            Copyright © 2025 MECOVACHE | <a href="#">Privacy Policy</a> |{" "}
-            <a href="#">About Us</a> | <a href="#">FAQ</a> |{" "}
-            <a href="#">Contact Support</a>
+            Copyright © 2025 ICEICO | <a href="#">Privacy Policy</a> |{" "}
+            <a href="/about">About Us</a> | <a href="#">FAQ</a> |{" "}
+            <a href="/contact">Contact Support</a>
           </p>
-          <p>Designed by MECOVACHE</p>
+          <p>Designed by ICEICO</p>
         </div>
       </div>
     </>

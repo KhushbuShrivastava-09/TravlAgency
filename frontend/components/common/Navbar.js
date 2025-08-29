@@ -12,9 +12,27 @@ import {
   FaBars,
   FaTimes,
 } from "react-icons/fa";
+import Modal from "../../components/CorporateModal"; // Adjust path as needed
+import { motion, AnimatePresence } from "framer-motion"; // Import Framer Motion
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isCorporateModalOpen, setIsCorporateModalOpen] = useState(false);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
+  const [isForgotPasswordModalOpen, setIsForgotPasswordModalOpen] = useState(false);
+  
+  const openCorporateModal = () => setIsCorporateModalOpen(true);
+  const closeCorporateModal = () => setIsCorporateModalOpen(false);
+
+  const openLoginModal = () => setIsLoginModalOpen(true);
+  const closeLoginModal = () => setIsLoginModalOpen(false);
+
+  const openRegisterModal = () => setIsRegisterModalOpen(true);
+  const closeRegisterModal = () => setIsRegisterModalOpen(false);
+
+  const openForgotPasswordModal = () => setIsForgotPasswordModalOpen(true);
+  const closeForgotPasswordModal = () => setIsForgotPasswordModalOpen(false);
 
   return (
     <header className={styles.header}>
@@ -29,40 +47,6 @@ const Navbar = () => {
           </span>
         </div>
         <div className={styles.languageSocial}>
-          <div className={styles.languageDropdown}>
-            <span className={styles.language}>
-              <Image
-                src="/uk-flag.svg"
-                alt="UK Flag"
-                width={16}
-                height={12}
-                className={styles.flag}
-              />{" "}
-              English ▾ |
-            </span>
-            <div className={styles.dropdownContent}>
-              <Link href="#">
-                <Image
-                  src="/es-flag.svg"
-                  alt="Spain Flag"
-                  width={16}
-                  height={12}
-                  className={styles.flag}
-                />{" "}
-                Spanish
-              </Link>
-              <Link href="#">
-                <Image
-                  src="/fr-flag.svg"
-                  alt="France Flag"
-                  width={16}
-                  height={12}
-                  className={styles.flag}
-                />{" "}
-                French
-              </Link>
-            </div>
-          </div>
           <div className={styles.socialIcons}>
             <a
               href="https://www.facebook.com/people/Travabay-Holidays/61555526094194/"
@@ -117,7 +101,7 @@ const Navbar = () => {
           <Link href="/gallery" className={styles.navLink}>
             Gallery
           </Link>
-          <Link href="/gallery" className={styles.navLink}>
+          <Link href="/corporate" onClick={(e) => { e.preventDefault(); openCorporateModal(); }} className={styles.navLink}>
             Corporate Bookings
           </Link>
           <Link href="/blogs" className={styles.navLink}>
@@ -125,6 +109,12 @@ const Navbar = () => {
           </Link>
           <Link href="/contact" className={styles.navLink}>
             Contact Us
+          </Link>
+          <Link href="/login" onClick={(e) => { e.preventDefault(); openLoginModal(); }} className={styles.navLink}>
+            LogIn
+          </Link>
+          <Link href="/register" onClick={(e) => { e.preventDefault(); openRegisterModal(); }} className={styles.navLink}>
+            Register
           </Link>
         </nav>
       </div>
@@ -219,7 +209,7 @@ const Navbar = () => {
             <Link href="/gallery" className={styles.navLink}>
               Gallery
             </Link>
-            <Link href="/gallery" className={styles.navLink}>
+            <Link href="/corporate" onClick={(e) => { e.preventDefault(); openCorporateModal(); }} className={styles.navLink}>
               Corporate Bookings
             </Link>
             <Link href="/blogs" className={styles.navLink}>
@@ -228,86 +218,246 @@ const Navbar = () => {
             <Link href="/contact" className={styles.navLink}>
               Contact Us
             </Link>
+            <Link href="/login" onClick={(e) => { e.preventDefault(); openLoginModal(); }} className={styles.navLink}>
+              LogIn
+            </Link>
+            <Link href="/register" onClick={(e) => { e.preventDefault(); openRegisterModal(); }} className={styles.navLink}>
+              Register
+            </Link>
           </nav>
 
           <div className={styles.mobileCategories}>
             <p className={styles.mobileTitle}>Categories</p>
             <div className={styles.categoryLinks}>
-               <div className={styles.categoryDropdown}>
-            <Link href="/international" className={styles.categoryLink}>
-              International Trips ▾
-            </Link>
-            <div className={styles.categoryDropdownContent}>
-              <Link href="/international/europe" className={styles.dropdownItem}>
-                Europe
-              </Link>
-              <Link href="/international/asia" className={styles.dropdownItem}>
-                Asia
-              </Link>
-              <Link href="/international/america" className={styles.dropdownItem}>
-                America
-              </Link>
-            </div>
-               </div>
-
               <div className={styles.categoryDropdown}>
-            <Link href="/india" className={styles.categoryLink}>
-              India Trips ▾
-            </Link>
-            <div className={styles.categoryDropdownContent}>
-              <Link href="/india/north" className={styles.dropdownItem}>
-                North India
-              </Link>
-              <Link href="/india/south" className={styles.dropdownItem}>
-                South India
-              </Link>
-              <Link href="/india/east" className={styles.dropdownItem}>
-                East India
-              </Link>
-            </div>
+                <Link href="/international" className={styles.categoryLink}>
+                  International Trips ▾
+                </Link>
+                <div className={styles.categoryDropdownContent}>
+                  <Link href="/international/europe" className={styles.dropdownItem}>
+                    Europe
+                  </Link>
+                  <Link href="/international/asia" className={styles.dropdownItem}>
+                    Asia
+                  </Link>
+                  <Link href="/international/america" className={styles.dropdownItem}>
+                    America
+                  </Link>
+                </div>
               </div>
 
               <div className={styles.categoryDropdown}>
-            <Link href="/weekend" className={styles.categoryLink}>
-              Weekend Trips ▾
-            </Link>
-            <div className={styles.categoryDropdownContent}>
-              <Link href="/weekend/hills" className={styles.dropdownItem}>
-                Hill Stations
-              </Link>
-              <Link href="/weekend/beach" className={styles.dropdownItem}>
-                Beaches
-              </Link>
-              <Link href="/weekend/city" className={styles.dropdownItem}>
-                City Breaks
-              </Link>
-            </div>
+                <Link href="/india" className={styles.categoryLink}>
+                  India Trips ▾
+                </Link>
+                <div className={styles.categoryDropdownContent}>
+                  <Link href="/india/north" className={styles.dropdownItem}>
+                    North India
+                  </Link>
+                  <Link href="/india/south" className={styles.dropdownItem}>
+                    South India
+                  </Link>
+                  <Link href="/india/east" className={styles.dropdownItem}>
+                    East India
+                  </Link>
+                </div>
               </div>
 
               <div className={styles.categoryDropdown}>
-            <Link href="/group" className={styles.categoryLink}>
-              Group Tours ▾
-            </Link>
-            <div className={styles.categoryDropdownContent}>
-              <Link href="/group/family" className={styles.dropdownItem}>
-                Family Tours
-              </Link>
-              <Link href="/group/friends" className={styles.dropdownItem}>
-                Friends Tours
-              </Link>
-              <Link href="/group/corporate" className={styles.dropdownItem}>
-                Corporate Tours
-              </Link>
-            </div>
+                <Link href="/weekend" className={styles.categoryLink}>
+                  Weekend Trips ▾
+                </Link>
+                <div className={styles.categoryDropdownContent}>
+                  <Link href="/weekend/hills" className={styles.dropdownItem}>
+                    Hill Stations
+                  </Link>
+                  <Link href="/weekend/beach" className={styles.dropdownItem}>
+                    Beaches
+                  </Link>
+                  <Link href="/weekend/city" className={styles.dropdownItem}>
+                    City Breaks
+                  </Link>
+                </div>
+              </div>
+
+              <div className={styles.categoryDropdown}>
+                <Link href="/group" className={styles.categoryLink}>
+                  Group Tours ▾
+                </Link>
+                <div className={styles.categoryDropdownContent}>
+                  <Link href="/group/family" className={styles.dropdownItem}>
+                    Family Tours
+                  </Link>
+                  <Link href="/group/friends" className={styles.dropdownItem}>
+                    Friends Tours
+                  </Link>
+                  <Link href="/group/corporate" className={styles.dropdownItem}>
+                    Corporate Tours
+                  </Link>
+                </div>
               </div>
 
               <Link href="/honeymoon" className={styles.categoryLink}>
-            Honeymoon Packages
+                Honeymoon Packages
               </Link>
             </div>
           </div>
         </div>
       )}
+
+      {/* Corporate Modal with Animation */}
+      <AnimatePresence>
+        {isCorporateModalOpen && (
+          <Modal isOpen={isCorporateModalOpen} onClose={closeCorporateModal}>
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -50 }}
+              transition={{ duration: 0.3 }}
+              className={styles.modalContent}
+            >
+              <button className={styles.closeButton} onClick={closeCorporateModal}>
+                &times;
+              </button>
+              <h2 className={styles.modalTitle}>Corporate Booking</h2>
+              <form className={styles.modalForm}>
+                <div className={styles.formGroup}>
+                  <label>Name</label>
+                  <input type="text" className={styles.formInput} placeholder="Enter name" />
+                </div>
+                <div className={styles.formGroup}>
+                  <label>Email Id</label>
+                  <input type="email" className={styles.formInput} placeholder="Enter email" />
+                </div>
+                <div className={styles.formGroup}>
+                  <label>Phone Number</label>
+                  <input type="tel" className={styles.formInput} placeholder="Enter phone number" />
+                </div>
+                <div className={styles.formGroup}>
+                  <label>Company Name</label>
+                  <input type="text" className={styles.formInput} placeholder="Enter company name" />
+                </div>
+                <div className={styles.formGroup}>
+                  <label>Destination</label>
+                  <input type="text" className={styles.formInput} placeholder="Enter destination" />
+                </div>
+                <button type="submit" className={styles.submitButton}>
+                  Send Enquiry
+                </button>
+              </form>
+            </motion.div>
+          </Modal>
+        )}
+      </AnimatePresence>
+
+      {/* Login Modal with Animation */}
+      <AnimatePresence>
+        {isLoginModalOpen && (
+          <Modal isOpen={isLoginModalOpen} onClose={closeLoginModal}>
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -50 }}
+              transition={{ duration: 0.3 }}
+              className={styles.modalContent}
+            >
+              <button className={styles.closeButton} onClick={closeLoginModal}>
+                &times;
+              </button>
+              <h2 className={styles.modalTitle}>Log In</h2>
+              <form className={styles.modalForm}>
+                <div className={styles.formGroup}>
+                  <label>Email</label>
+                  <input type="email" className={styles.formInput} placeholder="Enter your email" />
+                </div>
+                <div className={styles.formGroup}>
+                  <label>Password</label>
+                  <input type="password" className={styles.formInput} placeholder="Enter your password" />
+                </div>
+                <button type="submit" className={styles.submitButton}>
+                  Log In
+                </button>
+                <p className={styles.forgotPassword}>
+                  <Link href="#" onClick={(e) => { e.preventDefault(); openForgotPasswordModal(); }}>Forgot Password?</Link>
+                </p>
+              </form>
+            </motion.div>
+          </Modal>
+        )}
+      </AnimatePresence>
+
+      {/* Register Modal with Animation */}
+      <AnimatePresence>
+        {isRegisterModalOpen && (
+          <Modal isOpen={isRegisterModalOpen} onClose={closeRegisterModal}>
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -50 }}
+              transition={{ duration: 0.3 }}
+              className={styles.modalContent}
+            >
+              <button className={styles.closeButton} onClick={closeRegisterModal}>
+                &times;
+              </button>
+              <h2 className={styles.modalTitle}>Register</h2>
+              <form className={styles.modalForm}>
+                <div className={styles.formGroup}>
+                  <label>Full Name</label>
+                  <input type="text" className={styles.formInput} placeholder="Enter your full name" />
+                </div>
+                <div className={styles.formGroup}>
+                  <label>Email</label>
+                  <input type="email" className={styles.formInput} placeholder="Enter your email" />
+                </div>
+                <div className={styles.formGroup}>
+                  <label>Password</label>
+                  <input type="password" className={styles.formInput} placeholder="Create a password" />
+                </div>
+                <div className={styles.formGroup}>
+                  <label>Phone Number</label>
+                  <input type="tel" className={styles.formInput} placeholder="Enter phone number" />
+                </div>
+                <button type="submit" className={styles.submitButton}>
+                  Register
+                </button>
+              </form>
+            </motion.div>
+          </Modal>
+        )}
+      </AnimatePresence>
+
+      {/* Forgot Password Modal with Animation */}
+      <AnimatePresence>
+        {isForgotPasswordModalOpen && (
+          <Modal isOpen={isForgotPasswordModalOpen} onClose={closeForgotPasswordModal}>
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -50 }}
+              transition={{ duration: 0.3 }}
+              className={styles.modalContent}
+            >
+              <button className={styles.closeButton} onClick={closeForgotPasswordModal}>
+                &times;
+              </button>
+              <h2 className={styles.modalTitle}>Forgot Password</h2>
+              <form className={styles.modalForm}>
+                <div className={styles.formGroup}>
+                  <label>Email</label>
+                  <input type="email" className={styles.formInput} placeholder="Enter your email" />
+                </div>
+                <button type="submit" className={styles.submitButton}>
+                  Reset Password
+                </button>
+                <p className={styles.forgotPassword}>
+                  <Link href="#" onClick={(e) => { e.preventDefault(); closeForgotPasswordModal(); openLoginModal(); }}>Back to Log In</Link>
+                </p>
+              </form>
+            </motion.div>
+          </Modal>
+        )}
+      </AnimatePresence>
     </header>
   );
 };
