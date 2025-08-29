@@ -1,390 +1,406 @@
 .container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    box-sizing: border-box;
-    gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 0px;
+  box-sizing: border-box;
+  gap: 20px;
+}
+
+.banner {
+  background-image: url("/images/leh.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 2em;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.mainContent {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+}
+
+.leftColumn {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  width: 250px;
+  position: relative;
+}
+
+.filters {
+  width: 250px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.filterSection {
+  margin-bottom: 20px;
+}
+
+.filterSection label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #333;
+  font-size: 14px;
+}
+
+.destinationLabels {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.destLabel {
+  background-color: #f0f0f0;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s, color 0.3s;
+  color: #333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.destLabel:hover,
+.destLabel.activeDest {
+  background-color: #55C3BC;
+  color: #fff;
+}
+
+.arrowIcon {
+  font-size: 14px;
+  color: #666;
+}
+
+.destLabel:hover .arrowIcon,
+.destLabel.activeDest .arrowIcon {
+  color: #fff;
+}
+
+.rangeSlider {
+  position: relative;
+  width: 100%;
+  height: 6px;
+  background: #ddd;
+  border-radius: 5px;
+}
+
+.rangeInput {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 6px;
+  background: transparent;
+  position: absolute;
+}
+
+.rangeInput::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #55C3BC;
+  cursor: pointer;
+  border: 2px solid #fff;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+}
+
+.rangeInput::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #55C3BC;
+  cursor: pointer;
+  border: 2px solid #fff;
+}
+
+.rangeValues {
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: center;
+  color: #333;
+}
+
+.monthCheckboxes {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #333;
+}
+
+.checkboxLabel input[type="checkbox"] {
+  margin: 0;
+  accent-color: #55C3BC;
+}
+
+.filterButtons {
+  display: flex;
+  gap: 10px;
+}
+
+.clearButton {
+  background-color: #f0f0f0;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  flex: 1;
+  color: #333;
+  font-size: 14px;
+}
+
+.applyButton {
+  background-color: #55C3BC;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  flex: 1;
+  font-size: 14px;
+}
+
+.subDestinationsPanel {
+  background: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 250px;
+  height: 280px;
+  overflow-y: auto;
+  position: absolute;
+  top: 120px;
+  left: 270px; /* Adjusted to align with the right edge of filters */
+  z-index: 10; /* Ensure it overlays rightContent */
+}
+
+.subDestinationsPanel h4 {
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.closeIcon {
+  cursor: pointer;
+  color: #666;
+}
+
+.subDestinations {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.rightContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  z-index: 1; /* Ensure it stays behind subDestinationsPanel */
+}
+
+.monthCarousel {
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 10px 0;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.carouselInner {
+  display: inline-flex;
+  gap: 10px;
+  padding: 10px;
+}
+
+.monthButton {
+  background-color: #f0f0f0;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+  color: #333;
+  font-weight: 500;
+}
+
+.monthButton:hover,
+.monthButton.activeMonth {
+  background-color: #55C3BC;
+  color: #fff;
+}
+
+.tripsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.tripCard {
+  display: flex;
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+  padding: 15px;
+  align-items: flex-start;
+}
+
+.tripImageContainer {
+  flex: 0 0 40%;
+  margin-right: 15px;
+}
+
+.tripImage {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.tripInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.tripInfo h3 {
+  font-size: 16px;
+  color: #333;
+  margin: 0 0 8px;
+  font-weight: 600;
+}
+
+.tripDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 14px;
+  color: #555;
+}
+
+.tripDetails span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tripDetails span svg {
+  color: #55C3BC;
+}
+
+/* Price box */
+.priceBox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #e5e3e3;
+  width: fit-content;
+  padding: 6px 8px;
+  border-radius: 6px;
+  margin-top: 10px;
+}
+
+.oldPrice {
+  text-decoration: line-through;
+  color: #252424;
+  font-size: 13px;
+}
+
+.currentPrice {
+  font-weight: 600;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Arrow */
+.arrow {
+  position: absolute;
+  cursor: pointer;
+  bottom: 15px;
+  right: 15px;
+  font-size: 18px;
+  transform: rotate(-45deg);
+  background: #000;
+  padding: 6px 8px;
+  border-radius: 50%;
+}
+
+.arrow svg {
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+    flex-direction: column;
   }
-  
-  .banner {
-    background-image: url("/images/leh.jpg");
-    background-size: cover;
-    background-position: center;
-    height: 200px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
-    font-size: 2em;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    border-radius: 10px;
-    margin-bottom: 20px;
-    width: 100%;
-  }
-  
-  .mainContent {
-    display: flex;
-    width: 100%;
-    gap: 20px;
-  }
-  
+
   .filters {
-    width: 250px;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .filterSection {
-    margin-bottom: 20px;
-  }
-  
-  .filterSection label {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 8px;
-    color: #333;
-    font-size: 14px;
-  }
-  
-  .destinationButtons {
-    display: flex;
-    gap: 10px;
-  }
-  
-  .destButton {
-    background-color: #f0f0f0;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s, color 0.3s;
-    color: #333;
-  }
-  
-  .destButton:hover,
-  .destButton.activeDest {
-    background-color: #55C3BC;
-    color: #fff;
-  }
-  
-  /* Dual Range Slider CSS (without conditional logic) */
-  .rangeSlider {
-    position: relative;
     width: 100%;
-    height: 35px;
-    text-align: center;
   }
-  
-  .rangeInput {
-    pointer-events: none;
-    position: absolute;
-    overflow: hidden;
-    left: 0;
-    top: 15px;
-    width: 100%;
-    outline: none;
-    height: 18px;
-    margin: 0;
-    padding: 0;
-    background: transparent;
-  }
-  
-  .rangeInput::-webkit-slider-thumb {
-    pointer-events: all;
-    position: relative;
-    z-index: 1;
-    outline: 0;
-    -webkit-appearance: none;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: #55C3BC;
-    cursor: pointer;
-  }
-  
-  .rangeInput::-moz-range-thumb {
-    pointer-events: all;
-    position: relative;
-    z-index: 10;
-    -moz-appearance: none;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: #55C3BC;
-    cursor: pointer;
-  }
-  
-  .rangeInput::-moz-range-track {
-    position: relative;
-    z-index: -1;
-    background-color: #55C3BC; /* Initial color */
-    border: 0;
-  }
-  
-  .rangeInput:last-of-type::-moz-range-track {
-    -moz-appearance: none;
-    background: none transparent;
-    border: 0;
-  }
-  
-  .rangeInput[type="range"]::-moz-focus-outer {
-    border: 0;
-  }
-  
-  .rangeInput[type="range"] {
-    -webkit-appearance: none;
-    background: transparent;
-  }
-  
-  .rangeInput[type="range"]::-webkit-slider-runnable-track {
-    height: 4px;
-    border-radius: 2px;
-  }
-  
-  .rangeInput[type="range"]::-moz-range-progress {
-    background-color: #55C3BC; /* Initial color */
-  }
-  
-  .rangeValues {
-    font-size: 14px;
-    margin-top: 10px;
-    text-align: center;
-    color: #333;
-  }
-  
-  .monthCheckboxes {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    max-height: 150px;
-    overflow-y: auto;
-  }
-  
-  .checkboxLabel {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 14px;
-    color: #333;
-  }
-  
-  .checkboxLabel input[type="checkbox"] {
-    margin: 0;
-    accent-color: #55C3BC;
-  }
-  
-  .filterButtons {
-    display: flex;
-    gap: 10px;
-  }
-  
-  .clearButton {
-    background-color: #f0f0f0;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    flex: 1;
-    color: #333;
-    font-size: 14px;
-  }
-  
-  .applyButton {
-    background-color: #55C3BC;
-    color: #fff;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    flex: 1;
-    font-size: 14px;
-  }
-  
-  .rightContent {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  
-  .monthCarousel {
-    overflow-x: auto;
-    white-space: nowrap;
-    padding: 10px 0;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .carouselInner {
-    display: inline-flex;
-    gap: 10px;
-    padding: 10px;
-  }
-  
-  .monthButton {
-    background-color: #f0f0f0;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s;
-    color: #333;
-    font-weight: 500;
-  }
-  
-  .monthButton:hover,
-  .monthButton.activeMonth {
-    background-color: #55C3BC;
-    color: #fff;
-  }
-  
-  .tripsGrid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-  }
-  
-  .tripCard {
-    display: flex;
-    background-color: #fff;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    position: relative;
-    padding: 15px;
-    align-items: center;
-  }
-  
-  .tripImageContainer {
-    flex: 0 0 40%;
-    margin-right: 15px;
-  }
-  
-  .tripImage {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 5px;
-  }
-  
-  .tripInfo {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  
-  .tripInfo h3 {
-    font-size: 16px;
-    color: #333;
-    margin: 0 0 10px;
-    font-weight: 600;
-  }
-  
-  .tripInfo p {
-    font-size: 14px;
-    color: #666;
-    margin: 5px 0;
-  }
-  
-  .price {
-    color: #ff0000;
-    text-decoration: line-through;
-    font-weight: bold;
-    margin-top: 10px;
-  }
-  
-  .arrow {
-    position: absolute;
-    bottom: 15px;
-    right: 15px;
-    font-size: 20px;
-    color: #333;
-  }
-  
-  .subDestinationsOverlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-  }
-  
+
   .subDestinationsPanel {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    max-height: 70vh;
-    overflow-y: auto;
-    position: relative;
-    width: 300px;
+    width: 90%;
+    max-height: 60vh;
+    position: static;
+    left: auto;
+    top: auto;
   }
-  
-  .closeIcon {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    cursor: pointer;
-    color: #333;
-    font-size: 18px;
+
+  .rightContent {
+    width: 100%;
   }
-  
-  .closeIcon:hover {
-    color: #55C3BC;
+
+  .monthCarousel {
+    padding: 0 5px;
   }
-  
-  .subDestinations {
-    display: flex;
+
+  .tripsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .tripCard {
     flex-direction: column;
-    gap: 10px;
+    text-align: center;
   }
-  
-  @media (max-width: 768px) {
-    .container {
-      padding: 10px;
-      flex-direction: column;
-    }
-  
-    .filters {
-      width: 100%;
-    }
-  
-    .rightContent {
-      width: 100%;
-    }
-  
-    .monthCarousel {
-      padding: 0 5px;
-    }
-  
-    .tripsGrid {
-      grid-template-columns: 1fr;
-    }
-  
-    .tripCard {
-      flex-direction: column;
-      text-align: center;
-    }
-  
-    .tripImageContainer {
-      flex: 0 0 100%;
-      margin-right: 0;
-      margin-bottom: 15px;
-    }
-  
-    .subDestinationsPanel {
-      width: 90%;
-      max-height: 60vh;
-    }
+
+  .tripImageContainer {
+    flex: 0 0 100%;
+    margin-right: 0;
+    margin-bottom: 15px;
   }
+}
