@@ -114,15 +114,19 @@
   z-index: 2001;
 }
 
-.logo {
-  margin-right: auto;
-  cursor: pointer;
+.logoText {
+  font-size: 28px;
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif; /* ya jo font chaho */
+  display: inline-block;
 }
 
-.logo img {
-  width: 100px;
-  height: auto;
-  object-fit: contain;
+.trav {
+  color: teal;
+}
+
+.bay {
+  color: orange;
 }
 
 .navLinks {
@@ -589,4 +593,13 @@
   color: red;
   font-size: 12px;
   margin-top: 5px;
+}
+
+.activeLink {
+  color: #157DC2 !important;
+  font-weight: 600;
+}
+
+.activeLink::after {
+  width: 100%; /* underline bar hamesha dikhega */
 }
