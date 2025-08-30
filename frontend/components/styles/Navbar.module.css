@@ -547,7 +547,7 @@
 }
 
 .submitButton {
-  background-color: #55C3BC;
+  background-color: #157DC2;
   color: #fff;
   border: none;
   padding: 10px;
@@ -558,7 +558,7 @@
 }
 
 .submitButton:hover {
-  background-color: #45A9A4;
+  background-color: #157DC2;
 }
 
 .forgotPassword {
@@ -573,4 +573,20 @@
 
 .forgotPassword a:hover {
   text-decoration: underline;
+}
+.modalContent {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 400px; /* Reduced from 500px to 400px */
+  position: relative;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Error Styling */
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
 }

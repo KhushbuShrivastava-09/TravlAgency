@@ -111,7 +111,7 @@ const UpcomingTrips = () => {
     duration: false,
     budget: false,
   });
-
+  const [activeMobileTab, setActiveMobileTab] = useState(null);
   useEffect(() => {
     applyFilters();
   }, [filters]);
@@ -220,7 +220,7 @@ const UpcomingTrips = () => {
       </div>
 
       <div className={styles.mainContent}>
-        <div className={styles.leftColumn}>
+        <div className={`{styles.leftColumn} ${styles.desktopOnly}`}>
           <aside className={styles.filters}>
             <h2>Filters</h2>
 
@@ -385,6 +385,131 @@ const UpcomingTrips = () => {
               ))}
             </div>
           </div>
+            
+             {/* Mobile Filter Tabs */}
+          <div className={styles.mobileTabs}>
+            {["Destination", "Duration", "Budget", "Month"].map((tab) => (
+              <button
+                key={tab}
+                className={`${styles.tabButton} ${
+                  activeMobileTab === tab ? styles.activeTab : ""
+                }`}
+                onClick={() =>
+                  setActiveMobileTab(activeMobileTab === tab ? null : tab)
+                }
+              >
+                {tab}
+              </button>
+            ))}
+            <button onClick={clearFilters} className={styles.resetTab}>
+              Reset
+            </button>
+          </div>
+
+            {/* Mobile Tab Panels */}
+            {activeMobileTab === "Destination" && (
+            <div className={styles.mobilePanel}>
+              <div className={styles.destinationLabels}>
+                <span
+                  className={`${styles.destLabel} ${
+                    filters.destination === "India" ? styles.activeDest : ""
+                  }`}
+                  onClick={() => handleDestinationClick("India")}
+                >
+                  India <FaChevronRight className={styles.arrowIcon} />
+                </span>
+                <span
+                  className={`${styles.destLabel} ${
+                    filters.destination === "International"
+                      ? styles.activeDest
+                      : ""
+                  }`}
+                  onClick={() => handleDestinationClick("International")}
+                >
+                  International <FaChevronRight className={styles.arrowIcon} />
+                </span>
+              </div>
+            </div>
+          )}
+          {activeMobileTab === "Duration" && (
+            <div className={styles.mobilePanel}>
+              <section
+                className={styles.rangeSlider}
+                style={getRangeTrackStyle("duration")}
+              >
+                <input
+                  value={filters.duration[0]}
+                  min="2"
+                  max="14"
+                  step="1"
+                  type="range"
+                  onChange={handleMinDurationChange}
+                  className={styles.rangeInput}
+                />
+                <input
+                  value={filters.duration[1]}
+                  min="2"
+                  max="14"
+                  step="1"
+                  type="range"
+                  onChange={handleMaxDurationChange}
+                  className={styles.rangeInput}
+                />
+              </section>
+              <div className={styles.rangeValues}>
+                {filters.duration[0]}N - {filters.duration[1]}N
+              </div>
+            </div>
+          )}
+          {activeMobileTab === "Budget" && (
+            <div className={styles.mobilePanel}>
+               <section
+                className={styles.rangeSlider}
+                style={getRangeTrackStyle("budget")}
+              >
+                <input
+                  value={filters.budget[0]}
+                  min="9000"
+                  max="300000"
+                  step="1000"
+                  type="range"
+                  onChange={handleMinBudgetChange}
+                  className={styles.rangeInput}
+                />
+                <input
+                  value={filters.budget[1]}
+                  min="9000"
+                  max="300000"
+                  step="1000"
+                  type="range"
+                  onChange={handleMaxBudgetChange}
+                  className={styles.rangeInput}
+                />
+              </section>
+              <div className={styles.rangeValues}>
+                ₹{filters.budget[0].toLocaleString()} - ₹
+                {filters.budget[1].toLocaleString()}
+              </div>
+            </div>
+          )}
+          {activeMobileTab === "Month" && (
+            <div className={styles.mobilePanel}>
+               <div className={styles.monthCheckboxes}>
+                {months.map((month) => (
+                  <label key={month} className={styles.checkboxLabel}>
+                    <input
+                      type="checkbox"
+                      value={month}
+                      checked={filters.months.includes(month)}
+                      onChange={handleMonthChange}
+                    />
+                    {month.split("-")[0]}
+                  </label>
+                ))}
+              </div>
+            </div>
+          )}
+
 
           <div className={styles.tripsGrid}>
             {trips.map((trip, index) => (
@@ -433,6 +558,7 @@ const UpcomingTrips = () => {
               </motion.div>
             ))}
           </div>
+
         </div>
       </div>
     </div>

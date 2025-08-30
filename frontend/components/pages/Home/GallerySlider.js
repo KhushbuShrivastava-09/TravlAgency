@@ -10,37 +10,37 @@ const cruisesData = [
     title: 'Mediterranean 18 Night Tour',
     description: 'Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming.',
     reviews: 168,
-    image: 'https://demo.gridgum.com/templates/Travel-agency/images/popular03.jpg',
+    image: '/images/leh.jpg',
   },
   {
     title: 'Greece 6 Night Tour',
     description: 'Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming.',
     reviews: 16,
-    image: 'https://demo.gridgum.com/templates/Travel-agency/images/popular03.jpg',
+    image: 'images/shimla.jpg',
   },
   {
     title: 'Bahamas 7 Night Tour',
     description: 'Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming.',
     reviews: 18,
-    image: 'https://demo.gridgum.com/templates/Travel-agency/images/popular03.jpg',
+    image: '/images/spain.jpg',
   },
   {
     title: 'Caribbean 10 Night Tour',
     description: 'Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming.',
     reviews: 120,
-    image: 'https://demo.gridgum.com/templates/Travel-agency/images/popular03.jpg',
+    image: '/images/europe.jpg',
   },
   {
     title: 'Alaska 12 Night Tour',
     description: 'Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming.',
     reviews: 85,
-    image: 'https://demo.gridgum.com/templates/Travel-agency/images/popular03.jpg',
+    image: '/images/leh.jpg',
   },
   {
     title: 'Hawaii 8 Night Tour',
     description: 'Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming.',
     reviews: 90,
-    image: 'https://demo.gridgum.com/templates/Travel-agency/images/popular03.jpg',
+    image: '/images/shimla.jpg',
   },
 ];
 
@@ -83,8 +83,7 @@ const GallerySlider = () => {
       <div className={styles.headerSection}>
         <h2 className={styles.title}>Gallery</h2>
         <p className={styles.subtitle}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod
-          tincidunt ut laoreet dolore magna aliquam erat volutpat.
+         Discover amazing trips around the World with Travabay
         </p>
       </div>
       <div className={styles.sliderWrapper}>

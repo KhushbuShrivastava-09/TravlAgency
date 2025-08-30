@@ -7,28 +7,48 @@ import Image from "next/image";
 export default function Gallery() {
   const [activeTab, setActiveTab] = useState("tab1");
 
+  // Dummy data for images with metadata (replace with backend data later)
+  const internationalTrips = [
+    { src: "/images/europe.jpg", name: "Paris Adventure", location: "France" },
+    { src: "/images/europe.jpg", name: "Tokyo Getaway", location: "Japan" },
+    { src: "/images/spain.jpg", name: "New York Tour", location: "USA" },
+    { src: "/images/europe.jpg", name: "Rome Exploration", location: "Italy" },
+    { src: "/images/spain.jpg", name: "Sydney Trip", location: "Australia" },
+    { src: "/images/europe.jpg", name: "Dubai Escape", location: "UAE" },
+  ];
+
+  const indiaTrips = [
+    { src: "/images/leh.jpg", name: "Rajasthan Safari", location: "India" },
+    { src: "/images/shimla.jpg", name: "Kerala Backwaters", location: "India" },
+    { src: "/images/leh.jpg", name: "Goa Beach Tour", location: "India" },
+    { src: "/images/shimla.jpg", name: "Himachal Trek", location: "India" },
+    { src: "/images/leh.jpg", name: "Varanasi Spiritual", location: "India" },
+    { src: "/images/shimla.jpg", name: "Jaipur Heritage", location: "India" },
+  ];
+
+  const allTrips = [...internationalTrips, ...indiaTrips];
+
   const tabs = [
-    { id: "tab1", label: "Nature", images: [] },
-    { id: "tab2", label: "City", images: [] },
-    { id: "tab3", label: "Architecture", images: [] },
-    { id: "tab4", label: "Wildlife", images: [] },
+    { id: "tab1", label: "All Trips", images: allTrips },
+    { id: "tab2", label: "International", images: internationalTrips },
+    { id: "tab3", label: "India", images: indiaTrips },
   ];
 
   return (
-    <>
-      {/* Hero Section */}
+    <main className={styles.mainContainer}>
+      {/* Hero Section - Full Width */}
       <div className={styles.heroSection}>
         <div className={styles.heroOverlay}></div>
         <div className={styles.heroContent}>
-          <h1>Gallery</h1>
-          <p>Explore stunning collections</p>
+          <h1>Travel Gallery</h1>
+          <p>Discover amazing trips around the world</p>
         </div>
       </div>
 
-      {/* Main Content */}
+      {/* Main Content - Centered */}
       <div className={styles.contentWrapper}>
         <nav className={styles.breadcrumbs}>
-          <Link href="/">Home</Link> <span>&gt;</span> <span>Gallery</span>
+          <Link href="/">Home</Link> <span>/</span> <span>Gallery</span>
         </nav>
 
         {/* Tabs */}
@@ -55,18 +75,26 @@ export default function Gallery() {
             }`}
           >
             <div className={styles.imageGallery}>
-              {tab.images.map((src, index) => (
-                <Image
-                  key={index}
-                  src={src}
-                  alt={`${tab.label} ${index + 1}`}
-                  className={`${styles.animatedImage} ${styles.visible}`}
-                />
+              {tab.images.map((img, index) => (
+                <div key={index} className={styles.imageWrapper}>
+                  <Image
+                    src={img.src}
+                    alt={img.name}
+                    width={300}
+                    height={200}
+                    className={styles.animatedImage}
+                    style={{ "--index": index }}
+                  />
+                  <div className={styles.overlay}>
+                    <h3>{img.name}</h3>
+                    <p>{img.location}</p>
+                  </div>
+                </div>
               ))}
             </div>
           </div>
         ))}
       </div>
-    </>
+    </main>
   );
 }

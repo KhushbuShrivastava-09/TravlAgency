@@ -13,7 +13,9 @@ import {
   FaTimes,
 } from "react-icons/fa";
 import Modal from "../../components/CorporateModal"; // Adjust path as needed
-import { motion, AnimatePresence } from "framer-motion"; // Import Framer Motion
+import { motion, AnimatePresence } from "framer-motion";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -21,21 +23,144 @@ const Navbar = () => {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
   const [isForgotPasswordModalOpen, setIsForgotPasswordModalOpen] = useState(false);
-  
+
+  // State for form data and errors
+  const [corporateForm, setCorporateForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    company: "",
+    destination: "",
+  });
+  const [loginForm, setLoginForm] = useState({ email: "", password: "" });
+  const [registerForm, setRegisterForm] = useState({
+    fullName: "",
+    email: "",
+    password: "",
+    phone: "",
+  });
+  const [forgotPasswordForm, setForgotPasswordForm] = useState({ email: "" });
+  const [errors, setErrors] = useState({});
+
+  // Modal handlers
   const openCorporateModal = () => setIsCorporateModalOpen(true);
-  const closeCorporateModal = () => setIsCorporateModalOpen(false);
-
+  const closeCorporateModal = () => {
+    setIsCorporateModalOpen(false);
+    setCorporateForm({ name: "", email: "", phone: "", company: "", destination: "" });
+    setErrors({});
+  };
   const openLoginModal = () => setIsLoginModalOpen(true);
-  const closeLoginModal = () => setIsLoginModalOpen(false);
-
+  const closeLoginModal = () => {
+    setIsLoginModalOpen(false);
+    setLoginForm({ email: "", password: "" });
+    setErrors({});
+  };
   const openRegisterModal = () => setIsRegisterModalOpen(true);
-  const closeRegisterModal = () => setIsRegisterModalOpen(false);
-
+  const closeRegisterModal = () => {
+    setIsRegisterModalOpen(false);
+    setRegisterForm({ fullName: "", email: "", password: "", phone: "" });
+    setErrors({});
+  };
   const openForgotPasswordModal = () => setIsForgotPasswordModalOpen(true);
-  const closeForgotPasswordModal = () => setIsForgotPasswordModalOpen(false);
+  const closeForgotPasswordModal = () => {
+    setIsForgotPasswordModalOpen(false);
+    setForgotPasswordForm({ email: "" });
+    setErrors({});
+  };
+
+  // Validation functions
+  const validateCorporate = () => {
+    const newErrors = {};
+    if (!corporateForm.name) newErrors.name = "Name is required";
+    if (!corporateForm.email || !/^\S+@\S+\.\S+$/.test(corporateForm.email))
+      newErrors.email = "Valid email is required";
+    if (!corporateForm.phone || !/^\+?\d{10,12}$/.test(corporateForm.phone))
+      newErrors.phone = "Valid phone number is required";
+    if (!corporateForm.company) newErrors.company = "Company name is required";
+    if (!corporateForm.destination) newErrors.destination = "Destination is required";
+    return newErrors;
+  };
+
+  const validateLogin = () => {
+    const newErrors = {};
+    if (!loginForm.email || !/^\S+@\S+\.\S+$/.test(loginForm.email))
+      newErrors.email = "Valid email is required";
+    if (!loginForm.password || loginForm.password.length < 6)
+      newErrors.password = "Password must be at least 6 characters";
+    return newErrors;
+  };
+
+  const validateRegister = () => {
+    const newErrors = {};
+    if (!registerForm.fullName) newErrors.fullName = "Full name is required";
+    if (!registerForm.email || !/^\S+@\S+\.\S+$/.test(registerForm.email))
+      newErrors.email = "Valid email is required";
+    if (!registerForm.password || registerForm.password.length < 6)
+      newErrors.password = "Password must be at least 6 characters";
+    if (!registerForm.phone || !/^\+?\d{10,12}$/.test(registerForm.phone))
+      newErrors.phone = "Valid phone number is required";
+    return newErrors;
+  };
+
+  const validateForgotPassword = () => {
+    const newErrors = {};
+    if (!forgotPasswordForm.email || !/^\S+@\S+\.\S+$/.test(forgotPasswordForm.email))
+      newErrors.email = "Valid email is required";
+    return newErrors;
+  };
+
+  // Form submission handlers
+  const handleCorporateSubmit = (e) => {
+    e.preventDefault();
+    const newErrors = validateCorporate();
+    if (Object.keys(newErrors).length === 0) {
+      toast.success("Enquiry sent successfully!");
+      closeCorporateModal();
+    } else {
+      toast.error("Please fix the errors in the form!");
+      setErrors(newErrors);
+    }
+  };
+
+  const handleLoginSubmit = (e) => {
+    e.preventDefault();
+    const newErrors = validateLogin();
+    if (Object.keys(newErrors).length === 0) {
+      toast.success("Logged in successfully!");
+      closeLoginModal();
+    } else {
+      toast.error("Please fix the errors in the form!");
+      setErrors(newErrors);
+    }
+  };
+
+  const handleRegisterSubmit = (e) => {
+    e.preventDefault();
+    const newErrors = validateRegister();
+    if (Object.keys(newErrors).length === 0) {
+      toast.success("Registration successful!");
+      closeRegisterModal();
+    } else {
+      toast.error("Please fix the errors in the form!");
+      setErrors(newErrors);
+    }
+  };
+
+  const handleForgotPasswordSubmit = (e) => {
+    e.preventDefault();
+    const newErrors = validateForgotPassword();
+    if (Object.keys(newErrors).length === 0) {
+      toast.success("Password reset link sent!");
+      closeForgotPasswordModal();
+    } else {
+      toast.error("Please fix the errors in the form!");
+      setErrors(newErrors);
+    }
+  };
 
   return (
     <header className={styles.header}>
+      <ToastContainer />
       {/* TopBar */}
       <div className={styles.topBar}>
         <div className={styles.contactInfo}>
@@ -48,22 +173,13 @@ const Navbar = () => {
         </div>
         <div className={styles.languageSocial}>
           <div className={styles.socialIcons}>
-            <a
-              href="https://www.facebook.com/people/Travabay-Holidays/61555526094194/"
-              className={styles.facebook}
-            >
+            <a href="https://www.facebook.com/people/Travabay-Holidays/61555526094194/" className={styles.facebook}>
               <FaFacebookF />
             </a>
-            <a
-              href="https://www.instagram.com/travabay/"
-              className={styles.instagram}
-            >
+            <a href="https://www.instagram.com/travabay/" className={styles.instagram}>
               <FaInstagram />
             </a>
-            <a
-              href="https://www.linkedin.com/company/102466205/admin/page-posts/published/"
-              className={styles.linkedin}
-            >
+            <a href="https://www.linkedin.com/company/102466205/admin/page-posts/published/" className={styles.linkedin}>
               <FaLinkedinIn />
             </a>
           </div>
@@ -83,10 +199,7 @@ const Navbar = () => {
             />
           </Link>
         </div>
-        <div
-          className={styles.hamburger}
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
+        <div className={styles.hamburger} onClick={() => setMenuOpen(!menuOpen)}>
           {menuOpen ? <FaTimes /> : <FaBars />}
         </div>
 
@@ -320,26 +433,61 @@ const Navbar = () => {
                 &times;
               </button>
               <h2 className={styles.modalTitle}>Corporate Booking</h2>
-              <form className={styles.modalForm}>
+              <form className={styles.modalForm} onSubmit={handleCorporateSubmit}>
                 <div className={styles.formGroup}>
                   <label>Name</label>
-                  <input type="text" className={styles.formInput} placeholder="Enter name" />
+                  <input
+                    type="text"
+                    className={styles.formInput}
+                    value={corporateForm.name}
+                    onChange={(e) => setCorporateForm({ ...corporateForm, name: e.target.value })}
+                    placeholder="Enter name"
+                  />
+                  {errors.name && <span className={styles.error}>{errors.name}</span>}
                 </div>
                 <div className={styles.formGroup}>
                   <label>Email Id</label>
-                  <input type="email" className={styles.formInput} placeholder="Enter email" />
+                  <input
+                    type="email"
+                    className={styles.formInput}
+                    value={corporateForm.email}
+                    onChange={(e) => setCorporateForm({ ...corporateForm, email: e.target.value })}
+                    placeholder="Enter email"
+                  />
+                  {errors.email && <span className={styles.error}>{errors.email}</span>}
                 </div>
                 <div className={styles.formGroup}>
                   <label>Phone Number</label>
-                  <input type="tel" className={styles.formInput} placeholder="Enter phone number" />
+                  <input
+                    type="tel"
+                    className={styles.formInput}
+                    value={corporateForm.phone}
+                    onChange={(e) => setCorporateForm({ ...corporateForm, phone: e.target.value })}
+                    placeholder="Enter phone number"
+                  />
+                  {errors.phone && <span className={styles.error}>{errors.phone}</span>}
                 </div>
                 <div className={styles.formGroup}>
                   <label>Company Name</label>
-                  <input type="text" className={styles.formInput} placeholder="Enter company name" />
+                  <input
+                    type="text"
+                    className={styles.formInput}
+                    value={corporateForm.company}
+                    onChange={(e) => setCorporateForm({ ...corporateForm, company: e.target.value })}
+                    placeholder="Enter company name"
+                  />
+                  {errors.company && <span className={styles.error}>{errors.company}</span>}
                 </div>
                 <div className={styles.formGroup}>
                   <label>Destination</label>
-                  <input type="text" className={styles.formInput} placeholder="Enter destination" />
+                  <input
+                    type="text"
+                    className={styles.formInput}
+                    value={corporateForm.destination}
+                    onChange={(e) => setCorporateForm({ ...corporateForm, destination: e.target.value })}
+                    placeholder="Enter destination"
+                  />
+                  {errors.destination && <span className={styles.error}>{errors.destination}</span>}
                 </div>
                 <button type="submit" className={styles.submitButton}>
                   Send Enquiry
@@ -365,14 +513,28 @@ const Navbar = () => {
                 &times;
               </button>
               <h2 className={styles.modalTitle}>Log In</h2>
-              <form className={styles.modalForm}>
+              <form className={styles.modalForm} onSubmit={handleLoginSubmit}>
                 <div className={styles.formGroup}>
                   <label>Email</label>
-                  <input type="email" className={styles.formInput} placeholder="Enter your email" />
+                  <input
+                    type="email"
+                    className={styles.formInput}
+                    value={loginForm.email}
+                    onChange={(e) => setLoginForm({ ...loginForm, email: e.target.value })}
+                    placeholder="Enter your email"
+                  />
+                  {errors.email && <span className={styles.error}>{errors.email}</span>}
                 </div>
                 <div className={styles.formGroup}>
                   <label>Password</label>
-                  <input type="password" className={styles.formInput} placeholder="Enter your password" />
+                  <input
+                    type="password"
+                    className={styles.formInput}
+                    value={loginForm.password}
+                    onChange={(e) => setLoginForm({ ...loginForm, password: e.target.value })}
+                    placeholder="Enter your password"
+                  />
+                  {errors.password && <span className={styles.error}>{errors.password}</span>}
                 </div>
                 <button type="submit" className={styles.submitButton}>
                   Log In
@@ -401,22 +563,50 @@ const Navbar = () => {
                 &times;
               </button>
               <h2 className={styles.modalTitle}>Register</h2>
-              <form className={styles.modalForm}>
+              <form className={styles.modalForm} onSubmit={handleRegisterSubmit}>
                 <div className={styles.formGroup}>
                   <label>Full Name</label>
-                  <input type="text" className={styles.formInput} placeholder="Enter your full name" />
+                  <input
+                    type="text"
+                    className={styles.formInput}
+                    value={registerForm.fullName}
+                    onChange={(e) => setRegisterForm({ ...registerForm, fullName: e.target.value })}
+                    placeholder="Enter your full name"
+                  />
+                  {errors.fullName && <span className={styles.error}>{errors.fullName}</span>}
                 </div>
                 <div className={styles.formGroup}>
                   <label>Email</label>
-                  <input type="email" className={styles.formInput} placeholder="Enter your email" />
+                  <input
+                    type="email"
+                    className={styles.formInput}
+                    value={registerForm.email}
+                    onChange={(e) => setRegisterForm({ ...registerForm, email: e.target.value })}
+                    placeholder="Enter your email"
+                  />
+                  {errors.email && <span className={styles.error}>{errors.email}</span>}
                 </div>
                 <div className={styles.formGroup}>
                   <label>Password</label>
-                  <input type="password" className={styles.formInput} placeholder="Create a password" />
+                  <input
+                    type="password"
+                    className={styles.formInput}
+                    value={registerForm.password}
+                    onChange={(e) => setRegisterForm({ ...registerForm, password: e.target.value })}
+                    placeholder="Create a password"
+                  />
+                  {errors.password && <span className={styles.error}>{errors.password}</span>}
                 </div>
                 <div className={styles.formGroup}>
                   <label>Phone Number</label>
-                  <input type="tel" className={styles.formInput} placeholder="Enter phone number" />
+                  <input
+                    type="tel"
+                    className={styles.formInput}
+                    value={registerForm.phone}
+                    onChange={(e) => setRegisterForm({ ...registerForm, phone: e.target.value })}
+                    placeholder="Enter phone number"
+                  />
+                  {errors.phone && <span className={styles.error}>{errors.phone}</span>}
                 </div>
                 <button type="submit" className={styles.submitButton}>
                   Register
@@ -442,10 +632,17 @@ const Navbar = () => {
                 &times;
               </button>
               <h2 className={styles.modalTitle}>Forgot Password</h2>
-              <form className={styles.modalForm}>
+              <form className={styles.modalForm} onSubmit={handleForgotPasswordSubmit}>
                 <div className={styles.formGroup}>
                   <label>Email</label>
-                  <input type="email" className={styles.formInput} placeholder="Enter your email" />
+                  <input
+                    type="email"
+                    className={styles.formInput}
+                    value={forgotPasswordForm.email}
+                    onChange={(e) => setForgotPasswordForm({ ...forgotPasswordForm, email: e.target.value })}
+                    placeholder="Enter your email"
+                  />
+                  {errors.email && <span className={styles.error}>{errors.email}</span>}
                 </div>
                 <button type="submit" className={styles.submitButton}>
                   Reset Password

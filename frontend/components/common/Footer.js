@@ -3,8 +3,7 @@ import {
   FaFacebookF,
   FaInstagram,
   FaLinkedinIn,
-} from "react-icons/fa"; 
-import Link from "next/link";
+} from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -14,7 +13,7 @@ const Footer = () => {
           <div className={styles.footerSection}>
             <h3>Travabay</h3>
             <p>
-            Travabay Holidays Your gateway to unforgettable journeys! From breathtaking domestic escapes to mesmerizing international adventures, we craft tailor-made travel experiences designed just for you. Explore. Dream. Discover with Travabay.
+              Travabay Holidays: Your gateway to unforgettable journeys! From breathtaking domestic escapes to mesmerizing international adventures, we craft tailor-made travel experiences designed just for you. Explore. Dream. Discover with Travabay.
             </p>
           </div>
           {/* Column 2: Travel Specialists */}
@@ -51,44 +50,29 @@ const Footer = () => {
                 </a>
               </li>
             </ul>
-            <div className={styles.socialIcons}>
-              <a href="https://www.facebook.com/people/Travabay-Holidays/61555526094194/" className={styles.facebook}>
-                <FaFacebookF />
-              </a>
-              <a href="https://www.instagram.com/travabay/" className={styles.instagram}>
-                <FaInstagram />
-              </a>
-              <a href="https://www.linkedin.com/company/102466205/admin/page-posts/published/" className={styles.linkedin}>
-                <FaLinkedinIn />
-              </a>
-            </div>
           </div>
-          {/* Column 3: Quick links */}
+          {/* Column 3: Social Media */}
           <div className={styles.footerSection}>
-            <h3>Quick Links</h3>
-            <ul>
-              <li>
-                <Link href="/">Home</Link>
-              </li>
-              <li>
-              <Link href="/about">About Us</Link>
-              </li>
-              <li>
-              <Link href="/gallery">Gallery</Link>
-              </li>
-              <li>
-              <Link href="/blogs">Blog</Link>
-              </li>
-              <li>
-              <Link href="/contact">Contact</Link>
-              </li>
-            </ul>
+            <h3>Connect With Us</h3>
+            <div className={styles.socialMedia}>
+              <p className={styles.socialLabel}>Follow us on social media for the latest updates!</p>
+              <div className={styles.socialIcons}>
+                <a href="https://www.facebook.com/people/Travabay-Holidays/61555526094194/" className={`${styles.socialIcon} ${styles.facebook}`}>
+                  <FaFacebookF />
+                </a>
+                <a href="https://www.instagram.com/travabay/" className={`${styles.socialIcon} ${styles.instagram}`}>
+                  <FaInstagram />
+                </a>
+                <a href="https://www.linkedin.com/company/102466205/admin/page-posts/published/" className={`${styles.socialIcon} ${styles.linkedin}`}>
+                  <FaLinkedinIn />
+                </a>
+              </div>
+            </div>
           </div>
           {/* Column 4: Newsletter */}
           <div className={styles.footerSection}>
             <h3>Blogs</h3>
             <p>Inspiration, ideas, news and your feedback.</p>
-           
           </div>
         </div>
       </footer>
