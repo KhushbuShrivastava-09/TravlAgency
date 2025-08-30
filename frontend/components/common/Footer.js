@@ -79,11 +79,11 @@ const Footer = () => {
       <div className={styles.bottomBarWrapper}>
         <div className={styles.bottomBar}>
           <p>
-            Copyright © 2025 ICEICO | <a href="#">Privacy Policy</a> |{" "}
+            Copyright © 2025 / | <a href="#">Privacy Policy</a> |{" "}
             <a href="/about">About Us</a> | <a href="#">FAQ</a> |{" "}
             <a href="/contact">Contact Support</a>
           </p>
-          <p>Designed by ICEICO</p>
+          <p>Designed by /</p>
         </div>
       </div>
     </>

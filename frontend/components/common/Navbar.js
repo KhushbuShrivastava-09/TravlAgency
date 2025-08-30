@@ -1,5 +1,6 @@
 "use client";
-import Image from "next/image";
+import { usePathname } from "next/navigation";
+
 import Link from "next/link";
 import React, { useState } from "react";
 import styles from "../styles/Navbar.module.css";
@@ -157,6 +158,7 @@ const Navbar = () => {
       setErrors(newErrors);
     }
   };
+  const pathname = usePathname();
 
   return (
     <header className={styles.header}>
@@ -165,7 +167,7 @@ const Navbar = () => {
       <div className={styles.topBar}>
         <div className={styles.contactInfo}>
           <span className={styles.contactItem}>
-            <FaEnvelope /> support@travelagency.com |
+            <FaEnvelope /> support@travabay.com |
           </span>
           <span className={styles.contactItem}>
             <FaPhoneAlt /> +917 3386831
@@ -188,45 +190,43 @@ const Navbar = () => {
 
       {/* MainNav */}
       <div className={styles.mainNav}>
-        <div className={styles.logo}>
-          <Link href="/" className={styles.logoLink}>
-            <Image
-              src="/images/logo.png"
-              alt="Travel Agency Logo"
-              width={150}
-              height={50}
-              className={styles.logoImage}
-            />
-          </Link>
-        </div>
+      <div className={styles.logo}>
+  <Link href="/" className={styles.logoLink}>
+    <span className={styles.logoText}>
+      <span className={styles.trav}>TRAVA</span>
+      <span className={styles.bay}>BAY</span>
+    </span>
+  </Link>
+</div>
+
         <div className={styles.hamburger} onClick={() => setMenuOpen(!menuOpen)}>
           {menuOpen ? <FaTimes /> : <FaBars />}
         </div>
 
         {/* Desktop Nav Links */}
         <nav className={styles.navLinks}>
-          <Link href="/upcomingtrips" className={styles.navLink} style={{ color: "#157DC2" }}>
+          <Link href="/upcomingtrips" className={`${styles.navLink} ${pathname === "/upcomingtrips" ? styles.activeLink : ""}`} style={{ color: "#157DC2" }}>
             Upcoming Trips
           </Link>
-          <Link href="/about" className={styles.navLink}>
+          <Link href="/about" className={`${styles.navLink} ${pathname === "/upcomingtrips" ? styles.activeLink : ""}`}>
             About Us
           </Link>
-          <Link href="/gallery" className={styles.navLink}>
+          <Link href="/gallery" className={`${styles.navLink} ${pathname === "/gallery" ? styles.activeLink : ""}`}>
             Gallery
           </Link>
-          <Link href="/corporate" onClick={(e) => { e.preventDefault(); openCorporateModal(); }} className={styles.navLink}>
+          <Link href="/corporate" onClick={(e) => { e.preventDefault(); openCorporateModal(); }} className={`${styles.navLink} ${pathname === "/corporate" ? styles.activeLink : ""}`}>
             Corporate Bookings
           </Link>
-          <Link href="/blogs" className={styles.navLink}>
+          <Link href="/blogs" className={`${styles.navLink} ${pathname === "/blogs" ? styles.activeLink : ""}`}>
             Blog
           </Link>
-          <Link href="/contact" className={styles.navLink}>
+          <Link href="/contact" className={`${styles.navLink} ${pathname === "/contact" ? styles.activeLink : ""}`}>
             Contact Us
           </Link>
-          <Link href="/login" onClick={(e) => { e.preventDefault(); openLoginModal(); }} className={styles.navLink}>
+          <Link href="/login" onClick={(e) => { e.preventDefault(); openLoginModal(); }}className={`${styles.navLink} ${pathname === "/login" ? styles.activeLink : ""}`}>
             LogIn
           </Link>
-          <Link href="/register" onClick={(e) => { e.preventDefault(); openRegisterModal(); }} className={styles.navLink}>
+          <Link href="/register" onClick={(e) => { e.preventDefault(); openRegisterModal(); }} className={`${styles.navLink} ${pathname === "/register" ? styles.activeLink : ""}`}>
             Register
           </Link>
         </nav>
