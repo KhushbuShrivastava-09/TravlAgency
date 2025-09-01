@@ -1,24 +1,25 @@
 .breadcrumb {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 14px;
-    color: #6b7280;
-    margin-top: 12px;
-    margin-left: 20px;
-    margin-right: 20px;
-  }
-  
-  .link {
-    color: teal;
-    text-decoration: none;
-  }
-  
-  .link:hover {
-    text-decoration: underline;
-  }
-  
-  .separator {
-    color: #999;
-  }
-  
+  display: flex;
+  align-items: center;
+  justify-content: center; /* center me karne ke liye */
+  gap: 8px;
+  font-size: 14px;
+  color: #6b7280;
+  margin: 12px auto; /* auto margin for responsive centering */
+  padding: 0 16px;   /* thoda padding so it doesn’t touch edges on small screens */
+  flex-wrap: wrap;   /* responsive line break on small screens */
+  text-align: center;
+}
+
+.link {
+  color: #157DC2;
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.separator {
+  color: #999;
+}
