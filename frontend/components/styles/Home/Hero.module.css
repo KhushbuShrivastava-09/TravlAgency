@@ -58,7 +58,7 @@
 /* Responsive */
 @media (max-width: 768px) {
   .heroContainer {
-    height: 600px;
+    height: 400px;
   }
 
   .carouselSlide {
@@ -86,7 +86,7 @@
 
 @media (max-width: 480px) {
   .heroContainer {
-    height: 500px;
+    height: 300px;
   }
 
   .carouselSlide {
