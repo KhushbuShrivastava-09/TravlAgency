@@ -43,6 +43,7 @@
   line-height: 1.7;
   font-size: 1rem;
   margin-bottom: 25px;
+  text-align: justify;
 }
 
 .infoBlock {
@@ -131,32 +132,31 @@
 
 .socialIcons a {
   color: #fff;
-  font-size: 1.4em;         
+  font-size: 1.4em;
   text-decoration: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;              
+  width: 40px;
   height: 40px;
-  background: #333;         
-  border-radius: 8px;       
+  background: #333;
+  border-radius: 8px;
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
 }
 
-/* ✅ Hover background + animation */
+/* Hover background + animation */
 .socialIcons a:hover {
-  background: #fff; /* icon ke liye white bg */
-  transform: translateY(-5px); /* fade-up effect */
+  background: #fff; /* Icon ke liye white bg */
+  transform: translateY(-5px); /* Fade-up effect */
   transition: all 0.4s ease;
 }
 
-/* ✅ Hover hone par icon ka apna original color show */
+/* Hover hone par icon ka apna original color show */
 .socialIcons a.facebook:hover {
   color: #1877f2; /* Facebook Blue */
 }
-
 
 .socialIcons a.instagram:hover {
   color: #e4405f; /* Instagram Pink */
@@ -166,11 +166,62 @@
   color: #0a66c2; /* LinkedIn Blue */
 }
 
-
-
-
 /* Responsive */
-@media (max-width: 900px) {
+
+/* Large Screens (1024px - 1200px) */
+@media (min-width: 1024px) and (max-width: 1200px) {
+  .contactContainer {
+    gap: 50px;
+    padding: 70px 30px;
+  }
+
+  .contactInfo h2,
+  .contactForm h2 {
+    font-size: 1.8rem;
+  }
+
+  .contactForm button {
+    width: 40%; /* Slightly wider button for better balance */
+  }
+
+  .socialIcons a {
+    width: 38px;
+    height: 38px;
+    font-size: 1.3em;
+  }
+}
+
+/* Medium Screens (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .contactContainer {
+    grid-template-columns: 1fr;
+    padding: 60px 20px;
+    gap: 40px;
+  }
+
+  .contactInfo h2,
+  .contactForm h2 {
+    font-size: 1.6rem;
+  }
+
+  .contactForm button {
+    width: 50%; /* Adjust button width for medium screens */
+  }
+
+  .infoBlock .socials {
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .socialIcons a {
+    width: 36px;
+    height: 36px;
+    font-size: 1.2em;
+  }
+}
+
+/* Small Screens (up to 767px) - Existing styles */
+@media (max-width: 767px) {
   .contactContainer {
     grid-template-columns: 1fr;
     padding: 60px 20px;
@@ -186,11 +237,12 @@
     gap: 10px;
   }
 
-  .socialIcon {
-    font-size: 14px;
+  .socialIcons a {
+    font-size: 1.2em;
   }
 }
 
+/* Extra Small Screens (up to 600px) - Existing styles with refinements */
 @media (max-width: 600px) {
   .contactInfo h2,
   .contactForm h2 {
@@ -200,5 +252,11 @@
   .contactForm input,
   .contactForm textarea {
     padding: 12px;
+  }
+
+  .socialIcons a {
+    width: 34px;
+    height: 34px;
+    font-size: 1.1em;
   }
 }
