@@ -49,7 +49,10 @@
   border-radius: 12px;
   overflow: hidden;
   max-width: 360px;
-  width: 100%;
+  width: 100% !important;
+  max-width: 360px;
+  min-height: auto;
+  height: auto;
   display: flex;
   flex-direction: column;
   transition: all 0.35s ease;
