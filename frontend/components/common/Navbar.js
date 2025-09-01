@@ -1,6 +1,6 @@
+
 "use client";
 import { usePathname } from "next/navigation";
-
 import Link from "next/link";
 import React, { useState } from "react";
 import styles from "../styles/Navbar.module.css";
@@ -12,18 +12,44 @@ import {
   FaLinkedinIn,
   FaBars,
   FaTimes,
+  FaSearch,
 } from "react-icons/fa";
-import Modal from "../../components/CorporateModal"; // Adjust path as needed
+import Modal from "../../components/CorporateModal";
 import { motion, AnimatePresence } from "framer-motion";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Navbar = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+  const searchData = [
+    { name: "Upcoming Trips", link: "/upcomingtrips" },
+    { name: "About Us", link: "/about" },
+    { name: "Gallery", link: "/gallery" },
+    { name: "Corporate Bookings", link: "/corporate" },
+    { name: "Blog", link: "/blogs" },
+    { name: "Contact Us", link: "/contact" },
+    { name: "International Trips", link: "/international" },
+    { name: "Europe", link: "/international/europe" },
+    { name: "Asia", link: "/international/asia" },
+    { name: "America", link: "/international/america" },
+    { name: "India Trips", link: "/india" },
+    { name: "North India", link: "/india/north" },
+    { name: "South India", link: "/india/south" },
+    { name: "East India", link: "/india/east" },
+    { name: "Weekend Trips", link: "/weekend" },
+    { name: "Group Tours", link: "/group" },
+    { name: "Honeymoon Packages", link: "/honeymoon" },
+  ];
+  const filteredResults = searchData.filter((item) =>
+    item.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   const [menuOpen, setMenuOpen] = useState(false);
   const [isCorporateModalOpen, setIsCorporateModalOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
   const [isForgotPasswordModalOpen, setIsForgotPasswordModalOpen] = useState(false);
+  const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
 
   // State for form data and errors
   const [corporateForm, setCorporateForm] = useState({
@@ -174,6 +200,34 @@ const Navbar = () => {
           </span>
         </div>
         <div className={styles.languageSocial}>
+          <div className={styles.searchBar}>
+            <FaSearch className={styles.searchIcon} />
+            <input
+              type="text"
+              placeholder="Search..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className={styles.searchInput}
+            />
+            {searchQuery && (
+              <div className={styles.searchResults}>
+                {filteredResults.length > 0 ? (
+                  filteredResults.map((item, index) => (
+                    <Link
+                      key={index}
+                      href={item.link}
+                      className={styles.searchResultItem}
+                      onClick={() => setSearchQuery("")}
+                    >
+                      {item.name}
+                    </Link>
+                  ))
+                ) : (
+                  <p className={styles.noResults}>No results found</p>
+                )}
+              </div>
+            )}
+          </div>
           <div className={styles.socialIcons}>
             <a href="https://www.facebook.com/people/Travabay-Holidays/61555526094194/" className={styles.facebook}>
               <FaFacebookF />
@@ -190,14 +244,14 @@ const Navbar = () => {
 
       {/* MainNav */}
       <div className={styles.mainNav}>
-      <div className={styles.logo}>
-  <Link href="/" className={styles.logoLink}>
-    <span className={styles.logoText}>
-      <span className={styles.trav}>TRAVA</span>
-      <span className={styles.bay}>BAY</span>
-    </span>
-  </Link>
-</div>
+        <div className={styles.logo}>
+          <Link href="/" className={styles.logoLink}>
+            <span className={styles.logoText}>
+              <span className={styles.trav}>TRAVA</span>
+              <span className={styles.bay}>BAY</span>
+            </span>
+          </Link>
+        </div>
 
         <div className={styles.hamburger} onClick={() => setMenuOpen(!menuOpen)}>
           {menuOpen ? <FaTimes /> : <FaBars />}
@@ -205,28 +259,56 @@ const Navbar = () => {
 
         {/* Desktop Nav Links */}
         <nav className={styles.navLinks}>
-          <Link href="/upcomingtrips" className={`${styles.navLink} ${pathname === "/upcomingtrips" ? styles.activeLink : ""}`} style={{ color: "#157DC2" }}>
+          <Link
+            href="/upcomingtrips"
+            className={`${styles.navLink} ${pathname === "/upcomingtrips" ? styles.activeLink : ""}`}
+            style={{ color: "#157DC2" }}
+          >
             Upcoming Trips
           </Link>
-          <Link href="/about" className={`${styles.navLink} ${pathname === "/upcomingtrips" ? styles.activeLink : ""}`}>
+          <Link
+            href="/about"
+            className={`${styles.navLink} ${pathname === "/about" ? styles.activeLink : ""}`}
+          >
             About Us
           </Link>
-          <Link href="/gallery" className={`${styles.navLink} ${pathname === "/gallery" ? styles.activeLink : ""}`}>
+          <Link
+            href="/gallery"
+            className={`${styles.navLink} ${pathname === "/gallery" ? styles.activeLink : ""}`}
+          >
             Gallery
           </Link>
-          <Link href="/corporate" onClick={(e) => { e.preventDefault(); openCorporateModal(); }} className={`${styles.navLink} ${pathname === "/corporate" ? styles.activeLink : ""}`}>
+          <Link
+            href="/corporate"
+            onClick={(e) => { e.preventDefault(); openCorporateModal(); }}
+            className={`${styles.navLink} ${pathname === "/corporate" ? styles.activeLink : ""}`}
+          >
             Corporate Bookings
           </Link>
-          <Link href="/blogs" className={`${styles.navLink} ${pathname === "/blogs" ? styles.activeLink : ""}`}>
+          <Link
+            href="/blogs"
+            className={`${styles.navLink} ${pathname === "/blogs" ? styles.activeLink : ""}`}
+          >
             Blog
           </Link>
-          <Link href="/contact" className={`${styles.navLink} ${pathname === "/contact" ? styles.activeLink : ""}`}>
+          <Link
+            href="/contact"
+            className={`${styles.navLink} ${pathname === "/contact" ? styles.activeLink : ""}`}
+          >
             Contact Us
           </Link>
-          <Link href="/login" onClick={(e) => { e.preventDefault(); openLoginModal(); }}className={`${styles.navLink} ${pathname === "/login" ? styles.activeLink : ""}`}>
+          <Link
+            href="/login"
+            onClick={(e) => { e.preventDefault(); openLoginModal(); }}
+            className={`${styles.navLink} ${pathname === "/login" ? styles.activeLink : ""}`}
+          >
             LogIn
           </Link>
-          <Link href="/register" onClick={(e) => { e.preventDefault(); openRegisterModal(); }} className={`${styles.navLink} ${pathname === "/register" ? styles.activeLink : ""}`}>
+          <Link
+            href="/register"
+            onClick={(e) => { e.preventDefault(); openRegisterModal(); }}
+            className={`${styles.navLink} ${pathname === "/register" ? styles.activeLink : ""}`}
+          >
             Register
           </Link>
         </nav>
@@ -322,7 +404,11 @@ const Navbar = () => {
             <Link href="/gallery" className={styles.navLink}>
               Gallery
             </Link>
-            <Link href="/corporate" onClick={(e) => { e.preventDefault(); openCorporateModal(); }} className={styles.navLink}>
+            <Link
+              href="/corporate"
+              onClick={(e) => { e.preventDefault(); openCorporateModal(); }}
+              className={styles.navLink}
+            >
               Corporate Bookings
             </Link>
             <Link href="/blogs" className={styles.navLink}>
@@ -331,94 +417,97 @@ const Navbar = () => {
             <Link href="/contact" className={styles.navLink}>
               Contact Us
             </Link>
-            <Link href="/login" onClick={(e) => { e.preventDefault(); openLoginModal(); }} className={styles.navLink}>
+            <Link
+              href="/login"
+              onClick={(e) => { e.preventDefault(); openLoginModal(); }}
+              className={styles.navLink}
+            >
               LogIn
             </Link>
-            <Link href="/register" onClick={(e) => { e.preventDefault(); openRegisterModal(); }} className={styles.navLink}>
+            <Link
+              href="/register"
+              onClick={(e) => { e.preventDefault(); openRegisterModal(); }}
+              className={styles.navLink}
+            >
               Register
             </Link>
           </nav>
 
           <div className={styles.mobileCategories}>
-            <p className={styles.mobileTitle}>Categories</p>
             <div className={styles.categoryLinks}>
               <div className={styles.categoryDropdown}>
-                <Link href="/international" className={styles.categoryLink}>
-                  International Trips ▾
+                <Link
+                  href="#"
+                  className={styles.categoryLink}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setIsCategoriesOpen(!isCategoriesOpen);
+                  }}
+                >
+                  Categories ▾
                 </Link>
-                <div className={styles.categoryDropdownContent}>
-                  <Link href="/international/europe" className={styles.dropdownItem}>
-                    Europe
-                  </Link>
-                  <Link href="/international/asia" className={styles.dropdownItem}>
-                    Asia
-                  </Link>
-                  <Link href="/international/america" className={styles.dropdownItem}>
-                    America
-                  </Link>
-                </div>
+                {isCategoriesOpen && (
+                  <div className={styles.categoryDropdownContent}>
+                    <Link href="/international" className={styles.dropdownItem}>
+                      International Trips
+                    </Link>
+                    <Link href="/international/europe" className={styles.dropdownItem}>
+                      Europe
+                    </Link>
+                    <Link href="/international/asia" className={styles.dropdownItem}>
+                      Asia
+                    </Link>
+                    <Link href="/international/america" className={styles.dropdownItem}>
+                      America
+                    </Link>
+                    <Link href="/india" className={styles.dropdownItem}>
+                      India Trips
+                    </Link>
+                    <Link href="/india/north" className={styles.dropdownItem}>
+                      North India
+                    </Link>
+                    <Link href="/india/south" className={styles.dropdownItem}>
+                      South India
+                    </Link>
+                    <Link href="/india/east" className={styles.dropdownItem}>
+                      East India
+                    </Link>
+                    <Link href="/weekend" className={styles.dropdownItem}>
+                      Weekend Trips
+                    </Link>
+                    <Link href="/weekend/hills" className={styles.dropdownItem}>
+                      Hill Stations
+                    </Link>
+                    <Link href="/weekend/beach" className={styles.dropdownItem}>
+                      Beaches
+                    </Link>
+                    <Link href="/weekend/city" className={styles.dropdownItem}>
+                      City Breaks
+                    </Link>
+                    <Link href="/group" className={styles.dropdownItem}>
+                      Group Tours
+                    </Link>
+                    <Link href="/group/family" className={styles.dropdownItem}>
+                      Family Tours
+                    </Link>
+                    <Link href="/group/friends" className={styles.dropdownItem}>
+                      Friends Tours
+                    </Link>
+                    <Link href="/group/corporate" className={styles.dropdownItem}>
+                      Corporate Tours
+                    </Link>
+                    <Link href="/honeymoon" className={styles.dropdownItem}>
+                      Honeymoon Packages
+                    </Link>
+                  </div>
+                )}
               </div>
-
-              <div className={styles.categoryDropdown}>
-                <Link href="/india" className={styles.categoryLink}>
-                  India Trips ▾
-                </Link>
-                <div className={styles.categoryDropdownContent}>
-                  <Link href="/india/north" className={styles.dropdownItem}>
-                    North India
-                  </Link>
-                  <Link href="/india/south" className={styles.dropdownItem}>
-                    South India
-                  </Link>
-                  <Link href="/india/east" className={styles.dropdownItem}>
-                    East India
-                  </Link>
-                </div>
-              </div>
-
-              <div className={styles.categoryDropdown}>
-                <Link href="/weekend" className={styles.categoryLink}>
-                  Weekend Trips ▾
-                </Link>
-                <div className={styles.categoryDropdownContent}>
-                  <Link href="/weekend/hills" className={styles.dropdownItem}>
-                    Hill Stations
-                  </Link>
-                  <Link href="/weekend/beach" className={styles.dropdownItem}>
-                    Beaches
-                  </Link>
-                  <Link href="/weekend/city" className={styles.dropdownItem}>
-                    City Breaks
-                  </Link>
-                </div>
-              </div>
-
-              <div className={styles.categoryDropdown}>
-                <Link href="/group" className={styles.categoryLink}>
-                  Group Tours ▾
-                </Link>
-                <div className={styles.categoryDropdownContent}>
-                  <Link href="/group/family" className={styles.dropdownItem}>
-                    Family Tours
-                  </Link>
-                  <Link href="/group/friends" className={styles.dropdownItem}>
-                    Friends Tours
-                  </Link>
-                  <Link href="/group/corporate" className={styles.dropdownItem}>
-                    Corporate Tours
-                  </Link>
-                </div>
-              </div>
-
-              <Link href="/honeymoon" className={styles.categoryLink}>
-                Honeymoon Packages
-              </Link>
             </div>
           </div>
         </div>
       )}
 
-      {/* Corporate Modal with Animation */}
+      {/* Modals */}
       <AnimatePresence>
         {isCorporateModalOpen && (
           <Modal isOpen={isCorporateModalOpen} onClose={closeCorporateModal}>
@@ -498,7 +587,6 @@ const Navbar = () => {
         )}
       </AnimatePresence>
 
-      {/* Login Modal with Animation */}
       <AnimatePresence>
         {isLoginModalOpen && (
           <Modal isOpen={isLoginModalOpen} onClose={closeLoginModal}>
@@ -540,7 +628,12 @@ const Navbar = () => {
                   Log In
                 </button>
                 <p className={styles.forgotPassword}>
-                  <Link href="#" onClick={(e) => { e.preventDefault(); openForgotPasswordModal(); }}>Forgot Password?</Link>
+                  <Link
+                    href="#"
+                    onClick={(e) => { e.preventDefault(); openForgotPasswordModal(); }}
+                  >
+                    Forgot Password?
+                  </Link>
                 </p>
               </form>
             </motion.div>
@@ -548,7 +641,6 @@ const Navbar = () => {
         )}
       </AnimatePresence>
 
-      {/* Register Modal with Animation */}
       <AnimatePresence>
         {isRegisterModalOpen && (
           <Modal isOpen={isRegisterModalOpen} onClose={closeRegisterModal}>
@@ -617,7 +709,6 @@ const Navbar = () => {
         )}
       </AnimatePresence>
 
-      {/* Forgot Password Modal with Animation */}
       <AnimatePresence>
         {isForgotPasswordModalOpen && (
           <Modal isOpen={isForgotPasswordModalOpen} onClose={closeForgotPasswordModal}>
@@ -648,7 +739,12 @@ const Navbar = () => {
                   Reset Password
                 </button>
                 <p className={styles.forgotPassword}>
-                  <Link href="#" onClick={(e) => { e.preventDefault(); closeForgotPasswordModal(); openLoginModal(); }}>Back to Log In</Link>
+                  <Link
+                    href="#"
+                    onClick={(e) => { e.preventDefault(); closeForgotPasswordModal(); openLoginModal(); }}
+                  >
+                    Back to Log In
+                  </Link>
                 </p>
               </form>
             </motion.div>
