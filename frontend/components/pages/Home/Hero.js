@@ -19,6 +19,7 @@ const Hero = () => {
           <div className={styles.overlayText}>
             <h2>Welcome To Our</h2>
             <h1>Travabay</h1>
+            <p> Travabay Holidays: Your gateway to unforgettable journeys! From breathtaking domestic escapes to mesmerizing international adventures, we craft tailor-made travel experiences designed just for you. Explore. Dream. Discover with Travabay.</p>
           </div>
         </div>
         <div className={styles.carouselSlide} style={{ backgroundImage: "url('/images/leh.jpg')" }}>

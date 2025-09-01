@@ -97,11 +97,6 @@ const GallerySlider = () => {
               <div className={styles.cardContent}>
                 <h3 className={styles.cardTitle}>{cruise.title}</h3>
                 <p className={styles.cardDescription}>{cruise.description}</p>
-                <div className={styles.rating}>
-                  {'★'.repeat(4) + '☆'}
-                  <span>{cruise.reviews} Reviews</span>
-                </div>
-                <button className={styles.seeAllButton}>SEE ALL</button>
               </div>
             </div>
           ))}
