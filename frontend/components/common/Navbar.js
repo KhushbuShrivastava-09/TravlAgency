@@ -1,4 +1,3 @@
-
 "use client";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
@@ -18,8 +17,58 @@ import Modal from "../../components/CorporateModal";
 import { motion, AnimatePresence } from "framer-motion";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { IoClose } from "react-icons/io5";
 
 const Navbar = () => {
+  const categories = [
+    {
+      name: "International Trips",
+      link: "/international",
+      subcategories: [
+        { name: "Europe", link: "/international/europe" },
+        { name: "Asia", link: "/international/asia" },
+        { name: "America", link: "/international/america" },
+      ],
+    },
+    {
+      name: "India Trips",
+      link: "/india",
+      subcategories: [
+        { name: "North India", link: "/india/north" },
+        { name: "South India", link: "/india/south" },
+        { name: "East India", link: "/india/east" },
+      ],
+    },
+    {
+      name: "Weekend Trips",
+      link: "/weekend",
+      subcategories: [
+        { name: "Hill Stations", link: "/weekend/hills" },
+        { name: "Beaches", link: "/weekend/beach" },
+        { name: "City Breaks", link: "/weekend/city" },
+      ],
+    },
+    {
+      name: "Group Tours",
+      link: "/group",
+      subcategories: [
+        { name: "Family Tours", link: "/group/family" },
+        { name: "Friends Tours", link: "/group/friends" },
+        { name: "Corporate Tours", link: "/group/corporate" },
+      ],
+    },
+    {
+      name: "Honeymoon Packages",
+      link: "/honeymoon",
+      subcategories: [],
+    },
+  ];
+  const [openCategory, setOpenCategory] = useState(null);
+
+  const toggleCategory = (categoryName) => {
+    setOpenCategory(openCategory === categoryName ? null : categoryName);
+  };
+
   const [searchQuery, setSearchQuery] = useState("");
   const searchData = [
     { name: "Upcoming Trips", link: "/upcomingtrips" },
@@ -48,8 +97,16 @@ const Navbar = () => {
   const [isCorporateModalOpen, setIsCorporateModalOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
-  const [isForgotPasswordModalOpen, setIsForgotPasswordModalOpen] = useState(false);
+  const [isForgotPasswordModalOpen, setIsForgotPasswordModalOpen] =
+    useState(false);
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
+  const toggleMenu = () => {
+    setMenuOpen((prev) => !prev);
+  };
+  const handleNavClick = () => {
+    setMenuOpen(false);
+    setIsCategoriesOpen(false); // optional: categories bhi band ho jaaye
+  };
 
   // State for form data and errors
   const [corporateForm, setCorporateForm] = useState({
@@ -73,7 +130,13 @@ const Navbar = () => {
   const openCorporateModal = () => setIsCorporateModalOpen(true);
   const closeCorporateModal = () => {
     setIsCorporateModalOpen(false);
-    setCorporateForm({ name: "", email: "", phone: "", company: "", destination: "" });
+    setCorporateForm({
+      name: "",
+      email: "",
+      phone: "",
+      company: "",
+      destination: "",
+    });
     setErrors({});
   };
   const openLoginModal = () => setIsLoginModalOpen(true);
@@ -104,7 +167,8 @@ const Navbar = () => {
     if (!corporateForm.phone || !/^\+?\d{10,12}$/.test(corporateForm.phone))
       newErrors.phone = "Valid phone number is required";
     if (!corporateForm.company) newErrors.company = "Company name is required";
-    if (!corporateForm.destination) newErrors.destination = "Destination is required";
+    if (!corporateForm.destination)
+      newErrors.destination = "Destination is required";
     return newErrors;
   };
 
@@ -131,7 +195,10 @@ const Navbar = () => {
 
   const validateForgotPassword = () => {
     const newErrors = {};
-    if (!forgotPasswordForm.email || !/^\S+@\S+\.\S+$/.test(forgotPasswordForm.email))
+    if (
+      !forgotPasswordForm.email ||
+      !/^\S+@\S+\.\S+$/.test(forgotPasswordForm.email)
+    )
       newErrors.email = "Valid email is required";
     return newErrors;
   };
@@ -229,13 +296,22 @@ const Navbar = () => {
             )}
           </div>
           <div className={styles.socialIcons}>
-            <a href="https://www.facebook.com/people/Travabay-Holidays/61555526094194/" className={styles.facebook}>
+            <a
+              href="https://www.facebook.com/people/Travabay-Holidays/61555526094194/"
+              className={styles.facebook}
+            >
               <FaFacebookF />
             </a>
-            <a href="https://www.instagram.com/travabay/" className={styles.instagram}>
+            <a
+              href="https://www.instagram.com/travabay/"
+              className={styles.instagram}
+            >
               <FaInstagram />
             </a>
-            <a href="https://www.linkedin.com/company/102466205/admin/page-posts/published/" className={styles.linkedin}>
+            <a
+              href="https://www.linkedin.com/company/102466205/admin/page-posts/published/"
+              className={styles.linkedin}
+            >
               <FaLinkedinIn />
             </a>
           </div>
@@ -253,7 +329,10 @@ const Navbar = () => {
           </Link>
         </div>
 
-        <div className={styles.hamburger} onClick={() => setMenuOpen(!menuOpen)}>
+        <div
+          className={styles.hamburger}
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
           {menuOpen ? <FaTimes /> : <FaBars />}
         </div>
 
@@ -261,53 +340,78 @@ const Navbar = () => {
         <nav className={styles.navLinks}>
           <Link
             href="/upcomingtrips"
-            className={`${styles.navLink} ${pathname === "/upcomingtrips" ? styles.activeLink : ""}`}
+            className={`${styles.navLink} ${
+              pathname === "/upcomingtrips" ? styles.activeLink : ""
+            }`}
             style={{ color: "#157DC2" }}
           >
             Upcoming Trips
           </Link>
           <Link
             href="/about"
-            className={`${styles.navLink} ${pathname === "/about" ? styles.activeLink : ""}`}
+            className={`${styles.navLink} ${
+              pathname === "/about" ? styles.activeLink : ""
+            }`}
           >
             About Us
           </Link>
           <Link
             href="/gallery"
-            className={`${styles.navLink} ${pathname === "/gallery" ? styles.activeLink : ""}`}
+            className={`${styles.navLink} ${
+              pathname === "/gallery" ? styles.activeLink : ""
+            }`}
           >
             Gallery
           </Link>
           <Link
             href="/corporate"
-            onClick={(e) => { e.preventDefault(); openCorporateModal(); }}
-            className={`${styles.navLink} ${pathname === "/corporate" ? styles.activeLink : ""}`}
+            onClick={(e) => {
+              e.preventDefault();
+              openCorporateModal();
+            }}
+            className={`${styles.navLink} ${
+              pathname === "/corporate" ? styles.activeLink : ""
+            }`}
           >
             Corporate Bookings
           </Link>
           <Link
             href="/blogs"
-            className={`${styles.navLink} ${pathname === "/blogs" ? styles.activeLink : ""}`}
+            className={`${styles.navLink} ${
+              pathname === "/blogs" ? styles.activeLink : ""
+            }`}
           >
             Blog
           </Link>
           <Link
             href="/contact"
-            className={`${styles.navLink} ${pathname === "/contact" ? styles.activeLink : ""}`}
+            className={`${styles.navLink} ${
+              pathname === "/contact" ? styles.activeLink : ""
+            }`}
           >
             Contact Us
           </Link>
           <Link
             href="/login"
-            onClick={(e) => { e.preventDefault(); openLoginModal(); }}
-            className={`${styles.navLink} ${pathname === "/login" ? styles.activeLink : ""}`}
+            onClick={(e) => {
+              e.preventDefault();
+              openLoginModal();
+            }}
+            className={`${styles.navLink} ${
+              pathname === "/login" ? styles.activeLink : ""
+            }`}
           >
             LogIn
           </Link>
           <Link
             href="/register"
-            onClick={(e) => { e.preventDefault(); openRegisterModal(); }}
-            className={`${styles.navLink} ${pathname === "/register" ? styles.activeLink : ""}`}
+            onClick={(e) => {
+              e.preventDefault();
+              openRegisterModal();
+            }}
+            className={`${styles.navLink} ${
+              pathname === "/register" ? styles.activeLink : ""
+            }`}
           >
             Register
           </Link>
@@ -322,13 +426,19 @@ const Navbar = () => {
               International Trips ▾
             </Link>
             <div className={styles.categoryDropdownContent}>
-              <Link href="/international/europe" className={styles.dropdownItem}>
+              <Link
+                href="/international/europe"
+                className={styles.dropdownItem}
+              >
                 Europe
               </Link>
               <Link href="/international/asia" className={styles.dropdownItem}>
                 Asia
               </Link>
-              <Link href="/international/america" className={styles.dropdownItem}>
+              <Link
+                href="/international/america"
+                className={styles.dropdownItem}
+              >
                 America
               </Link>
             </div>
@@ -394,39 +504,74 @@ const Navbar = () => {
       {/* Mobile Combined Menu */}
       {menuOpen && (
         <div className={styles.mobileMenu}>
+          <span className={styles.closeIcon} onClick={toggleMenu}>
+            <IoClose size={30} />
+          </span>
           <nav className={styles.mobileNavLinks}>
-            <Link href="/upcomingtrips" className={styles.navLink}>
+            <Link
+              href="/upcomingtrips"
+              className={styles.navLink}
+              onClick={handleNavClick}
+            >
               Upcoming Trips
             </Link>
-            <Link href="/about" className={styles.navLink}>
+            <Link
+              href="/about"
+              className={styles.navLink}
+              onClick={handleNavClick}
+            >
               About Us
             </Link>
-            <Link href="/gallery" className={styles.navLink}>
+            <Link
+              href="/gallery"
+              className={styles.navLink}
+              onClick={handleNavClick}
+            >
               Gallery
             </Link>
             <Link
               href="/corporate"
-              onClick={(e) => { e.preventDefault(); openCorporateModal(); }}
+              onClick={(e) => {
+                e.preventDefault();
+                openCorporateModal();
+                setMenuOpen(false);
+              }}
               className={styles.navLink}
             >
               Corporate Bookings
             </Link>
-            <Link href="/blogs" className={styles.navLink}>
+            <Link
+              href="/blogs"
+              className={styles.navLink}
+              onClick={handleNavClick}
+            >
               Blog
             </Link>
-            <Link href="/contact" className={styles.navLink}>
+            <Link
+              href="/contact"
+              className={styles.navLink}
+              onClick={handleNavClick}
+            >
               Contact Us
             </Link>
             <Link
               href="/login"
-              onClick={(e) => { e.preventDefault(); openLoginModal(); }}
+              onClick={(e) => {
+                e.preventDefault();
+                openLoginModal();
+                setMenuOpen(false);
+              }}
               className={styles.navLink}
             >
               LogIn
             </Link>
             <Link
               href="/register"
-              onClick={(e) => { e.preventDefault(); openRegisterModal(); }}
+              onClick={(e) => {
+                e.preventDefault();
+                openRegisterModal();
+                setMenuOpen(false);
+              }}
               className={styles.navLink}
             >
               Register
@@ -436,71 +581,34 @@ const Navbar = () => {
           <div className={styles.mobileCategories}>
             <div className={styles.categoryLinks}>
               <div className={styles.categoryDropdown}>
-                <Link
-                  href="#"
-                  className={styles.categoryLink}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setIsCategoriesOpen(!isCategoriesOpen);
-                  }}
-                >
-                  Categories ▾
-                </Link>
-                {isCategoriesOpen && (
-                  <div className={styles.categoryDropdownContent}>
-                    <Link href="/international" className={styles.dropdownItem}>
-                      International Trips
-                    </Link>
-                    <Link href="/international/europe" className={styles.dropdownItem}>
-                      Europe
-                    </Link>
-                    <Link href="/international/asia" className={styles.dropdownItem}>
-                      Asia
-                    </Link>
-                    <Link href="/international/america" className={styles.dropdownItem}>
-                      America
-                    </Link>
-                    <Link href="/india" className={styles.dropdownItem}>
-                      India Trips
-                    </Link>
-                    <Link href="/india/north" className={styles.dropdownItem}>
-                      North India
-                    </Link>
-                    <Link href="/india/south" className={styles.dropdownItem}>
-                      South India
-                    </Link>
-                    <Link href="/india/east" className={styles.dropdownItem}>
-                      East India
-                    </Link>
-                    <Link href="/weekend" className={styles.dropdownItem}>
-                      Weekend Trips
-                    </Link>
-                    <Link href="/weekend/hills" className={styles.dropdownItem}>
-                      Hill Stations
-                    </Link>
-                    <Link href="/weekend/beach" className={styles.dropdownItem}>
-                      Beaches
-                    </Link>
-                    <Link href="/weekend/city" className={styles.dropdownItem}>
-                      City Breaks
-                    </Link>
-                    <Link href="/group" className={styles.dropdownItem}>
-                      Group Tours
-                    </Link>
-                    <Link href="/group/family" className={styles.dropdownItem}>
-                      Family Tours
-                    </Link>
-                    <Link href="/group/friends" className={styles.dropdownItem}>
-                      Friends Tours
-                    </Link>
-                    <Link href="/group/corporate" className={styles.dropdownItem}>
-                      Corporate Tours
-                    </Link>
-                    <Link href="/honeymoon" className={styles.dropdownItem}>
-                      Honeymoon Packages
-                    </Link>
-                  </div>
-                )}
+                <p> Categories  </p>
+                <div className={styles.mobileCategories}>
+                  {categories.map((cat) => (
+                    <div key={cat.name} className={styles.categoryDropdown}>
+                      <div
+                        className={styles.categoryLink}
+                        onClick={() => toggleCategory(cat.name)}
+                      >
+                        {cat.name} ▾
+                      </div>
+
+                      {openCategory === cat.name &&
+                        cat.subcategories.length > 0 && (
+                          <div className={styles.categoryDropdownContent}>
+                            {cat.subcategories.map((sub) => (
+                              <Link
+                                key={sub.name}
+                                href={sub.link}
+                                className={styles.dropdownItem}
+                              >
+                                {sub.name}
+                              </Link>
+                            ))}
+                          </div>
+                        )}
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -518,21 +626,34 @@ const Navbar = () => {
               transition={{ duration: 0.3 }}
               className={styles.modalContent}
             >
-              <button className={styles.closeButton} onClick={closeCorporateModal}>
+              <button
+                className={styles.closeButton}
+                onClick={closeCorporateModal}
+              >
                 &times;
               </button>
               <h2 className={styles.modalTitle}>Corporate Booking</h2>
-              <form className={styles.modalForm} onSubmit={handleCorporateSubmit}>
+              <form
+                className={styles.modalForm}
+                onSubmit={handleCorporateSubmit}
+              >
                 <div className={styles.formGroup}>
                   <label>Name</label>
                   <input
                     type="text"
                     className={styles.formInput}
                     value={corporateForm.name}
-                    onChange={(e) => setCorporateForm({ ...corporateForm, name: e.target.value })}
+                    onChange={(e) =>
+                      setCorporateForm({
+                        ...corporateForm,
+                        name: e.target.value,
+                      })
+                    }
                     placeholder="Enter name"
                   />
-                  {errors.name && <span className={styles.error}>{errors.name}</span>}
+                  {errors.name && (
+                    <span className={styles.error}>{errors.name}</span>
+                  )}
                 </div>
                 <div className={styles.formGroup}>
                   <label>Email Id</label>
@@ -540,10 +661,17 @@ const Navbar = () => {
                     type="email"
                     className={styles.formInput}
                     value={corporateForm.email}
-                    onChange={(e) => setCorporateForm({ ...corporateForm, email: e.target.value })}
+                    onChange={(e) =>
+                      setCorporateForm({
+                        ...corporateForm,
+                        email: e.target.value,
+                      })
+                    }
                     placeholder="Enter email"
                   />
-                  {errors.email && <span className={styles.error}>{errors.email}</span>}
+                  {errors.email && (
+                    <span className={styles.error}>{errors.email}</span>
+                  )}
                 </div>
                 <div className={styles.formGroup}>
                   <label>Phone Number</label>
@@ -551,10 +679,17 @@ const Navbar = () => {
                     type="tel"
                     className={styles.formInput}
                     value={corporateForm.phone}
-                    onChange={(e) => setCorporateForm({ ...corporateForm, phone: e.target.value })}
+                    onChange={(e) =>
+                      setCorporateForm({
+                        ...corporateForm,
+                        phone: e.target.value,
+                      })
+                    }
                     placeholder="Enter phone number"
                   />
-                  {errors.phone && <span className={styles.error}>{errors.phone}</span>}
+                  {errors.phone && (
+                    <span className={styles.error}>{errors.phone}</span>
+                  )}
                 </div>
                 <div className={styles.formGroup}>
                   <label>Company Name</label>
@@ -562,10 +697,17 @@ const Navbar = () => {
                     type="text"
                     className={styles.formInput}
                     value={corporateForm.company}
-                    onChange={(e) => setCorporateForm({ ...corporateForm, company: e.target.value })}
+                    onChange={(e) =>
+                      setCorporateForm({
+                        ...corporateForm,
+                        company: e.target.value,
+                      })
+                    }
                     placeholder="Enter company name"
                   />
-                  {errors.company && <span className={styles.error}>{errors.company}</span>}
+                  {errors.company && (
+                    <span className={styles.error}>{errors.company}</span>
+                  )}
                 </div>
                 <div className={styles.formGroup}>
                   <label>Destination</label>
@@ -573,10 +715,17 @@ const Navbar = () => {
                     type="text"
                     className={styles.formInput}
                     value={corporateForm.destination}
-                    onChange={(e) => setCorporateForm({ ...corporateForm, destination: e.target.value })}
+                    onChange={(e) =>
+                      setCorporateForm({
+                        ...corporateForm,
+                        destination: e.target.value,
+                      })
+                    }
                     placeholder="Enter destination"
                   />
-                  {errors.destination && <span className={styles.error}>{errors.destination}</span>}
+                  {errors.destination && (
+                    <span className={styles.error}>{errors.destination}</span>
+                  )}
                 </div>
                 <button type="submit" className={styles.submitButton}>
                   Send Enquiry
@@ -608,10 +757,14 @@ const Navbar = () => {
                     type="email"
                     className={styles.formInput}
                     value={loginForm.email}
-                    onChange={(e) => setLoginForm({ ...loginForm, email: e.target.value })}
+                    onChange={(e) =>
+                      setLoginForm({ ...loginForm, email: e.target.value })
+                    }
                     placeholder="Enter your email"
                   />
-                  {errors.email && <span className={styles.error}>{errors.email}</span>}
+                  {errors.email && (
+                    <span className={styles.error}>{errors.email}</span>
+                  )}
                 </div>
                 <div className={styles.formGroup}>
                   <label>Password</label>
@@ -619,10 +772,14 @@ const Navbar = () => {
                     type="password"
                     className={styles.formInput}
                     value={loginForm.password}
-                    onChange={(e) => setLoginForm({ ...loginForm, password: e.target.value })}
+                    onChange={(e) =>
+                      setLoginForm({ ...loginForm, password: e.target.value })
+                    }
                     placeholder="Enter your password"
                   />
-                  {errors.password && <span className={styles.error}>{errors.password}</span>}
+                  {errors.password && (
+                    <span className={styles.error}>{errors.password}</span>
+                  )}
                 </div>
                 <button type="submit" className={styles.submitButton}>
                   Log In
@@ -630,7 +787,10 @@ const Navbar = () => {
                 <p className={styles.forgotPassword}>
                   <Link
                     href="#"
-                    onClick={(e) => { e.preventDefault(); openForgotPasswordModal(); }}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      openForgotPasswordModal();
+                    }}
                   >
                     Forgot Password?
                   </Link>
@@ -651,21 +811,34 @@ const Navbar = () => {
               transition={{ duration: 0.3 }}
               className={styles.modalContent}
             >
-              <button className={styles.closeButton} onClick={closeRegisterModal}>
+              <button
+                className={styles.closeButton}
+                onClick={closeRegisterModal}
+              >
                 &times;
               </button>
               <h2 className={styles.modalTitle}>Register</h2>
-              <form className={styles.modalForm} onSubmit={handleRegisterSubmit}>
+              <form
+                className={styles.modalForm}
+                onSubmit={handleRegisterSubmit}
+              >
                 <div className={styles.formGroup}>
                   <label>Full Name</label>
                   <input
                     type="text"
                     className={styles.formInput}
                     value={registerForm.fullName}
-                    onChange={(e) => setRegisterForm({ ...registerForm, fullName: e.target.value })}
+                    onChange={(e) =>
+                      setRegisterForm({
+                        ...registerForm,
+                        fullName: e.target.value,
+                      })
+                    }
                     placeholder="Enter your full name"
                   />
-                  {errors.fullName && <span className={styles.error}>{errors.fullName}</span>}
+                  {errors.fullName && (
+                    <span className={styles.error}>{errors.fullName}</span>
+                  )}
                 </div>
                 <div className={styles.formGroup}>
                   <label>Email</label>
@@ -673,10 +846,17 @@ const Navbar = () => {
                     type="email"
                     className={styles.formInput}
                     value={registerForm.email}
-                    onChange={(e) => setRegisterForm({ ...registerForm, email: e.target.value })}
+                    onChange={(e) =>
+                      setRegisterForm({
+                        ...registerForm,
+                        email: e.target.value,
+                      })
+                    }
                     placeholder="Enter your email"
                   />
-                  {errors.email && <span className={styles.error}>{errors.email}</span>}
+                  {errors.email && (
+                    <span className={styles.error}>{errors.email}</span>
+                  )}
                 </div>
                 <div className={styles.formGroup}>
                   <label>Password</label>
@@ -684,10 +864,17 @@ const Navbar = () => {
                     type="password"
                     className={styles.formInput}
                     value={registerForm.password}
-                    onChange={(e) => setRegisterForm({ ...registerForm, password: e.target.value })}
+                    onChange={(e) =>
+                      setRegisterForm({
+                        ...registerForm,
+                        password: e.target.value,
+                      })
+                    }
                     placeholder="Create a password"
                   />
-                  {errors.password && <span className={styles.error}>{errors.password}</span>}
+                  {errors.password && (
+                    <span className={styles.error}>{errors.password}</span>
+                  )}
                 </div>
                 <div className={styles.formGroup}>
                   <label>Phone Number</label>
@@ -695,10 +882,17 @@ const Navbar = () => {
                     type="tel"
                     className={styles.formInput}
                     value={registerForm.phone}
-                    onChange={(e) => setRegisterForm({ ...registerForm, phone: e.target.value })}
+                    onChange={(e) =>
+                      setRegisterForm({
+                        ...registerForm,
+                        phone: e.target.value,
+                      })
+                    }
                     placeholder="Enter phone number"
                   />
-                  {errors.phone && <span className={styles.error}>{errors.phone}</span>}
+                  {errors.phone && (
+                    <span className={styles.error}>{errors.phone}</span>
+                  )}
                 </div>
                 <button type="submit" className={styles.submitButton}>
                   Register
@@ -711,7 +905,10 @@ const Navbar = () => {
 
       <AnimatePresence>
         {isForgotPasswordModalOpen && (
-          <Modal isOpen={isForgotPasswordModalOpen} onClose={closeForgotPasswordModal}>
+          <Modal
+            isOpen={isForgotPasswordModalOpen}
+            onClose={closeForgotPasswordModal}
+          >
             <motion.div
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
@@ -719,21 +916,34 @@ const Navbar = () => {
               transition={{ duration: 0.3 }}
               className={styles.modalContent}
             >
-              <button className={styles.closeButton} onClick={closeForgotPasswordModal}>
+              <button
+                className={styles.closeButton}
+                onClick={closeForgotPasswordModal}
+              >
                 &times;
               </button>
               <h2 className={styles.modalTitle}>Forgot Password</h2>
-              <form className={styles.modalForm} onSubmit={handleForgotPasswordSubmit}>
+              <form
+                className={styles.modalForm}
+                onSubmit={handleForgotPasswordSubmit}
+              >
                 <div className={styles.formGroup}>
                   <label>Email</label>
                   <input
                     type="email"
                     className={styles.formInput}
                     value={forgotPasswordForm.email}
-                    onChange={(e) => setForgotPasswordForm({ ...forgotPasswordForm, email: e.target.value })}
+                    onChange={(e) =>
+                      setForgotPasswordForm({
+                        ...forgotPasswordForm,
+                        email: e.target.value,
+                      })
+                    }
                     placeholder="Enter your email"
                   />
-                  {errors.email && <span className={styles.error}>{errors.email}</span>}
+                  {errors.email && (
+                    <span className={styles.error}>{errors.email}</span>
+                  )}
                 </div>
                 <button type="submit" className={styles.submitButton}>
                   Reset Password
@@ -741,7 +951,11 @@ const Navbar = () => {
                 <p className={styles.forgotPassword}>
                   <Link
                     href="#"
-                    onClick={(e) => { e.preventDefault(); closeForgotPasswordModal(); openLoginModal(); }}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      closeForgotPasswordModal();
+                      openLoginModal();
+                    }}
                   >
                     Back to Log In
                   </Link>
