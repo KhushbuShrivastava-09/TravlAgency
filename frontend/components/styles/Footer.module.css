@@ -9,6 +9,10 @@
   margin: 0;
 }
 
+.footer p{
+  text-align: justify;
+}
+
 .footerContainer {
   display: flex;
   justify-content: space-between;
