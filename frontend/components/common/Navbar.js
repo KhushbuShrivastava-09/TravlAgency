@@ -1,7 +1,7 @@
 "use client";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "../styles/Navbar.module.css";
 import {
   FaEnvelope,
@@ -12,6 +12,8 @@ import {
   FaBars,
   FaTimes,
   FaSearch,
+  FaMinus,
+  FaPlus,
 } from "react-icons/fa";
 import Modal from "../../components/CorporateModal";
 import { motion, AnimatePresence } from "framer-motion";
@@ -63,13 +65,21 @@ const Navbar = () => {
       subcategories: [],
     },
   ];
-  const [openCategory, setOpenCategory] = useState(null);
-
-  const toggleCategory = (categoryName) => {
-    setOpenCategory(openCategory === categoryName ? null : categoryName);
-  };
-
+  
   const [searchQuery, setSearchQuery] = useState("");
+  const [showResults, setShowResults] = useState(false);
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (!e.target.closest(`.${styles.searchBar}`)) {
+        setShowResults(false);
+      }
+    };
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+
   const searchData = [
     { name: "Upcoming Trips", link: "/upcomingtrips" },
     { name: "About Us", link: "/about" },
@@ -252,6 +262,13 @@ const Navbar = () => {
     }
   };
   const pathname = usePathname();
+ 
+    const [openMain, setOpenMain] = useState(false); 
+    const [openCategory, setOpenCategory] = useState(null); 
+    const toggleCategory = (name) => {
+      setOpenCategory(openCategory === name ? null : name);
+    };
+  
 
   return (
     <header className={styles.header}>
@@ -273,10 +290,11 @@ const Navbar = () => {
               type="text"
               placeholder="Search..."
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={(e) => {setSearchQuery(e.target.value);setShowResults(true);}}
               className={styles.searchInput}
+              onFocus={() => setShowResults(true)}
             />
-            {searchQuery && (
+            {showResults && searchQuery && (
               <div className={styles.searchResults}>
                 {filteredResults.length > 0 ? (
                   filteredResults.map((item, index) => (
@@ -409,7 +427,7 @@ const Navbar = () => {
               e.preventDefault();
               openRegisterModal();
             }}
-            className={`${styles.navLink} ${
+            className={`${styles.navLink, styles.registerLink} ${
               pathname === "/register" ? styles.activeLink : ""
             }`}
           >
@@ -507,6 +525,7 @@ const Navbar = () => {
           <span className={styles.closeIcon} onClick={toggleMenu}>
             <IoClose size={30} />
           </span>
+
           <nav className={styles.mobileNavLinks}>
             <Link
               href="/upcomingtrips"
@@ -579,39 +598,52 @@ const Navbar = () => {
           </nav>
 
           <div className={styles.mobileCategories}>
-            <div className={styles.categoryLinks}>
-              <div className={styles.categoryDropdown}>
-                <p> Categories  </p>
-                <div className={styles.mobileCategories}>
-                  {categories.map((cat) => (
-                    <div key={cat.name} className={styles.categoryDropdown}>
-                      <div
-                        className={styles.categoryLink}
-                        onClick={() => toggleCategory(cat.name)}
-                      >
-                        {cat.name} ▾
-                      </div>
+      {/* Main Accordion */}
+      <div
+        className={styles.categoryHeader}
+        onClick={() => setOpenMain(!openMain)}
+      >
+        <span>Categories</span>
+        <span className={styles.toggleIcon}>
+          {openMain ? <FaMinus /> : <FaPlus />}
+        </span>
+      </div>
 
-                      {openCategory === cat.name &&
-                        cat.subcategories.length > 0 && (
-                          <div className={styles.categoryDropdownContent}>
-                            {cat.subcategories.map((sub) => (
-                              <Link
-                                key={sub.name}
-                                href={sub.link}
-                                className={styles.dropdownItem}
-                              >
-                                {sub.name}
-                              </Link>
-                            ))}
-                          </div>
-                        )}
-                    </div>
+      {/* Show all categories only if main is open */}
+      {openMain && (
+        <div className={styles.categoriesList}>
+          {categories.map((cat) => (
+            <div key={cat.name} className={styles.categoryItem}>
+              <div
+                className={styles.categoryHeader}
+                onClick={() => toggleCategory(cat.name)}
+              >
+                <span>{cat.name}</span>
+                <span className={styles.toggleIcon}>
+                  {openCategory === cat.name ? <FaMinus /> : <FaPlus />}
+                </span>
+              </div>
+
+              {/* ✅ Show subcategories only when this category is open */}
+              {openCategory === cat.name && cat.subcategories.length > 0 && (
+                <div className={styles.subCategoryList}>
+                  {cat.subcategories.map((sub) => (
+                    <Link
+                      key={sub.name}
+                      href={sub.link}
+                      className={styles.subCategoryItem}
+                      onClick={handleNavClick}
+                    >
+                      {sub.name}
+                    </Link>
                   ))}
                 </div>
-              </div>
+              )}
             </div>
-          </div>
+          ))}
+        </div>
+      )}
+    </div>
         </div>
       )}
 
