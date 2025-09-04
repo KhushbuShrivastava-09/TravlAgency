@@ -1,6 +1,6 @@
 .heroContainer {
   position: relative;
-  height: 500px;
+  height: 600px;
   overflow: hidden;
   width: 100%;
   box-sizing: border-box;
@@ -20,8 +20,9 @@
 
 .carouselSlide {
   position: relative;
-  height: 500px;
+  height: 600px;
   width: 100%;
+  overflow: hidden;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -37,42 +38,76 @@
   z-index: 1;
 }
 
+.mediaBackground {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+.mediaVideo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
 .overlayText {
   position: absolute;
   top: 50%;
-  left: 10%;
-  transform: translateY(-50%);
+  left: 50%;
+  transform: translate(-50%, -50%);
   color: #fff;
   z-index: 2;
-  text-align: left;
-  max-width: 50%;
+  text-align: center;
+  max-width: 80%;
   animation: fadeInUp 1s ease;
+  padding: 0 20px;
 }
+
 
 .overlayText h2 {
-  font-size: 20px;
-  font-weight: bold;
-  letter-spacing: 3px;
-  font-weight: 500;
-  text-transform: uppercase;
-  color: #FFD369;
-  margin-bottom: 10px;
-}
-
-.overlayText h1 {
-  font-size: 60px;
+  font-size: 54px;
   font-weight: 800;
-  margin: 0 0 15px;
+  margin: 0 0 20px;
   line-height: 1.2;
 }
 
 .overlayText p {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 400;
   color: #f0f0f0;
-  max-width: 500px;
-  line-height: 1.5;
+  max-width: 600px;
+  line-height: 1.6;
+  margin: 0 auto;
+  text-wrap: nowrap;
 }
+
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink {
+  50% { border-color: transparent }
+}
+
+.typewriter {
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid #f0f0f0;
+  animation:
+    typing 4s steps(30, end) infinite,
+    blink 0.75s step-end infinite;
+}
+
 @keyframes fadeInUp {
   0% {
     opacity: 0;
@@ -86,6 +121,16 @@
 
 
 /* Responsive */
+@media (max-width: 1024px) {
+  .overlayText h2 {
+    font-size: 44px;
+  }
+  .overlayText p {
+    font-size: 18px;
+    max-width: 500px;
+  }
+}
+
 @media (max-width: 768px) {
   .heroContainer {
     height: 400px;
@@ -97,20 +142,17 @@
 
   .overlayText {
     top: 50%;
-    left: 10%;
-    max-width: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 90%;
   }
 
   .overlayText h2 {
-    font-size: 18px;
-  }
-
-  .overlayText h1 {
-    font-size: 40px;
+    font-size: 34px;
   }
 
   .overlayText p {
-    font-size: 18px;
+    font-size: 16px;
   }
 }
 
@@ -123,18 +165,8 @@
     height: 300px;
   }
 
-  .overlayText {
-    top: 40%;
-    left: 5%;
-    max-width: 80%;
-  }
-
   .overlayText h2 {
-    font-size: 18px;
-  }
-
-  .overlayText h1 {
-    font-size: 30px;
+    font-size: 24px;
   }
 
   .overlayText p {
