@@ -141,72 +141,9 @@
   font-size: 0.9rem;
   margin-top: 4px;
 }
-.mobileHeading {
-  font-size: 1.4rem;
-  font-weight: 600;
-  text-align: center;
-  margin-bottom: 16px;
-  color: #333;
-  display: none; /* default hidden */
-}
+
 .swiperDesktop { display: block; }
 .swiperMobile  { display: none; }
-
-/* Mobile deck container */
-.mobileDeck {
-  width: 82vw;
-  max-width: 320px;
-  margin: 0 auto;
-  border-radius: 16px;
-  overflow: visible;
-  position: relative;     /* fix: parent control kare */
-  min-height: 360px;      /* fix: jitni card ki height hai utna hi */
-}
-
-.swiperMobile {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 380px; /* deck ke according reserve space */
-}
-
-/* Cards-effect slides look (mobile) */
-.mobileDeck :global(.swiper-slide) {
-  border-radius: 16px;
-  overflow: hidden;
-  height: 100% !important; /* fix: parent ki height inherit kare */
-  min-height: 360px;       /* fallback */
-}
-
-
-/* Top card UI (mobile) */
-.deckCard {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.18);
-  border: 4px solid #fff;
-  background: #000;
-}
-.deckImg {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.deckContent {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  color: #fff;
-  padding: 14px;
-  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
-}
-.deckContent h3 { margin: 0; font-size: 1.05rem; }
-.deckContent p  { margin: 4px 0 0; font-size: 0.9rem; }
-
 /* SWIPER OVERRIDES */
 .mySwiper :global(.swiper-button-next),
 .mySwiper :global(.swiper-button-prev) {
@@ -273,21 +210,16 @@
 
   .sliderWrapper {
     margin-top: 0;
-    padding: 18px 0 40px;
+    padding: 40px 0;
     max-width: 100%;
   }
 
-  .swiperDesktop { display: none; }        /* normal swiper off */
-  .swiperMobile  { display: block; }       /* deck swiper on */
-  /* Desktop-only nav/pagination hatado on mobile */
-  .mySwiper :global(.swiper-button-next),
-  .mySwiper :global(.swiper-button-prev),
-  .mySwiper :global(.swiper-pagination) {
-    display: none !important;
+  .mySwiper {
+    overflow: visible; /* cards side se visible ho */
   }
 
-  .mobileHeading {
-    display: block; /* sirf mobile pe dikhayega */
+  .stackedSlide {
+    width: 220px;   /* thoda chhota card */
   }
 }
 @media (max-width: 480px) {
