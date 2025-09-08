@@ -4,7 +4,7 @@
   margin: 0 auto;
   height: 10vh;
   z-index: 1000;
-  margin-bottom: 60vh;
+  margin-bottom: 55vh;
   box-sizing: border-box;
   
   }
@@ -23,7 +23,7 @@
   
   @media (max-width: 1024px) {
     .container {
-      margin-bottom: 40vh;  
+      margin-bottom: 30vh;  
     }
   
     .bannerImage {
