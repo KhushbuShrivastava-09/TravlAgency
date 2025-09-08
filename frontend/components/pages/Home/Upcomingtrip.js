@@ -1,71 +1,217 @@
-'use client';
-import React, { useState, useEffect } from 'react';
-import { Carousel } from 'react-responsive-carousel';
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import Image from 'next/image';
-import styles from '../../styles/Home/Upcomingtrip.module.css';
+"use client";
+import React, { useState } from "react";
+import styles from "../../styles/Home/Upcomingtrip.module.css";
+import { FaMapMarkerAlt, FaCalendarAlt, FaClock, FaChevronRight } from "react-icons/fa";
+import { useRouter } from "next/navigation";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Image from "next/image";
+import Link from "next/link";
 
-const UpcomingTripsSlider = () => {
-  const [trips, setTrips] = useState([
+// Dummy Data Month Wise
+const tripsData = {
+  "SEP '25": [
     {
       id: 1,
-      title: 'Exotic Maldives Escape',
-      description: 'Enjoy 5 days of luxury in the Maldives with pristine beaches and overwater villas.',
-      image: '/images/shimla.jpg',
-      date: 'Sep 10, 2025',
+      title: "6-Day Dubai Group Trip with Ferrari World & City Tours",
+      duration: "5N/6D",
+      location: "Dubai - Dubai",
+      date: "27 Sep",
+      oldPrice: "₹58,999",
+      newPrice: "₹54,999",
+      image: "https://images.pexels.com/photos/3787839/pexels-photo-3787839.jpeg",
     },
     {
       id: 2,
-      title: 'Swiss Alps Adventure',
-      description: 'Explore the stunning Swiss Alps with a 7-day skiing and sightseeing tour.',
-      image: '/images/spain.jpg',
-      date: 'Oct 15, 2025',
+      title: "7 Days Ziro Music Festival Tour Package",
+      duration: "6N/7D",
+      location: "Guwahati - Guwahati",
+      date: "24 Sep",
+      oldPrice: "₹48,990",
+      newPrice: "₹40,990",
+      image: "https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg",
     },
     {
       id: 3,
-      title: 'Cultural Japan Tour',
-      description: 'Discover Japan’s heritage with a 10-day tour including Tokyo and Kyoto.',
-      image: '/images/leh.jpg',
-      date: 'Nov 5, 2025',
+      title: "8 Days Backpacking Japan Tour Package - WanderOn Community Trip",
+      duration: "7N/8D",
+      location: "Tokyo - Osaka",
+      date: "27 Sep",
+      oldPrice: "₹1,64,999",
+      newPrice: "₹1,39,999",
+      image: "https://images.pexels.com/photos/208152/pexels-photo-208152.jpeg",
     },
     {
       id: 4,
-      title: 'Cultural Japan Tour',
-      description: 'Discover Japan’s heritage with a 10-day tour including Tokyo and Kyoto.',
-      image: '/images/europe.jpg',
-      date: 'Nov 5, 2025',
+      title: "Live Europe’s Best Moments: 11-Day Oktoberfest Community Trip",
+      duration: "10N/11D",
+      location: "Amsterdam - Prague",
+      date: "16 Sep",
+      oldPrice: "₹2,29,990",
+      newPrice: "₹1,89,990",
+      image: "https://images.pexels.com/photos/1796723/pexels-photo-1796723.jpeg",
     },
-  ]);
+    {
+      id: 5,
+      title: "Live Europe’s Best Moments: 11-Day Oktoberfest Community Trip",
+      duration: "10N/11D",
+      location: "Amsterdam - Prague",
+      date: "16 Sep",
+      oldPrice: "₹2,29,990",
+      newPrice: "₹1,89,990",
+      image: "https://images.pexels.com/photos/1796723/pexels-photo-1796723.jpeg",
+    },
+    {
+      id: 6,
+      title: "Live Europe’s Best Moments: 11-Day Oktoberfest Community Trip",
+      duration: "10N/11D",
+      location: "Amsterdam - Prague",
+      date: "16 Sep",
+      oldPrice: "₹2,29,990",
+      newPrice: "₹1,89,990",
+      image: "https://images.pexels.com/photos/1796723/pexels-photo-1796723.jpeg",
+    },
+  ],
+  "OCT '25": [
+    {
+      id: 5,
+      title: "Swiss Alps Adventure 7 Days",
+      duration: "6N/7D",
+      location: "Zurich - Interlaken",
+      date: "10 Oct",
+      oldPrice: "₹1,89,999",
+      newPrice: "₹1,59,999",
+      image: "https://images.pexels.com/photos/753626/pexels-photo-753626.jpeg",
+    },
+  ],
+};
+
+const months = [
+  "SEP '25",
+  "OCT '25",
+  "NOV '25",
+  "DEC '25",
+  "JAN '26",
+  "FEB '26",
+  "MAR '26",
+  "APR '26",
+  "MAY '26",
+  "JUN '26",
+];
+
+// Custom Arrow Buttons
+const NextArrow = ({ onClick }) => (
+  <div className={`${styles.arrow} ${styles.next}`} onClick={onClick}>
+    ›
+  </div>
+);
+
+const PrevArrow = ({ onClick }) => (
+  <div className={`${styles.arrow} ${styles.prev}`} onClick={onClick}>
+    ‹
+  </div>
+);
+
+const CommunityTrips = () => {
+  const [activeMonth, setActiveMonth] = useState("SEP '25");
+  const router = useRouter();
+
+  const handleCardClick = (id) => {
+    router.push(`/trip/${id}`);
+  };
+
+  const handleViewAll = () => {
+    router.push("/upcomingtrips");
+  };
+
+  const dataToShow = tripsData[activeMonth] || [];
+
+  const settings = {
+    dots: false,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+    responsive: [
+      { breakpoint: 1200, settings: { slidesToShow: 3 } },
+      { breakpoint: 900, settings: { slidesToShow: 2 } },
+      { 
+        breakpoint: 600, 
+        settings: { 
+          slidesToShow: 1, 
+          slidesToScroll: 1,
+          arrows: false,        // ✅ arrows remove
+          swipeToSlide: true,   // ✅ swipe enable
+          centerMode: false
+        } 
+      },
+    ],
+  };
+  
 
   return (
-    <div className={styles.sliderContainer}>
-      <h2 className={styles.sliderTitle}>Upcoming Trips</h2>
-      <p className={styles.sliderDescription}>Explore our upcoming trips and plan your next adventure.</p>
-      <Carousel
-        showThumbs={false}
-        autoPlay={true}
-        infiniteLoop={true}
-        interval={5000}
-        showStatus={false}
-        showIndicators={true}
-        className={styles.carousel}
-      >
-        {trips.map((trip) => (
-          <div key={trip.id} className={styles.slide}>
-            <div className={styles.imageContainer}>
-              <Image src={trip.image} alt={trip.title} className={styles.slideImage} width = {1000} height={500} />
+    <div className={styles.outerContainer}>
+      <div className={styles.innerContainer}>
+        
+        {/* Header */}
+        <div className={styles.topSection}>
+          <div className={styles.headerRow}>
+            <div className={styles.headerLeft}>
+              <h2>Upcoming Community Trips</h2>
             </div>
-            <div className={styles.content}>
-              <h3 className={styles.tripTitle}>{trip.title}</h3>
-              <p className={styles.tripDescription}>{trip.description}</p>
-              <p className={styles.tripDate}>Date: {trip.date}</p>
-              <button className={styles.bookButton}>Book Now</button>
+            <div className={styles.headerRight}>
+              <button onClick={handleViewAll} className={styles.viewAll}>
+                View All <FaChevronRight />
+              </button>
             </div>
           </div>
-        ))}
-      </Carousel>
+
+          {/* Tabs */}
+          <div className={styles.tabs}>
+            {months.map((month) => (
+              <button
+                key={month}
+                className={`${styles.tab} ${activeMonth === month ? styles.activeTab : ""}`}
+                onClick={() => setActiveMonth(month)}
+              >
+                {month}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Slider */}
+        <Slider {...settings}>
+          {dataToShow.map((trip) => (
+            <div key={trip.id} className={styles.cardWrapper}>
+              <div className={styles.card} onClick={() => handleCardClick(trip.id)}>
+                <Image src={trip.image} alt={trip.title} fill className={styles.image} />
+                <div className={styles.priceTag}>
+                  <span className={styles.oldPrice}>{trip.oldPrice}</span>
+                  <span className={styles.newPrice}>{trip.newPrice}/- Onwards</span>
+                </div>
+                <div className={styles.overlay}>
+                  <h3>{trip.title}</h3>
+                  <div className={styles.details}>
+                    <div className={styles.left}>
+                      <span><FaClock /> {trip.duration}</span>
+                      <span><FaCalendarAlt /> {trip.date}</span>
+                    </div>
+                    <div className={styles.right}>
+                      <span><FaMapMarkerAlt /> {trip.location}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </Slider>
+      </div>
     </div>
   );
 };
 
-export default UpcomingTripsSlider;
+export default CommunityTrips;

@@ -20,12 +20,13 @@ const destinations = [
   { name: "Singapore", price: "34,999", img: "/images/spain.jpg" },
 ];
 
-export default function International() {
+export default function RomanticEscapes() {
   return (
     <div className={styles.sectionWrapper}>
       <div className={styles.wrapper}>
         {/* HERO SECTION */}
         <div className={styles.hero}>
+          {/* Dummy backend media (image + video setup) */}
           <div className={styles.mediaWrapper}>
             {/* if image */}
             {/* <Image
@@ -34,26 +35,20 @@ export default function International() {
               className={styles.mediaImage}
             /> */}
             {/* if video */}
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              className={styles.mediaVideo}
-            >
+            <video autoPlay loop muted playsInline className={styles.mediaVideo}>
               <source src="https://wanderon-video.gumlet.io/header-video+(1080p).mp4" />
             </video>
           </div>
 
           <div className={styles.overlay}></div>
           <div className={styles.heroContent}>
-            <h1>International Trips</h1>
-            <p>Discover the world, one destination at a time</p>
+            <h1>Romantic Escapes</h1>
+            <p>Where Forever, Begins.. Together!</p>
             <button className={styles.exploreBtn}>Explore</button>
           </div>
         </div>
 
-        {/* SLIDER SECTION desktop and tablet */}
+        {/* SLIDER SECTION */}
         <div className={styles.sliderWrapper}>
           {/* Desktop / Tablet: normal swiper */}
           <div className={styles.swiperDesktop}>
@@ -94,7 +89,7 @@ export default function International() {
 
         {/* SLIDER SECTION mobile */}
         <div className={styles.swiperMobile}>
-        <h2 className={styles.mobileHeading}>International Trips</h2>
+        <h2 className={styles.mobileHeading}>Romantic Escapes</h2>
             <Swiper
               effect="cards"
               grabCursor={true}

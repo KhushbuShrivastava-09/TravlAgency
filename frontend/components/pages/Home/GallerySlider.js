@@ -1,87 +1,58 @@
-'use client';
-import React, { useEffect, useRef } from 'react';
-import styles from '../../styles/Home/GallerySlider.module.css';
+"use client";
+import { useRef } from "react";
+import Image from "next/image";
+import { FaChevronLeft, FaChevronRight, FaMapMarkerAlt } from "react-icons/fa";
+import styles from "../../styles/Home/GallerySlider.module.css";
 
-const cruisesData = [
-  {
-    title: 'Mediterranean 18 Night Tour',
-    description: 'Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming.',
-    image: '/images/leh.jpg',
-  },
-  {
-    title: 'Greece 6 Night Tour',
-    description: 'Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming.',
-    image: '/images/shimla.jpg',
-  },
-  {
-    title: 'Bahamas 7 Night Tour',
-    description: 'Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming.',
-    image: '/images/spain.jpg',
-  },
-  {
-    title: 'Caribbean 10 Night Tour',
-    description: 'Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming.',
-    image: '/images/europe.jpg',
-  },
-  {
-    title: 'Alaska 12 Night Tour',
-    description: 'Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming.',
-    image: '/images/leh.jpg',
-  },
-  {
-    title: 'Hawaii 8 Night Tour',
-    description: 'Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming.',
-    image: '/images/shimla.jpg',
-  },
-];
+export default function GallerySlider({ images = [] }) {
+  const scrollRef = useRef(null);
 
-const GallerySlider = () => {
-  const sliderRef = useRef(null);
-
-  useEffect(() => {
-    const slider = sliderRef.current;
-    if (!slider) return;
-
-    let scrollAmount = 0;
-    const scrollStep = 2; // speed
-    const interval = setInterval(() => {
-      if (slider.scrollLeft + slider.offsetWidth >= slider.scrollWidth) {
-        slider.scrollLeft = 0;
-        scrollAmount = 0;
-      } else {
-        slider.scrollLeft += scrollStep;
-        scrollAmount += scrollStep;
-      }
-    }, 20); // speed interval
-
-    return () => clearInterval(interval);
-  }, []);
+  const handleScroll = (direction) => {
+    if (!scrollRef.current) return;
+    const { scrollLeft, clientWidth } = scrollRef.current;
+    const cardWidth = 280 + 16; // card width + gap
+    const scrollTo =
+      direction === "left" ? scrollLeft - cardWidth : scrollLeft + cardWidth;
+    scrollRef.current.scrollTo({ left: scrollTo, behavior: "smooth" });
+  };
 
   return (
-    <div className={styles.sliderContainer}>
-      <div className={styles.headerSection}>
-        <h2 className={styles.title}>Gallery</h2>
-        <p className={styles.subtitle}>
-          Discover amazing trips around the World with Travabay
-        </p>
-      </div>
+    <div className={styles.container}>
+      <h2 className={styles.heading}>JOURNEY IN FRAMES</h2>
+      <p className={styles.subheading}>Pictures Perfect Moments</p>
 
-      <div className={styles.autoSlider} ref={sliderRef}>
-        {cruisesData.map((cruise, index) => (
-          <div key={index} className={styles.card}>
-            <div
-              className={styles.cardImage}
-              style={{ backgroundImage: `url(${cruise.image})` }}
-            />
-            <div className={styles.cardContent}>
-              <h3 className={styles.cardTitle}>{cruise.title}</h3>
-              <p className={styles.cardDescription}>{cruise.description}</p>
+      <div className={styles.sliderWrapper}>
+        <button
+          className={styles.arrowLeft}
+          onClick={() => handleScroll("left")}
+        >
+          <FaChevronLeft />
+        </button>
+
+        <div className={styles.slider} ref={scrollRef}>
+          {images.map((img, i) => (
+            <div key={i} className={styles.card}>
+              <Image
+                src={img.url}
+                alt={img.title}
+                width={300}
+                height={450}
+                className={styles.image}
+              />
+              <div className={styles.locationTag}>
+                <FaMapMarkerAlt /> {img.location}
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
+
+        <button
+          className={styles.arrowRight}
+          onClick={() => handleScroll("right")}
+        >
+          <FaChevronRight />
+        </button>
       </div>
     </div>
   );
-};
-
-export default GallerySlider;
+}
