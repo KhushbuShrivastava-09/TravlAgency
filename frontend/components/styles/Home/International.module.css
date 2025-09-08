@@ -156,17 +156,28 @@
 .mobileDeck {
   width: 82vw;
   max-width: 320px;
- margin: 0 auto;
+  margin: 0 auto;
   border-radius: 16px;
-  overflow: visible;       /* back cards ki edges visible */
+  overflow: visible;
+  position: relative;     /* fix: parent control kare */
+  min-height: 360px;      /* fix: jitni card ki height hai utna hi */
+}
+
+.swiperMobile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 380px; /* deck ke according reserve space */
 }
 
 /* Cards-effect slides look (mobile) */
 .mobileDeck :global(.swiper-slide) {
   border-radius: 16px;
   overflow: hidden;
-  height: 360px;
+  height: 100% !important; /* fix: parent ki height inherit kare */
+  min-height: 360px;       /* fallback */
 }
+
 
 /* Top card UI (mobile) */
 .deckCard {
