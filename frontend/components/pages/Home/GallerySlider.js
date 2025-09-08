@@ -1,15 +1,16 @@
 "use client";
+import PropTypes from "prop-types";
 import { useRef } from "react";
 import Image from "next/image";
 import { FaChevronLeft, FaChevronRight, FaMapMarkerAlt } from "react-icons/fa";
 import styles from "../../styles/Home/GallerySlider.module.css";
 
-export default function GallerySlider({ images = [] }) {
+export default function GallerySlider({ images }) {
   const scrollRef = useRef(null);
 
   const handleScroll = (direction) => {
     if (!scrollRef.current) return;
-    const { scrollLeft, clientWidth } = scrollRef.current;
+    const { scrollLeft } = scrollRef.current;
     const cardWidth = 280 + 16; // card width + gap
     const scrollTo =
       direction === "left" ? scrollLeft - cardWidth : scrollLeft + cardWidth;
@@ -56,3 +57,13 @@ export default function GallerySlider({ images = [] }) {
     </div>
   );
 }
+
+GallerySlider.propTypes = {
+  images: PropTypes.arrayOf(
+    PropTypes.shape({
+      url: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      location: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+};
