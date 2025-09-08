@@ -1,13 +1,16 @@
 .heroContainer {
   position: relative;
+  top: 180px;
   height: 600px;
   overflow: hidden;
   width: 100%;
   box-sizing: border-box;
   z-index: 1000;
+  margin-bottom: 200px;
   border-bottom: 6px solid #157DC2;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .carousel {

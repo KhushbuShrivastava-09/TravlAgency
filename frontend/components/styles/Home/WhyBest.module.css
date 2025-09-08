@@ -31,7 +31,7 @@
   animation-delay: 0.3s;
 }
 
-.cardsContainer {
+.cardsContainerDesktop {
   display: flex;
   justify-content: center;
   gap: 25px;
@@ -41,9 +41,10 @@
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
-  box-sizing: border-box;
 }
-
+.cardsContainerMobile {
+  display: none;
+}
 .card:nth-child(1) {
   animation-delay: 0.4s;
 }
@@ -119,18 +120,6 @@
   z-index: 1;
 }
 
-
-.readMore {
-  color: #213638;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.readMore:hover {
-  text-decoration: underline;
-  color: #EF8F49;
-}
-
 /* 🔥 Animations */
 @keyframes fadeDown {
   0% {
@@ -165,3 +154,24 @@
   }
 }
 
+/* Mobile View - Swiper */
+@media (max-width: 648px) {
+  .cardsContainerDesktop {
+    display: none; /* Desktop off */
+  }
+
+  .cardsContainerMobile {
+    display: block; /* Mobile swiper on */
+    width: 100%;
+    padding: 0 10px 40px;
+  }
+
+  .mySwiper {
+    overflow: visible;
+  }
+
+  .card {
+    max-width: 320px;
+    margin: 0 auto;
+  }
+}

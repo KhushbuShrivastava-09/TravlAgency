@@ -1,147 +1,268 @@
-.sliderContainer {
-    margin: 0 auto;
-    padding: 40px 20px;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .sliderTitle {
-    text-align: center;
-    font-size: 28px;
-    color: #333;
-    margin-bottom: 20px;
-    font-weight: 600;
-  }
+.outerContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 
-  .sliderDescription {
-    font-size: 16px;
-    color: #666;
-    margin-bottom: 10px;
-    text-align: center;
-    line-height: 1.6;
-    max-width: 100%;
-    overflow-wrap: break-word;
+.innerContainer {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto; /* center align */
+}
+
+.topSection {
+  max-width: 1200px;
+  margin: 0 auto 20px auto;
+  padding: 0 20px;
+}
+
+/* h2 + View All row */
+.headerRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.headerLeft {
+  flex: 1;
+}
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+/* View All button with arrow */
+.viewAll {
+  background: #157dc2;
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.viewAll svg {
+  font-size: 14px;
+  color: white;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.tabs::-webkit-scrollbar {
+  display: none;
+}
+.tab {
+  flex: 0 0 auto;
+  border: 1px solid #ccc;
+  background: white;
+  border-radius: 20px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  white-space: nowrap;
+}
+.activeTab {
+  background: #c2edf3;
+  color: #157dc2;
+  border: 1px solid #157dc2;
+}
+
+/* ---- Cards Gap ---- */
+.slick-slide > div {
+  padding: 0 10px; 
+  box-sizing: border-box;
+}
+.slick-list {
+  margin: 0 -10px;
+}
+
+/* Card */
+.cardWrapper {
+  /* display: flex;
+  justify-content: center;
+  align-items: stretch; */
+  height: 100%;
+}
+.card {
+  position: relative;
+  width: 100%;
+  height: 420px;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  background: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+}
+.image {
+  object-fit: cover;
+  transition: transform 0.5s ease, filter 0.5s ease;
+}
+.card:hover .image {
+  transform: scale(1.08);
+  filter: contrast(1.2);
+}
+
+/* Price tag */
+.priceTag {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: yellow;
+  border: 2px solid white;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 13px;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  z-index: 2;
+}
+.oldPrice {
+  position: relative;
+  color: red;
+  font-size: 12px;
+}
+.oldPrice::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  border-top: 1.5px solid red;
+  transform: rotate(-15deg);
+}
+.newPrice {
+  font-weight: bold;
+  color: #000;
+}
+
+/* Overlay */
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.65);
+  color: #fff;
+  padding: 14px;
+}
+.overlay h3 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.details {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+}
+.details span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.details .left {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Arrows */
+.arrow {
+  position: absolute;
+  top: 45%;
+  transform: translateY(-50%);
+  font-size: 28px;
+  background: #157dc2;
+  color: white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 5;
+}
+.prev {
+  left: -15px;
+}
+.next {
+  right: -15px;
+}
+
+/* Responsiveness */
+@media (max-width: 1024px) {
+  .card {
+    height: 380px;
   }
-  
-  .carousel {
-    position: relative;
+  .slick-slide > div {
+    padding: 0 6px;
   }
-  
-  .slide {
-    display: flex;
-    align-items: center;
-    height: 400px;
-    background-color: #fff;
-    border-radius: 10px;
-    overflow: hidden;
+  .slick-list {
+    margin: 0 -6px;
   }
-  
-  .imageContainer {
-    flex: 1;
-    height: 100%;
+}
+@media (max-width: 900px) {
+  .slick-slide > div {
+    padding: 0 8px;
   }
-  
-  .slideImage {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  .slick-list {
+    margin: 0 -8px;
   }
-  
-  .content {
-    flex: 1;
-    padding: 20px;
-    text-align: left;
-    background-color: rgba(255, 255, 255, 0.9);
+}
+@media (max-width: 768px) {
+  .card {
+    height: 340px;
   }
-  
-  .tripTitle {
-    font-size: 24px;
-    color: #1a3c5e;
-    margin-bottom: 10px;
-  }
-  
-  .tripDescription {
-    font-size: 16px;
-    color: #666;
-    margin-bottom: 10px;
-    line-height: 1.5;
-  }
-  
-  .tripDate {
+  .overlay h3 {
     font-size: 14px;
-    color: #888;
-    margin-bottom: 15px;
   }
-  
-  .bookButton {
-    background-color: #EF8F49;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  .details {
+    font-size: 12px;
   }
-  
-  .bookButton:hover {
-    background-color: #0099a8;
+  .slick-slide > div {
+    padding: 0 4px;
   }
-  
-  /* Responsive */
-  @media (max-width: 768px) {
-    .slide {
-      flex-direction: column;
-      height: auto;
-    }
-  
-    .imageContainer {
-      width: 100%;
-      height: 250px;
-    }
-  
-    .content {
-      padding: 15px;
-      text-align: center;
-    }
-  
-    .tripTitle {
-      font-size: 20px;
-    }
-  
-    .tripDescription {
-      font-size: 14px;
-    }
-  
-    .bookButton {
-      padding: 8px 16px;
-      font-size: 14px;
-    }
+  .slick-list {
+    margin: 0 -4px;
   }
-  
-  @media (max-width: 480px) {
-    .sliderContainer {
-      padding: 20px 10px;
-    }
-  
-    .sliderTitle {
-      font-size: 24px;
-    }
-  
-    .imageContainer {
-      height: 200px;
-    }
-  
-    .tripTitle {
-      font-size: 18px;
-    }
-  
-    .tripDescription {
-      font-size: 12px;
-    }
-  
-    .tripDate {
-      font-size: 12px;
-    }
+}
+@media (max-width: 600px) {
+  .arrow {
+    display: none !important; /* hide arrows */
   }
+  .card {
+    height: 300px;
+  }
+  .priceTag {
+    font-size: 11px;
+    padding: 3px 8px;
+  }
+  .overlay {
+    padding: 10px;
+  }
+  .overlay h3 {
+    font-size: 13px;
+  }
+  .details {
+    font-size: 11px;
+  }
+  .arrow {
+    display: none !important;
+  }
+}
