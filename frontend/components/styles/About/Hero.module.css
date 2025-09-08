@@ -1,9 +1,17 @@
 .container {
-    padding: 16px;
+  position: relative;
+  top: 180px;
+  margin: 0 auto;
+  height: 10vh;
+  z-index: 1000;
+  margin-bottom: 60vh;
+  box-sizing: border-box;
+  
   }
   
   .bannerWrapper {
     width: 100%;
+    
   }
   
   .bannerImage {
@@ -13,17 +21,36 @@
     display: block;
   }
   
-  .content {
-    margin-top: 24px;
+  @media (max-width: 1024px) {
+    .container {
+      margin-bottom: 40vh;  
+    }
+  
+    .bannerImage {
+      height: 250px; 
+    }
   }
   
-  .content h1 {
-    font-size: 24px;
-    font-weight: bold;
+  /* Mobiles */
+  @media (max-width: 768px) {
+    .container {
+      margin-bottom: 25vh; 
+      height: auto; 
+    }
+  
+    .bannerImage {
+      height: 200px;
+    }
   }
   
-  .content p {
-    margin-top: 8px;
-    color: #555;
+  /* Small Mobiles */
+  @media (max-width: 480px) {
+    .container {
+      margin-bottom: 15vh; 
+    }
+  
+    .bannerImage {
+      height: 160px;
+    }
   }
   

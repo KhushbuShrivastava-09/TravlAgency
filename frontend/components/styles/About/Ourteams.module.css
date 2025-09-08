@@ -1,147 +1,97 @@
-.team {
+.teamSection {
   padding: 60px 20px;
   text-align: center;
   background: #fff;
-  max-width: 1200px;
-  margin: 0 auto;
 }
 
 .title {
-  font-size: 28px;
-  font-weight: 700;
-  color: #222;
-  margin-bottom: 12px;
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 40px;
+  color: #333;
 }
 
-.subtitle {
-  max-width: 600px;
-  margin: 0 auto 40px;
-  font-size: 15px;
+.title span {
+  font-weight: normal;
   color: #666;
-  line-height: 1.6;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+.teamGrid {
+  display: flex;
+  justify-content: center;
   gap: 30px;
-  justify-items: center;
+  flex-wrap: wrap;
+}
+
+/* Hide Swiper on Desktop */
+.teamSwiper {
+  display: none;
 }
 
 .card {
-  width: 100%;
-  max-width: 240px;
   background: #fff;
-  border: 1px solid #eee;
-  padding: 10px 10px;
-  border-radius: 10px;
-  transition: all 0.3s ease;
-  opacity: 0;
-  transform: translateY(50px);
-  perspective: 1000px; /* For 3D tilt effect */
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 350px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin: 0 auto;
 }
 
-.card.load {
-  animation: loadAnimation 0.8s ease forwards;
-}
-
-.card.visible {
-  opacity: 1;
-  transform: translateY(0);
-  transition: all 0.5s ease;
-}
-
-.card:hover {
-  transform: translateY(-6px) rotateX(5deg) rotateY(5deg); /* Tilt effect */
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-}
-
-.card:not(:hover) {
-  transform: translateY(0) rotateX(0) rotateY(0); /* Reset tilt on hover out */
-  transition: all 0.3s ease; /* Smooth return */
-}
-
-.image {
-  width: 100%;
-  height: 220px;
+.avatar {
+  border-radius: 50%;
   object-fit: cover;
-  border-radius: 6px;
-  border: 4px solid #cfd4d4;
   margin-bottom: 15px;
 }
 
 .name {
-  font-size: 18px;
-  font-weight: 600;
-  margin: 8px 0 4px;
+  font-size: 1.3em;
+  font-weight: bold;
   color: #222;
-  opacity: 0;
-  transform: scale(0.9);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  margin-bottom: 5px;
 }
 
-.titleAnimTrigger.visible .name {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.titleAnimated {
-  animation: titleBounce 0.6s ease forwards;
-}
-
-@keyframes titleBounce {
-  0% {
-    transform: scale(0.9);
-    opacity: 0;
-  }
-  50% {
-    transform: scale(1.1);
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-.role {
-  font-size: 14px;
+.designation {
+  font-size: 1em;
   color: #666;
-  margin-bottom: 15px;
-  line-height: 1.5;
+  margin-bottom: 10px;
 }
 
 .socials {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
+  margin-bottom: 12px;
 }
 
-.socialIcon {
-  font-size: 16px;
-  color: #777;
-  cursor: pointer;
-  transition: color 0.3s ease, transform 0.3s ease;
+.socials a {
+  margin: 0 8px;
+  color: #0077b5;
+  font-size: 1.2em;
 }
 
-.socialIcon:hover {
-  color: #00bfa6;
-  transform: scale(1.2);
+.separator {
+  width: 60px;
+  height: 3px;
+  background: #ffd700;
+  margin: 10px auto;
+  border-radius: 2px;
 }
 
-.socialIcon:not(:hover) {
-  color: #777; /* Explicitly reset to original color */
-  transform: scale(1); /* Reset scale */
-  transition: color 0.3s ease, transform 0.3s ease; /* Smooth return */
+.description {
+  font-size: 0.95em;
+  color: #444;
+  line-height: 1.5;
 }
 
-/* Load Animation */
-@keyframes loadAnimation {
-  0% {
-    opacity: 0;
-    transform: translateY(50px);
+/* ✅ Mobile Swiper Styles */
+@media (max-width: 768px) {
+  .teamGrid {
+    display: none; /* hide grid */
   }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
+
+  .teamSwiper {
+    display: block; /* show swiper */
+  }
+
+  .card {
+    max-width: 320px;
   }
 }

@@ -1,8 +1,44 @@
+/* Main wrapper */
+.mainSection {
+  padding: 60px 20px;
+}
+
+/* About Company (no background) */
+.aboutCompany {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.aboutTitle {
+  font-size: 32px;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 15px;
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: fadeTop 1s ease forwards;
+}
+
+.aboutDescription {
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 16px;
+  color: #555;
+  line-height: 1.7;
+  opacity: 0;
+  text-align: justify;
+  transform: translateY(20px);
+  animation: fadeTop 1s ease forwards;
+  animation-delay: 0.3s;
+}
+
+/* Offer Section */
 .offerSection {
   background: #f9f9f9;
-  padding: 60px 20px;
+  padding: 60px 30px;
   text-align: center;
-  overflow: hidden; /* animation ke liye */
+  overflow: hidden;
+  border-radius: 8px;
 }
 
 .container {
@@ -31,10 +67,11 @@
   animation-delay: 0.3s;
 }
 
+/* 2-column layout */
 .content {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 30px;
+  gap: 40px;
   text-align: left;
 }
 
@@ -54,6 +91,7 @@
   margin-bottom: 20px;
   color: #555;
   font-size: 15px;
+  line-height: 1.5;
 }
 
 .icon {
@@ -96,10 +134,58 @@
   }
 }
 
-/* Responsive */
+/* ✅ Responsive tweaks */
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .aboutTitle {
+    font-size: 28px;
+  }
+
+  .title {
+    font-size: 28px;
+  }
+
+  .content {
+    gap: 25px;
+  }
+
+  .aboutDescription,
+  .subtitle {
+    font-size: 15px;
+  }
+}
+
+/* Mobiles */
 @media (max-width: 768px) {
+  .mainSection {
+    padding: 40px 15px;
+  }
+
+  .aboutTitle {
+    font-size: 24px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .aboutDescription,
+  .subtitle {
+    font-size: 14px;
+    text-align: center;
+  }
+
   .content {
     grid-template-columns: 1fr;
+    gap: 20px;
+    text-align: center;
+  }
+
+  .list li {
+    justify-content: center;
+    text-align: left; /* text proper dikhe */
+    font-size: 14px;
   }
 
   .rightText {
@@ -110,5 +196,7 @@
     transform: translateY(30px);
     animation: fadeTop 1s ease forwards;
     animation-delay: 1.2s;
+    text-align: justify;
+    font-size: 14px;
   }
 }
