@@ -276,11 +276,11 @@ const Navbar = () => {
       {/* TopBar */}
       <div className={styles.topBar}>
         <div className={styles.contactInfo}>
-          <span className={styles.contactItem}>
+          {/* <span className={styles.contactItem}>
             <FaEnvelope /> support@travabay.com |
-          </span>
+          </span> */}
           <span className={styles.contactItem}>
-            <FaPhoneAlt /> +917 3386831
+            <FaPhoneAlt /> +91 9579659074
           </span>
         </div>
         <div className={styles.languageSocial}>
