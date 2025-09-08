@@ -1,14 +1,6 @@
-import Hero from '../components/pages/Home/Hero';
-import WhyBest from '../components/pages/Home/WhyBest';
-import GallerySlider from '../components/pages/Home/GallerySlider';
-import Contact from '@/components/pages/Contact/contact';
-import CommunityTrips from '../components/pages/Home/Upcomingtrip';
-import FeaturedPackages from '../components/pages/Home/FeaturedPackages';
-import International from '../components/pages/Home/International';
-import Romantic from '../components/pages/Home/Romantic';
-import SliderBanner from '../components/pages/Home/SliderBanner';
-import Stats from '../components/pages/Home/Stats';
-
+import GallerySlider from '@/components/pages/Home/GallerySlider';
+import Hero from '../../components/pages/TripInfo/Hero';
+import TripDetails from '../../components/pages/TripInfo/TripDetails';
 
 export default function HomePage() {
   const images = [
@@ -28,16 +20,8 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <SliderBanner />
-      <International/> 
-      <CommunityTrips/>
-      <Romantic/>
-      <SliderBanner />
-      <FeaturedPackages/>
-      <WhyBest />
-      <GallerySlider images={images} />
-      <Stats/>
-      <Contact />
+      <TripDetails/>
+      <GallerySlider images = {images}/>
     </>
   );
 }

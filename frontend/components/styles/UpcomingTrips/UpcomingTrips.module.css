@@ -1,7 +1,7 @@
 .container {
   width: 100%;
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 180px auto;
   padding: 20px 0px;
   box-sizing: border-box;
   gap: 20px;
@@ -451,6 +451,51 @@
   .monthCarousel {
     order: -1; /* Move to top */
   }
+  .monthWrapper {
+    display: inline-block;
+    vertical-align: top;
+  }
+  
+  .activeMonthWrapper {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .datesList {
+    display: flex;
+    gap: 8px;
+    margin-top: 6px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .dateItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 12px;
+    color: #333;
+  }
+  
+  .dateItem strong {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1;
+  }
+  
+  .dateItem small {
+    font-size: 10px;
+    color: #666;
+    line-height: 1;
+  }
+  
+  .separator {
+    margin: 0 6px;
+    color: #aaa;
+  }
+  
+
 
   .mobileTabs {
     display: flex;

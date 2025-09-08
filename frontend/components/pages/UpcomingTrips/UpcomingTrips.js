@@ -10,7 +10,8 @@ import {
   FaMapMarkerAlt,
   FaArrowRight,
   FaChevronRight,
-} from "react-icons/fa"; // Added FaChevronRight for arrow
+} from "react-icons/fa"; 
+import Link from "next/link";
 
 const UpcomingTrips = () => {
   const mockTrips = [
@@ -96,6 +97,7 @@ const UpcomingTrips = () => {
     "Jun-26",
   ];
 
+  
   const [trips, setTrips] = useState(mockTrips);
   const [destinations] = useState(mockDestinations);
   const [months] = useState(mockMonths);
@@ -106,7 +108,7 @@ const UpcomingTrips = () => {
     budget: [9000, 300000],
     months: [],
   });
-  const [showSubDestinations, setShowSubDestinations] = useState(false); // Default closed
+  const [showSubDestinations, setShowSubDestinations] = useState(false); 
   const [sliderChanged, setSliderChanged] = useState({
     duration: false,
     budget: false,
@@ -368,23 +370,61 @@ const UpcomingTrips = () => {
         </div>
 
         <div className={styles.rightContent}>
-          <div className={styles.monthCarousel}>
-            <div className={styles.carouselInner}>
-              {months.map((month) => (
-                <button
-                  key={month}
-                  className={`${styles.monthButton} ${
-                    filters.months.includes(month) ? styles.activeMonth : ""
-                  }`}
-                  onClick={() =>
-                    handleMonthChange({ target: { value: month } })
-                  }
-                >
-                  {month.split("-")[0]}
-                </button>
+        <div className={styles.monthCarousel}>
+  <div className={styles.carouselInner}>
+    {months.map((month) => {
+      const isActive = filters.months.includes(month);
+
+      // Filter trips for this month
+      const tripsInMonth = mockTrips.filter((trip) =>
+        trip.dates.includes(month.split("-")[0])
+      );
+
+      // Collect all dates from those trips
+      const monthDates = tripsInMonth.flatMap((trip) =>
+        trip.dates.split(",").map((d) => d.trim())
+      );
+
+      return (
+        <div
+          key={month}
+          className={`${styles.monthWrapper} ${
+            isActive ? styles.activeMonthWrapper : ""
+          }`}
+        >
+          <button
+            className={`${styles.monthButton} ${
+              isActive ? styles.activeMonth : ""
+            }`}
+            onClick={() =>
+              handleMonthChange({ target: { value: month } })
+            }
+          >
+            {month.split("-")[0]}
+          </button>
+
+          {/* Dates list only if active */}
+          {isActive && monthDates.length > 0 && (
+            <div className={styles.datesList}>
+              {monthDates.map((date, i) => (
+                <React.Fragment key={i}>
+                  <div className={styles.dateItem}>
+                    <strong>{date.split(" ")[0]}</strong>
+                    <small>{date.split(" ")[1]}</small>
+                  </div>
+                  {i < monthDates.length - 1 && (
+                    <span className={styles.separator}>|</span>
+                  )}
+                </React.Fragment>
               ))}
             </div>
-          </div>
+          )}
+        </div>
+      );
+    })}
+  </div>
+</div>
+
             
              {/* Mobile Filter Tabs */}
           <div className={styles.mobileTabs}>
@@ -407,7 +447,7 @@ const UpcomingTrips = () => {
           </div>
 
             {/* Mobile Tab Panels */}
-            {activeMobileTab === "Destination" && (
+          {activeMobileTab === "Destination" && (
             <div className={styles.mobilePanel}>
               <div className={styles.destinationLabels}>
                 <span
@@ -510,7 +550,7 @@ const UpcomingTrips = () => {
             </div>
           )}
 
-
+          {/* trip grid */}
           <div className={styles.tripsGrid}>
             {trips.map((trip, index) => (
               <motion.div
@@ -552,7 +592,7 @@ const UpcomingTrips = () => {
                   </div>
 
                   <div className={styles.arrow}>
-                    <FaArrowRight className="arrow-right" />
+                   <Link href="/tripinfo"> <FaArrowRight className="arrow-right"  /></Link>
                   </div>
                 </div>
               </motion.div>
