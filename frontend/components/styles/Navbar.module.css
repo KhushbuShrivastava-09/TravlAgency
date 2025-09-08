@@ -3,7 +3,9 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   width: 100%;
   box-sizing: border-box;
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
   z-index: 2000;
   padding: 0;
 }
@@ -109,6 +111,7 @@
   background: #0077b5; /* LinkedIn blue */
 }
 
+
 .mainNav {
   display: flex;
   justify-content: space-between;
@@ -117,13 +120,14 @@
   width: 100%;
   box-sizing: border-box;
   z-index: 2001;
+  flex-wrap: wrap; /* ✅ wrapping allow */
+  gap: 12px;       /* ✅ mobile ke liye gap */
 }
-
 .logoText {
   font-size: 26px;
   font-weight: bold;
   font-family: 'Poppins', sans-serif;
-  display: inline-block;
+  flex-shrink: 0;
 }
 
 .trav {
@@ -138,6 +142,10 @@
   display: flex;
   gap: 28px;
   align-items: center;
+  align-items: center;
+  flex: 1;               /* ✅ auto adjust space */
+  justify-content: flex-end;
+  flex-wrap: wrap;
 }
 
 .navLink {
@@ -370,8 +378,8 @@
     position: fixed;
     top: 0;
     right: 0;
-    width: 75%; /* pehle 50% tha, isko bada karo */
-    max-width: 320px; /* bada phones pe bhi sahi lagega */
+    width: 55%; 
+    max-width: 320px; 
     height: 100%;
     z-index: 2003;
     animation: slideIn 0.3s ease;
@@ -398,16 +406,11 @@
   .mobileCategories {
     border-top: 1px solid #eee;
     padding-top: 12px;
-    /* display: flex;
-    flex-direction: column;
-    gap: 8px;
-    align-items: flex-start;  */
+    
   }
 
   .mobileCategories .categoryLinks {
-    /* display: flex;
-    flex-direction: column;
-    gap: 12px; */
+
     font-size: 15px;
   font-weight: 600;
   color: #157DC2;
@@ -448,14 +451,6 @@
   }
 
   .mobileCategories .categoryDropdownContent {
-    /* position: static;
-    width: 100%;
-    box-shadow: none;
-    background-color: #f9f9f9;
-    padding-left: 16px;
-    display: none;
-    flex-direction: column;
-    gap: 8px; */
     background: #f9f9f9;
     border-left: 2px solid #157DC2;
     margin-top: 8px;
@@ -470,13 +465,6 @@
   }
 
   .mobileCategories .categoryDropdownContent a {
-    /* color: #333;
-    font-size: 14px;
-    text-decoration: none;
-    font-weight: 500;
-    padding: 6px 0;
-    position: relative;
-    transition: color 0.3s ease; */
     font-size: 14px;
     color: #444;
   }
@@ -662,6 +650,7 @@
   width: 100%;
 }
 /* SearchBar */
+
 .searchBar {
   position: relative;
   display: flex;
@@ -669,8 +658,8 @@
   border: 1px solid #0077b5;
   border-radius: 20px;
   padding: 4px 10px;
-  margin-right: 16px;
   background: transparent;
+  flex-shrink: 0;
 }
 
 .searchIcon {
@@ -678,13 +667,14 @@
   margin-right: 6px;
 }
 
+
 .searchInput {
   border: none;
   outline: none;
   background: transparent;
   font-size: 14px;
-  width: 140px;
-  color: #000; /* topbar mein white text */
+  width: 140px;     
+  color: #000;
 }
 
 .searchResults {
@@ -714,4 +704,47 @@
   padding: 8px 12px;
   color: #999;
   font-size: 13px;
+}
+@media (max-width: 960px) {
+  .mainNav {
+    padding: 12px 14px;
+    gap: 10px;
+  }
+
+  .navLinks {
+    display: none; /* ✅ only hamburger visible */
+  }
+
+  .hamburger {
+    display: block;
+    margin-left: auto;
+  }
+
+  .mobileMenu {
+    width: 70%;       
+    max-width: 340px; 
+    right: 0;
+  }
+
+  .searchBar {
+    width: 30%;  
+    margin: 10px 0;
+  }
+
+}
+
+/* Very Small Screens */
+@media (max-width: 576px) {
+  .logoText {
+    font-size: 20px; /* ✅ logo small */
+  }
+
+  .hamburger {
+    font-size: 22px;
+  }
+
+  .registerLink {
+    font-size: 13px;
+    padding: 8px 14px;
+  }
 }
