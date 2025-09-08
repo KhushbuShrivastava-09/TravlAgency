@@ -79,6 +79,17 @@ const Navbar = () => {
       document.removeEventListener("click", handleClickOutside);
     };
   }, []);
+  useEffect(() => {
+    // Calculate scrollbar width aur CSS variable me set karo
+    const scrollbarWidth =
+      window.innerWidth - document.documentElement.clientWidth;
+  
+    document.documentElement.style.setProperty(
+      "--scrollbar-compensate",
+      `${scrollbarWidth}px`
+    );
+  }, []);
+  
 
   const searchData = [
     { name: "Upcoming Trips", link: "/upcomingtrips" },
