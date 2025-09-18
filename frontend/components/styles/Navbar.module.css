@@ -229,16 +229,18 @@
 
 .categoryLinks {
   display: flex;
-  gap: 16px;
+  gap: 60px;
   align-items: center;
 }
 
-.categoryLink {
+ .categoryLink {
+  display: block;
   color: #ffffff;
+  cursor: pointer;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 16px;
   transition: color 0.3s ease;
-}
+} 
 
 .categoryLink:hover {
   color: #f0f0f0;
@@ -252,14 +254,46 @@
 .categoryDropdownContent {
   display: none;
   position: absolute;
-  background-color: #157DC2;
-  min-width: 160px;
+  background-color: #ffffff;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 2001;
   top: 100%;
   left: 0;
+  max-height: 300px;       
+  padding: 10px 0;
+  column-count: 3;         
+  column-gap: 40px;        
+  overflow-y: auto;        
+  white-space: nowrap;  
+}
+.categoryDropdownContent.show {
+  display: block; /* Show subcategories on click */
+}
+.dropdownItem {
+  display: block;
+  padding: 6px 16px;
+  font-size: 14px;
+  color: #000;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  break-inside: avoid; 
 }
 
+.dropdownItem:hover {
+  background-color: #f0f0f0;
+}
+
+.categoryDropdown:hover .categoryDropdownContent {
+  display: block; 
+}
+
+.categoryDropdownContent:hover {
+  background-color: #e1e1e1;
+}
+
+
+/* mobile style */
 .mobileCategories .categoryDropdownContent {
   display: flex;
   flex-direction: column;
@@ -269,14 +303,14 @@
 
 
 .categoryDropdownContent a {
-  color: #ffffff;
   padding: 10px 14px;
   text-decoration: none;
   display: block;
 }
 
 .categoryDropdownContent a:hover {
-  background-color: #0099a8;
+  border: 1px solid #157DC2;
+  background-color: #c6e2f4;
 }
 
 .categoryDropdown:hover .categoryDropdownContent {
