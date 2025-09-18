@@ -44,11 +44,6 @@ const Footer = () => {
                 </a>
                 <hr className={styles.ruler} />
               </li>
-              <li>
-                <a href="#">
-                  Honeymoon Packages <span>&rarr;</span>
-                </a>
-              </li>
             </ul>
           </div>
           {/* Column 3: Social Media */}

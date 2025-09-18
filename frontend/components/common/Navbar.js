@@ -4,7 +4,6 @@ import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import styles from "../styles/Navbar.module.css";
 import {
-  FaEnvelope,
   FaPhoneAlt,
   FaFacebookF,
   FaInstagram,
@@ -22,75 +21,65 @@ import "react-toastify/dist/ReactToastify.css";
 import { IoClose } from "react-icons/io5";
 
 const Navbar = () => {
+  //Dummy data for categories
   const categories = [
     {
-      name: "International Trips",
-      link: "/international",
+      name: 'International Trips',
       subcategories: [
-        { name: "Europe", link: "/international/europe" },
-        { name: "Asia", link: "/international/asia" },
-        { name: "America", link: "/international/america" },
-      ],
+        { name: 'Europe', link: '/trips' },
+        { name: 'Asia', link: '/international/asia' },
+        { name: 'America', link: '/international/america' },
+        { name: 'Europe', link: '/international/europe' },
+        { name: 'Asia', link: '/international/asia' },
+        { name: 'America', link: '/international/america' },
+        { name: 'Europe', link: '/international/europe' },
+        { name: 'Asia', link: '/international/asia' },
+        { name: 'America', link: '/international/america' },
+        { name: 'Europe', link: '/international/europe' },
+        { name: 'Asia', link: '/international/asia' },
+        { name: 'America', link: '/international/america' },
+        { name: 'Europe', link: '/international/europe' },
+        { name: 'Asia', link: '/international/asia' },
+        { name: 'America', link: '/international/america' },
+      ]
     },
     {
-      name: "India Trips",
-      link: "/india",
+      name: 'India Trips',
       subcategories: [
-        { name: "North India", link: "/india/north" },
-        { name: "South India", link: "/india/south" },
-        { name: "East India", link: "/india/east" },
-      ],
+        { name: 'North India', link: '/india/north' },
+        { name: 'South India', link: '/india/south' },
+        { name: 'East India', link: '/india/east' }
+      ]
     },
     {
-      name: "Weekend Trips",
-      link: "/weekend",
+      name: 'Weekend Trips',
       subcategories: [
-        { name: "Hill Stations", link: "/weekend/hills" },
-        { name: "Beaches", link: "/weekend/beach" },
-        { name: "City Breaks", link: "/weekend/city" },
-      ],
+        { name: 'Hill Stations', link: '/weekend/hills' },
+        { name: 'Beaches', link: '/weekend/beach' },
+        { name: 'City Breaks', link: '/weekend/city' }
+      ]
     },
     {
-      name: "Group Tours",
-      link: "/group",
+      name: 'Group Tours',
       subcategories: [
-        { name: "Family Tours", link: "/group/family" },
-        { name: "Friends Tours", link: "/group/friends" },
-        { name: "Corporate Tours", link: "/group/corporate" },
-      ],
-    },
-    {
-      name: "Honeymoon Packages",
-      link: "/honeymoon",
-      subcategories: [],
-    },
+        { name: 'Family Tours', link: '/group/family' },
+        { name: 'Friends Tours', link: '/group/friends' },
+        { name: 'Corporate Tours', link: '/group/corporate' }
+      ]
+    }
   ];
-  
+  const getColumnClass = (subcategories) => {
+    if (subcategories.length > 16) {
+      return styles.threeColumns; // 3 columns
+    } else if (subcategories.length > 8) {
+      return styles.twoColumns; // 2 columns
+    } else {
+      return ''; // 1 column
+    }
+  };
+  //Search Bar
   const [searchQuery, setSearchQuery] = useState("");
   const [showResults, setShowResults] = useState(false);
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (!e.target.closest(`.${styles.searchBar}`)) {
-        setShowResults(false);
-      }
-    };
-    document.addEventListener("click", handleClickOutside);
-    return () => {
-      document.removeEventListener("click", handleClickOutside);
-    };
-  }, []);
-  useEffect(() => {
-    // Calculate scrollbar width aur CSS variable me set karo
-    const scrollbarWidth =
-      window.innerWidth - document.documentElement.clientWidth;
-  
-    document.documentElement.style.setProperty(
-      "--scrollbar-compensate",
-      `${scrollbarWidth}px`
-    );
-  }, []);
-  
-
   const searchData = [
     { name: "Upcoming Trips", link: "/upcomingtrips" },
     { name: "About Us", link: "/about" },
@@ -108,12 +97,35 @@ const Navbar = () => {
     { name: "East India", link: "/india/east" },
     { name: "Weekend Trips", link: "/weekend" },
     { name: "Group Tours", link: "/group" },
-    { name: "Honeymoon Packages", link: "/honeymoon" },
+    
   ];
   const filteredResults = searchData.filter((item) =>
     item.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
-
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (!e.target.closest(`.${styles.searchBar}`)) {
+        setShowResults(false);
+      }
+    };
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+  
+  useEffect(() => {
+    // Calculate scrollbar width aur CSS variable me set karo
+    const scrollbarWidth =
+      window.innerWidth - document.documentElement.clientWidth;
+  
+    document.documentElement.style.setProperty(
+      "--scrollbar-compensate",
+      `${scrollbarWidth}px`
+    );
+  }, []);
+  
+// Modal Hooks and Handlers
   const [menuOpen, setMenuOpen] = useState(false);
   const [isCorporateModalOpen, setIsCorporateModalOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
@@ -126,7 +138,7 @@ const Navbar = () => {
   };
   const handleNavClick = () => {
     setMenuOpen(false);
-    setIsCategoriesOpen(false); // optional: categories bhi band ho jaaye
+    setIsCategoriesOpen(false);
   };
 
   // State for form data and errors
@@ -273,11 +285,11 @@ const Navbar = () => {
     }
   };
   const pathname = usePathname();
- 
+  //State hooks for toogling Categories
     const [openMain, setOpenMain] = useState(false); 
     const [openCategory, setOpenCategory] = useState(null); 
-    const toggleCategory = (name) => {
-      setOpenCategory(openCategory === name ? null : name);
+    const toggleCategory = (categoryName) => {
+      setOpenCategory(openCategory === categoryName ? null : categoryName);
     };
   
 
@@ -287,9 +299,6 @@ const Navbar = () => {
       {/* TopBar */}
       <div className={styles.topBar}>
         <div className={styles.contactInfo}>
-          {/* <span className={styles.contactItem}>
-            <FaEnvelope /> support@travabay.com |
-          </span> */}
           <span className={styles.contactItem}>
             <FaPhoneAlt /> +91 9579659074
           </span>
@@ -449,86 +458,32 @@ const Navbar = () => {
 
       {/* BottomBar Categories (Desktop Only) */}
       <div className={styles.bottomBar}>
-        <div className={styles.categoryLinks}>
-          <div className={styles.categoryDropdown}>
-            <Link href="/international" className={styles.categoryLink}>
-              International Trips ▾
-            </Link>
-            <div className={styles.categoryDropdownContent}>
-              <Link
-                href="/international/europe"
-                className={styles.dropdownItem}
-              >
-                Europe
-              </Link>
-              <Link href="/international/asia" className={styles.dropdownItem}>
-                Asia
-              </Link>
-              <Link
-                href="/international/america"
-                className={styles.dropdownItem}
-              >
-                America
-              </Link>
+      <div className={styles.categoryLinks}>
+        {categories.map((cat) => (
+          <div key={cat.name} className={styles.categoryDropdown}>
+           
+            <div
+              className={styles.categoryLink}
+              onClick={() => toggleCategory(cat.name)}
+            >
+              {cat.name} ▾
             </div>
-          </div>
 
-          <div className={styles.categoryDropdown}>
-            <Link href="/india" className={styles.categoryLink}>
-              India Trips ▾
-            </Link>
-            <div className={styles.categoryDropdownContent}>
-              <Link href="/india/north" className={styles.dropdownItem}>
-                North India
+            {/* Show subcategories when the category is clicked */}
+            {openCategory === cat.name && (
+            <div className={`${styles.categoryDropdownContent} ${getColumnClass(cat.subcategories)}`}>
+            {cat.subcategories.map((sub) => (
+              <Link key={sub.name} href={sub.link} className={styles.dropdownItem}>
+                {sub.name}
               </Link>
-              <Link href="/india/south" className={styles.dropdownItem}>
-                South India
-              </Link>
-              <Link href="/india/east" className={styles.dropdownItem}>
-                East India
-              </Link>
-            </div>
+            ))}
           </div>
-
-          <div className={styles.categoryDropdown}>
-            <Link href="/weekend" className={styles.categoryLink}>
-              Weekend Trips ▾
-            </Link>
-            <div className={styles.categoryDropdownContent}>
-              <Link href="/weekend/hills" className={styles.dropdownItem}>
-                Hill Stations
-              </Link>
-              <Link href="/weekend/beach" className={styles.dropdownItem}>
-                Beaches
-              </Link>
-              <Link href="/weekend/city" className={styles.dropdownItem}>
-                City Breaks
-              </Link>
-            </div>
+          
+            )}
           </div>
-
-          <div className={styles.categoryDropdown}>
-            <Link href="/group" className={styles.categoryLink}>
-              Group Tours ▾
-            </Link>
-            <div className={styles.categoryDropdownContent}>
-              <Link href="/group/family" className={styles.dropdownItem}>
-                Family Tours
-              </Link>
-              <Link href="/group/friends" className={styles.dropdownItem}>
-                Friends Tours
-              </Link>
-              <Link href="/group/corporate" className={styles.dropdownItem}>
-                Corporate Tours
-              </Link>
-            </div>
-          </div>
-
-          <Link href="/honeymoon" className={styles.categoryLink}>
-            Honeymoon Packages
-          </Link>
-        </div>
+        ))}
       </div>
+    </div>
 
       {/* Mobile Combined Menu */}
       {menuOpen && (
