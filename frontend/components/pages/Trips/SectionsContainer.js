@@ -2,7 +2,13 @@
 import React from "react";
 import AboutSection from "./About";
 import TripsSection from "./BestTrips";
-const SectionsContainer = ({ aboutData, tripsData, deals, trips }) => {
+import AllPackages from "./AllPackages";
+import SpecialBanner from "./SpecialBanner";
+import ActivitiesSection from "./Activities";
+import PlacesSection from "./Places";
+import FAQSection from "./FAQ";
+import EuropeSection from "./Packages";
+const SectionsContainer = ({ aboutData, tripsData, deals, trips, packagesData, bannerData, activities, places, faqdata, guidelines}) => {
   return (
   
     <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "20px" }}>
@@ -13,7 +19,12 @@ const SectionsContainer = ({ aboutData, tripsData, deals, trips }) => {
       <TripsSection data={tripsData} />
       <TripsSection data={deals} />
       <TripsSection data={trips} />
-      
+      <AllPackages data={packagesData} />
+      <SpecialBanner data={bannerData} />
+      <ActivitiesSection data={activities} />
+      <PlacesSection data={places} />
+      <FAQSection data={faqdata} />
+      <EuropeSection data={guidelines} />
     </div>
   );
 };

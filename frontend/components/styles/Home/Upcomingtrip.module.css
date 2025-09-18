@@ -91,9 +91,6 @@
 
 /* Card */
 .cardWrapper {
-  /* display: flex;
-  justify-content: center;
-  align-items: stretch; */
   height: 100%;
 }
 .card {

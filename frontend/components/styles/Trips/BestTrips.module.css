@@ -81,6 +81,7 @@
     border-radius: 6px;
     font-size: 12px;
     margin-bottom: 6px;
+    margin-right: 5px;
   }
   
   .title {
@@ -103,6 +104,45 @@
     .swiper-button-next,
     .swiper-button-prev {
       display: none !important;
+    }
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  
+  .exploreWrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+  }
+  
+  .exploreBtn {
+    background: #157dc2;
+    color: #fff;
+    border: none;
+    padding: 10px 24px;
+    font-size: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .exploreBtn:hover {
+    background: #125f91;
+  }
+  
+  /* Mobile responsive */
+  @media (max-width: 1024px) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .grid {
+      grid-template-columns: 1fr;
     }
   }
   
