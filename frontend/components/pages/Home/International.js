@@ -58,18 +58,21 @@ export default function International() {
           {/* Desktop / Tablet: normal swiper */}
           <div className={styles.swiperDesktop}>
             <Swiper
-              spaceBetween={20}
-              navigation
-              pagination={{ clickable: true }}
-              autoplay={{ delay: 3000, disableOnInteraction: false }}
-              modules={[Navigation, Pagination, Autoplay]}
-              className={styles.mySwiper}
-              breakpoints={{
-                640: { slidesPerView: 2 },
-                1024: { slidesPerView: 3 },
-                1280: { slidesPerView: 5 },
-              }}
-            >
+  spaceBetween={20}
+  navigation
+  pagination={{ clickable: true }}
+  autoplay={{ delay: 3000, disableOnInteraction: false }}
+  modules={[Navigation, Pagination, Autoplay]}
+  className={styles.mySwiper}
+  breakpoints={{
+    0: { slidesPerView: 1, spaceBetween: 12 },     // mobile
+    480: { slidesPerView: 1, spaceBetween: 14 },
+    640: { slidesPerView: 2, spaceBetween: 16 },   // tablet
+    1024: { slidesPerView: 3, spaceBetween: 20 },
+    1280: { slidesPerView: 5, spaceBetween: 25 },
+  }}
+>
+
               {destinations.map((d, i) => (
                 <SwiperSlide key={i}>
                   <div className={styles.card}>

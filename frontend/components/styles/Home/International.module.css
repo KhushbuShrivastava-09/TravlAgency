@@ -207,6 +207,8 @@
   .hero {
     display: none; /* hero hide */
   }
+  /* .swiperDesktop { display: none; }
+  .swiperMobile { display: block; } */
 
   .sliderWrapper {
     margin-top: 0;

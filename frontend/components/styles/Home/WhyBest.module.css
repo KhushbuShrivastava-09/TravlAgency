@@ -1,4 +1,4 @@
-/* frontend/next/styles/WhyBest.module.css */
+/* WhyBest.module.css */
 .whyBestSection {
   padding: 40px 20px;
   text-align: center;
@@ -6,11 +6,10 @@
   background-color: #f2ecec;
   width: 100%;
   box-sizing: border-box;
-  overflow-x: hidden;
 }
 
 .title {
-  font-size: 2.5em;
+  font-size: 2.5rem;
   color: #333;
   margin-bottom: 10px;
   opacity: 0;
@@ -19,7 +18,7 @@
 }
 
 .subtitle {
-  font-size: 1em;
+  font-size: 1rem;
   color: #666;
   margin-bottom: 30px;
   max-width: 800px;
@@ -31,45 +30,33 @@
   animation-delay: 0.3s;
 }
 
+/* Desktop Grid */
 .cardsContainerDesktop {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
   justify-content: center;
-  gap: 25px;
-  flex-wrap: wrap;
-  margin-bottom: 40px;
-  width: 90%;
+  margin: 0 auto 40px;
   max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
+  width: 100%;
+  padding: 0 10px;
 }
+
 .cardsContainerMobile {
   display: none;
 }
-.card:nth-child(1) {
-  animation-delay: 0.4s;
-}
-.card:nth-child(2) {
-  animation-delay: 0.6s;
-}
-.card:nth-child(3) {
-  animation-delay: 0.8s;
-}
-.card:nth-child(4) {
-  animation-delay: 1s;
-}
 
+/* Card Styling */
 .card {
   background: #fff;
   border-radius: 16px;
   padding: 30px 20px;
-  width: 260px;
-  flex: 1 1 240px;
   box-shadow: 0 6px 20px rgba(0,0,0,0.08);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   position: relative;
   overflow: hidden;
-  transform: rotateY(90deg);
-  animation: flipIn 1s ease forwards;
+  display: flex;
+  flex-direction: column;
 }
 
 .card::before {
@@ -79,7 +66,7 @@
   right: -40px;
   width: 150px;
   height: 150px;
-  background: rgba(0, 191, 255, 0.1); 
+  background: rgba(0, 191, 255, 0.1);
   border-radius: 50%;
   z-index: 0;
 }
@@ -108,7 +95,6 @@
   font-weight: bold;
   color: #007acc;
   margin-bottom: 12px;
-  position: relative;
   z-index: 1;
 }
 
@@ -116,62 +102,39 @@
   font-size: 0.95em;
   color: #555;
   line-height: 1.5;
-  position: relative;
   z-index: 1;
 }
 
-/* 🔥 Animations */
+/* Animations */
 @keyframes fadeDown {
-  0% {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  0% { opacity: 0; transform: translateY(-20px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
-
 @keyframes fadeUp {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes flipIn {
-  0% {
-    opacity: 0;
-    transform: rotateY(90deg);
-  }
-  100% {
-    opacity: 1;
-    transform: rotateY(0);
-  }
-}
-
-/* Mobile View - Swiper */
-@media (max-width: 648px) {
+/* Tablet */
+@media (max-width: 1024px) {
   .cardsContainerDesktop {
-    display: none; /* Desktop off */
+    gap: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   }
+  .card { padding: 25px 15px; }
+}
 
-  .cardsContainerMobile {
-    display: block; /* Mobile swiper on */
-    width: 100%;
-    padding: 0 10px 40px;
-  }
+/* Mobile */
+@media (max-width: 648px) {
+  .cardsContainerDesktop { display: none; }
+  .cardsContainerMobile { display: block; width: 100%; padding: 0 10px 40px; }
+  .card { max-width: 320px; margin: 0 auto; }
+}
 
-  .mySwiper {
-    overflow: visible;
-  }
-
-  .card {
-    max-width: 320px;
-    margin: 0 auto;
-  }
+/* Extra Small Screens */
+@media (max-width: 400px) {
+  .title { font-size: 1.8rem; }
+  .card { padding: 20px 14px; }
+  .cardTitle { font-size: 1.1rem; }
+  .cardDescription { font-size: 0.85rem; }
 }

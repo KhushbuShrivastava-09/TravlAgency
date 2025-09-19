@@ -60,115 +60,107 @@
 }
 
 /* Filters box full width on mobile */
+/* ----------------- Filters card ----------------- */
 .filters {
-  width: 100% !important;
-  max-width: 100%;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-.filterSection {
-  margin-bottom: 20px;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  border: 1px solid #e5e5e5; 
+  box-shadow: 0 4px 12px rgba(24, 24, 24, 0.04);
+  max-height: calc(100vh - 140px);
+  overflow-y: auto;
+  box-sizing: border-box;
 }
 
-.filterSection label {
-  display: block;
+.filters h2 {
+  margin: 0 0 1rem 0;
+  font-size: 1.125rem;
   font-weight: 600;
-  margin-bottom: 8px;
-  color: #333;
-  font-size: 14px;
 }
 
+.filterSection {
+  margin-bottom: 1.75rem; /* increased gap between sections */
+}
+
+/* destination items */
 .destinationLabels {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 1.25rem; /* more gap between destination labels */
 }
 
 .destLabel {
-  background-color: #f0f0f0;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 20px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background-color 0.3s, color 0.3s;
-  color: #333;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  background: #f7f7f7;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  cursor: pointer;
+  font-weight: 500;
+  color: #333;
+  transition: background 0.18s, color 0.18s, transform 0.12s;
 }
 
-.destLabel:hover,
-.destLabel.activeDest {
-  background-color: #157DC2;
+.destLabel:hover {
+  background: #efefef;
+}
+
+.activeDest {
+  background: #157dc2;
   color: #fff;
 }
 
-.arrowIcon {
-  font-size: 14px;
-  color: #666;
-}
-
-.destLabel:hover .arrowIcon,
-.destLabel.activeDest .arrowIcon {
-  color: #fff;
-}
-
+/* slider area */
 .rangeSlider {
   position: relative;
-  width: 100%;
+  margin: 0.75rem 0; /* more breathing space around slider */
   height: 6px;
-  background: #ddd;
-  border-radius: 5px;
+  background: #e9e9e9;
+  border-radius: 6px;
 }
 
 .rangeInput {
   -webkit-appearance: none;
+  appearance: none;
   width: 100%;
   height: 6px;
   background: transparent;
   position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .rangeInput::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: 16px;
   height: 16px;
-  border-radius: 50%;
-  background: #157DC2;
-  cursor: pointer;
-  border: 2px solid #fff;
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
-}
-
-.rangeInput::-moz-range-thumb {
   width: 16px;
-  height: 16px;
   border-radius: 50%;
-  background: #157DC2;
-  cursor: pointer;
+  background: #157dc2;
   border: 2px solid #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.18);
 }
 
 .rangeValues {
-  font-size: 14px;
-  margin-top: 10px;
-  text-align: center;
+  font-size: 0.95rem;
   color: #333;
+  margin-top: 10px; /* slightly increased */
 }
 
+/* month checkboxes */
 .monthCheckboxes {
   display: flex;
-  flex-direction: column;
-  gap: 5px;
-  max-height: 150px;
-  overflow-y: auto;
+  flex-wrap: wrap;
+  gap: 12px; /* more spacing between checkboxes */
+  margin-top: 8px;
+  max-width: 350px;
 }
 
 .checkboxLabel {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 14px;
+  gap: 10px; /* extra spacing between checkbox and label text */
+  font-size: 0.95rem;
   color: #333;
 }
 
@@ -177,32 +169,36 @@
   accent-color: #157DC2;
 }
 
+/* filter buttons */ 
 .filterButtons {
   display: flex;
-  gap: 10px;
+  gap: 1rem; /* more gap between Clear & Apply */
+  margin-top: 1.25rem; /* extra space above buttons */
+}
+
+.clearButton,
+.applyButton {
+  flex: 1;
+  padding: 0.65rem 0.85rem; /* slightly larger for better touch area */
+  border-radius: 8px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
 }
 
 .clearButton {
-  background-color: #f0f0f0;
-  border: none;
-  padding: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  flex: 1;
-  color: #333;
-  font-size: 14px;
+  background: #f2f2f2;
+  color: #222;
+  border: 1px solid #e6e6e6;
 }
 
 .applyButton {
-  background-color: #157DC2;
+  background: #157dc2;
   color: #fff;
-  border: none;
-  padding: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  flex: 1;
-  font-size: 14px;
 }
+
+
+
 
 .subDestinationsPanel {
   background: #fff;
