@@ -46,7 +46,7 @@ const Navbar = () => {
     {
       name: 'India Trips',
       subcategories: [
-        { name: 'North India', link: '/india/north' },
+        { name: 'North India', link: '/india/' },
         { name: 'South India', link: '/india/south' },
         { name: 'East India', link: '/india/east' }
       ]

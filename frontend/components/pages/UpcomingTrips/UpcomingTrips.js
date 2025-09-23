@@ -10,7 +10,7 @@ import {
   FaMapMarkerAlt,
   FaArrowRight,
   FaChevronRight,
-} from "react-icons/fa"; 
+} from "react-icons/fa";
 import Link from "next/link";
 
 const UpcomingTrips = () => {
@@ -96,8 +96,8 @@ const UpcomingTrips = () => {
     "May-26",
     "Jun-26",
   ];
+const [showMobileFilters, setShowMobileFilters] = useState(false);
 
-  
   const [trips, setTrips] = useState(mockTrips);
   const [destinations] = useState(mockDestinations);
   const [months] = useState(mockMonths);
@@ -108,7 +108,7 @@ const UpcomingTrips = () => {
     budget: [9000, 300000],
     months: [],
   });
-  const [showSubDestinations, setShowSubDestinations] = useState(false); 
+  const [showSubDestinations, setShowSubDestinations] = useState(false);
   const [sliderChanged, setSliderChanged] = useState({
     duration: false,
     budget: false,
@@ -118,10 +118,50 @@ const UpcomingTrips = () => {
     applyFilters();
   }, [filters]);
 
-  const handleDestinationClick = (dest) => {
-    setFilters({ ...filters, destination: dest, subDestinations: [] });
-    setShowSubDestinations(true); // Open sub-destinations on click
-  };
+  // const handleDestinationClick = (dest) => {
+  //   setFilters({ ...filters, destination: dest, subDestinations: [] });
+  //   setShowSubDestinations(true); // Open sub-destinations on click
+  // };
+
+  // Inside your UpcomingTrips component
+
+// Updated handleDestinationClick
+const handleDestinationClick = (dest) => {
+  // Update destination filter
+  setFilters((prev) => ({
+    ...prev,
+    destination: dest,
+    subDestinations: [], // reset sub-destinations
+  }));
+
+  // Open sub-destinations panel
+  setShowSubDestinations(true);
+
+  // Immediately filter trips based on the main destination
+  const filteredTrips = mockTrips.filter((trip) => {
+    if (dest === "India") {
+      return [
+        "Ladakh",
+        "Spiti",
+        "Meghalaya",
+        "Kashmir",
+        "Kerala",
+        "Andaman",
+        "Rajasthan",
+        "Himachal",
+        "Sikkim",
+        "Uttarakhand",
+      ].some((d) => trip.title.includes(d));
+    } else {
+      return ["Europe", "America", "Asia", "Australia"].some((d) =>
+        trip.title.includes(d)
+      );
+    }
+  });
+
+  setTrips(filteredTrips);
+};
+
 
   const handleSubDestinationChange = (e) => {
     const value = e.target.value;
@@ -133,10 +173,10 @@ const UpcomingTrips = () => {
 
   const handleMonthChange = (e) => {
     const value = e.target.value;
-    const newMonths = filters.months.includes(value)
-      ? filters.months.filter((m) => m !== value)
-      : [...filters.months, value];
-    setFilters({ ...filters, months: newMonths });
+    setFilters((prev) => ({
+      ...prev,
+      months: prev.months.includes(value) ? [] : [value], // allow only one month
+    }));
   };
 
   const handleMinDurationChange = (e) => {
@@ -370,63 +410,178 @@ const UpcomingTrips = () => {
         </div>
 
         <div className={styles.rightContent}>
-        <div className={styles.monthCarousel}>
-  <div className={styles.carouselInner}>
-    {months.map((month) => {
-      const isActive = filters.months.includes(month);
+          <div className={styles.monthCarousel}>
+            <div className={styles.carouselInner}>
+              {months.map((month) => {
+                const isActive = filters.months.includes(month);
 
-      // Filter trips for this month
-      const tripsInMonth = mockTrips.filter((trip) =>
-        trip.dates.includes(month.split("-")[0])
-      );
+                // Filter trips for this month
+                const tripsInMonth = mockTrips.filter((trip) =>
+                  trip.dates.includes(month.split("-")[0])
+                );
 
-      // Collect all dates from those trips
-      const monthDates = tripsInMonth.flatMap((trip) =>
-        trip.dates.split(",").map((d) => d.trim())
-      );
+                // Collect all dates from those trips
+                const monthDates = tripsInMonth.flatMap((trip) =>
+                  trip.dates.split(",").map((d) => d.trim())
+                );
 
-      return (
-        <div
-          key={month}
-          className={`${styles.monthWrapper} ${
-            isActive ? styles.activeMonthWrapper : ""
-          }`}
-        >
-          <button
-            className={`${styles.monthButton} ${
-              isActive ? styles.activeMonth : ""
-            }`}
-            onClick={() =>
-              handleMonthChange({ target: { value: month } })
-            }
-          >
-            {month.split("-")[0]}
-          </button>
+                return (
+                  <div
+                    key={month}
+                    className={`${styles.monthWrapper} ${
+                      isActive ? styles.activeMonthWrapper : ""
+                    }`}
+                  >
+                    <button
+                      className={`${styles.monthButton} ${
+                        isActive ? styles.activeMonth : ""
+                      }`}
+                      onClick={() =>
+                        handleMonthChange({ target: { value: month } })
+                      }
+                    >
+                      {month.split("-")[0]}
+                    </button>
 
-          {/* Dates list only if active */}
-          {isActive && monthDates.length > 0 && (
-            <div className={styles.datesList}>
-              {monthDates.map((date, i) => (
-                <React.Fragment key={i}>
-                  <div className={styles.dateItem}>
-                    <strong>{date.split(" ")[0]}</strong>
-                    <small>{date.split(" ")[1]}</small>
+                    {/* Dates list only if active */}
+                    {isActive && monthDates.length > 0 && (
+                      <div className={styles.datesListWrapper}>
+                        <div className={styles.datesList}>
+                          {monthDates.map((date, i) => (
+                            <React.Fragment key={i}>
+                              <div className={styles.dateItem}>
+                                <strong>{date.split(" ")[0]}</strong>
+                                <small>{date.split(" ")[1]}</small>
+                              </div>
+                              {i < monthDates.length - 1 && (
+                                <span className={styles.separator}></span>
+                              )}
+                            </React.Fragment>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
-                  {i < monthDates.length - 1 && (
-                    <span className={styles.separator}>|</span>
-                  )}
-                </React.Fragment>
-              ))}
+                );
+              })}
             </div>
-          )}
-        </div>
-      );
-    })}
-  </div>
+          </div>
+
+
+         {/* Mobile Filters */}
+<div className={styles.mobileFilters}>
+  <button
+    className={styles.mobileFilterToggle}
+    onClick={() => setShowMobileFilters(!showMobileFilters)}
+  >
+    {showMobileFilters ? "Hide Filters ✖" : "Show Filters ☰"}
+  </button>
+
+  {showMobileFilters && (
+    <div className={styles.mobilePanel}>
+      {/* Destination Filter */}
+      <div className={styles.destinationLabels}>
+        <span
+          className={`${styles.destLabel} ${
+            filters.destination === "India" ? styles.activeDest : ""
+          }`}
+          onClick={() => handleDestinationClick("India")}
+        >
+          India <FaChevronRight className={styles.arrowIcon} />
+        </span>
+        <span
+          className={`${styles.destLabel} ${
+            filters.destination === "International" ? styles.activeDest : ""
+          }`}
+          onClick={() => handleDestinationClick("International")}
+        >
+          International <FaChevronRight className={styles.arrowIcon} />
+        </span>
+      </div>
+
+      {/* Duration Filter */}
+      <label className={styles.rangeLabel}>Duration (in nights)</label>
+      <section
+        className={styles.rangeSlider}
+        style={getRangeTrackStyle("duration")}
+      >
+        <input
+          value={filters.duration[0]}
+          min="2"
+          max="14"
+          step="1"
+          type="range"
+          onChange={handleMinDurationChange}
+          className={styles.rangeInput}
+        />
+        <input
+          value={filters.duration[1]}
+          min="2"
+          max="14"
+          step="1"
+          type="range"
+          onChange={handleMaxDurationChange}
+          className={styles.rangeInput}
+        />
+      </section>
+
+      {/* Budget Filter */}
+      <label className={styles.rangeLabel}>Budget (per person)</label>
+      <section
+        className={styles.rangeSlider}
+        style={getRangeTrackStyle("budget")}
+      >
+        <input
+          value={filters.budget[0]}
+          min="9000"
+          max="300000"
+          step="1000"
+          type="range"
+          onChange={handleMinBudgetChange}
+          className={styles.rangeInput}
+        />
+        <input
+          value={filters.budget[1]}
+          min="9000"
+          max="300000"
+          step="1000"
+          type="range"
+          onChange={handleMaxBudgetChange}
+          className={styles.rangeInput}
+        />
+      </section>
+
+      {/* Month Filter */}
+      <div className={styles.monthCheckboxes}>
+        {months.map((month) => (
+          <label key={month} className={styles.checkboxLabel}>
+            <input
+              type="checkbox"
+              value={month}
+              checked={filters.months.includes(month)}
+              onChange={handleMonthChange}
+            />
+            {month.split("-")[0]}
+          </label>
+        ))}
+      </div>
+
+      {/* Clear & Apply Buttons */}
+      <div className={styles.filterButtons}>
+        <button onClick={clearFilters} className={styles.clearButton}>
+          Clear Filters
+        </button>
+        <button onClick={applyFilters} className={styles.applyButton}>
+          Apply
+        </button>
+      </div>
+    </div>
+  )}
 </div>
 
-            
-             {/* Mobile Filter Tabs */}
+
+
+          {/* Mobile Filter Tabs
           <div className={styles.mobileTabs}>
             {["Destination", "Duration", "Budget", "Month"].map((tab) => (
               <button
@@ -444,9 +599,9 @@ const UpcomingTrips = () => {
             <button onClick={clearFilters} className={styles.resetTab}>
               Reset
             </button>
-          </div>
+          </div> */}
 
-            {/* Mobile Tab Panels */}
+          {/* Mobile Tab Panels */}
           {activeMobileTab === "Destination" && (
             <div className={styles.mobilePanel}>
               <div className={styles.destinationLabels}>
@@ -503,7 +658,7 @@ const UpcomingTrips = () => {
           )}
           {activeMobileTab === "Budget" && (
             <div className={styles.mobilePanel}>
-               <section
+              <section
                 className={styles.rangeSlider}
                 style={getRangeTrackStyle("budget")}
               >
@@ -534,7 +689,7 @@ const UpcomingTrips = () => {
           )}
           {activeMobileTab === "Month" && (
             <div className={styles.mobilePanel}>
-               <div className={styles.monthCheckboxes}>
+              <div className={styles.monthCheckboxes}>
                 {months.map((month) => (
                   <label key={month} className={styles.checkboxLabel}>
                     <input
@@ -592,13 +747,15 @@ const UpcomingTrips = () => {
                   </div>
 
                   <div className={styles.arrow}>
-                   <Link href="/tripinfo"> <FaArrowRight className="arrow-right"  /></Link>
+                    <Link href="/tripinfo">
+                      {" "}
+                      <FaArrowRight className="arrow-right" />
+                    </Link>
                   </div>
                 </div>
               </motion.div>
             ))}
           </div>
-
         </div>
       </div>
     </div>

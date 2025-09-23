@@ -8,6 +8,8 @@ import ActivitiesSection from "./Activities";
 import PlacesSection from "./Places";
 import FAQSection from "./FAQ";
 import EuropeSection from "./Packages";
+import EnquiryForm from "./EnquiryForm";
+import BlogSection from "./BlogSection"
 const SectionsContainer = ({ aboutData, tripsData, deals, trips, packagesData, bannerData, activities, places, faqdata, guidelines}) => {
   return (
   
@@ -24,6 +26,8 @@ const SectionsContainer = ({ aboutData, tripsData, deals, trips, packagesData, b
       <ActivitiesSection data={activities} />
       <PlacesSection data={places} />
       <FAQSection data={faqdata} />
+      <EnquiryForm data= {EnquiryForm}/>
+     <BlogSection />
       <EuropeSection data={guidelines} />
     </div>
   );
