@@ -1,1013 +1,380 @@
-
+/* Container */
 .container {
-
-width: 100%;
-
-max-width: 1200px;
-
-margin: 180px auto;
-
-padding: 20px 0;
-
-box-sizing: border-box;
-
-gap: 20px;
-
+  width: 100%;
+  background: #f9fafc;
+  font-family: "Inter", sans-serif;
+  padding-bottom: 3rem;
+}
+/* Dates Bar */
+.datesBar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 1rem 0 2rem;
 }
 
+.monthDates {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+.dateTag {
+  background: #f0f0f0;
+  border-radius: 20px;
+  padding: 4px 10px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #333;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.monthWrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.monthDatesInline {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+/* Banner */
 .banner {
+  margin-top: 130px; /* equal to navbar height */
+  height: 350px;
+  background: url("/images/up.jpg") center/cover no-repeat; /* change path */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+}
 
-background: url("/images/leh.jpg") center/cover no-repeat;
-
-height: 200px;
-
-display: flex;
-
-justify-content: center;
-
-align-items: center;
-
-color: #fff;
-
-text-align: center;
-
-text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-
-border-radius: 10px;
-
-margin-bottom: 20px;
-
-width: 100%;
-
-box-sizing: border-box;
-
+/* Dark overlay for better text visibility */
+.banner::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4); /* adjust darkness */
+  z-index: 1;
 }
 
 .banner h1 {
-
-font-size: 2rem;
-
-font-weight: 700;
-
-line-height: 1.3;
-
+  position: relative;
+  z-index: 2;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 3px 8px rgba(0,0,0,0.6);
 }
 
-/* Responsive Banner */
 
-@media (max-width: 768px) {
-
-.banner {
-
-height: auto;
-
-padding: 40px 10px;
-
+/* Main Layout */
+.main {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 2rem;
+  max-width: 1280px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
 }
 
-.banner h1 {
-
-font-size: 1.5rem;
-
+/* Sidebar */
+.sidebar {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  height: fit-content;
 }
 
+.sidebar h2 {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
 }
 
-@media (max-width: 480px) {
-
-.banner h1 {
-
-font-size: 1.2rem;
-
-}
-
-}
-
-/* ========================
-
-MAIN LAYOUT
-
-======================== */
-
-.mainContent {
-
-display: flex;
-
-width: 100%;
-
-gap: 20px;
-
-}
-
-.leftColumn {
-
-flex-direction: column;
-
-width: 100% !important;
-
-max-width: 100%;
-
-gap: 15px;
-
-}
-
-.rightContent {
-
-flex: 1;
-
-display: flex;
-
-flex-direction: column;
-
-gap: 20px;
-
-position: relative;
-
-z-index: 1;
-
-}
-
-/* ========================
-
-FILTERS
-
-======================== */
-
-.filters {
-
-background: #fff;
-
-padding: 2rem;
-
-border-radius: 12px;
-
-border: 1px solid #e5e5e5;
-
-box-shadow: 0 4px 12px rgba(24, 24, 24, 0.05);
-
-max-height: calc(100vh - 140px);
-
-overflow-y: auto;
-
-}
-
-.filters h2 {
-
-margin-bottom: 1rem;
-
-font-size: 1.2rem;
-
-font-weight: 600;
-
-}
-
+/* Filter Section */
 .filterSection {
-
-margin-bottom: 1.75rem;
-
+  margin-bottom: 1.8rem;
+}
+.filterSection label {
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: block;
+  margin-bottom: 0.6rem;
 }
 
-/* Destination items */
-
-.destinationLabels {
-
-display: flex;
-
-flex-direction: column;
-
-gap: 1.2rem;
-
+/* Destination Buttons */
+.destinations {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
 }
-
 .destLabel {
-
-padding: 0.6rem 0.9rem;
-
-border-radius: 8px;
-
-background: #f7f7f7;
-
-display: flex;
-
-justify-content: space-between;
-
-align-items: center;
-
-cursor: pointer;
-
-font-weight: 500;
-
-color: #333;
-
-transition: all 0.2s ease;
-
+  padding: 0.6rem 0.8rem;
+  border-radius: 8px;
+  background: #f2f4f8;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.2s ease;
 }
-
 .destLabel:hover {
-
-background: #efefef;
-
+  background: #e0e7ff;
+}
+.destLabel svg {
+  font-size: 0.85rem;
+}
+.active {
+  background: #0070f3;
+  color: #fff;
 }
 
-.activeDest {
-
-background: #157dc2;
-
-color: #fff;
-
+/* Sub Destinations */
+.subDestinations {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.subDestinations label {
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.closeIcon {
+  cursor: pointer;
+  color: #666;
+  margin-left: 0.5rem;
 }
 
-/* Slider */
-
-.rangeSlider {
-
-margin: 1rem 0;
-
-height: 6px;
-
-background: #e9e9e9;
-
-border-radius: 6px;
-
-position: relative;
-
+/* Range Sliders */
+.range {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
-
-.rangeInput {
-
--webkit-appearance: none;
-
-appearance: none;
-
-width: 100%;
-
-height: 6px;
-
-background: transparent;
-
-position: absolute;
-
+.range input[type="range"] {
+  -webkit-appearance: none;
+  height: 5px;
+  border-radius: 5px;
+  background: #e5e7eb;
+  outline: none;
+  cursor: pointer;
 }
-
-.rangeInput::-webkit-slider-thumb {
-
--webkit-appearance: none;
-
-height: 16px;
-
-width: 16px;
-
-border-radius: 50%;
-
-background: #157dc2;
-
-border: 2px solid #fff;
-
-box-shadow: 0 1px 3px rgba(0,0,0,0.18);
-
+.range input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #0070f3;
+  cursor: pointer;
 }
-
 .rangeValues {
-
-font-size: 0.95rem;
-
-margin-top: 10px;
-
-color: #333;
-
+  font-size: 0.85rem;
+  color: #444;
+  font-weight: 500;
 }
 
 /* Months */
-
-.monthCheckboxes {
-
-display: flex;
-
-flex-wrap: wrap;
-
-gap: 12px;
-
-margin-top: 8px;
-
-max-width: 350px;
-
+.months {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.months label {
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
 }
 
-.checkboxLabel {
-
-display: flex;
-
-align-items: center;
-
-gap: 8px;
-
-font-size: 0.95rem;
-
-color: #333;
-
+/* Buttons */
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+.buttons button {
+  background: #0070f3;
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s ease;
+}
+.buttons button:hover {
+  background: #0059c9;
 }
 
-.checkboxLabel input {
-
-accent-color: #157dc2;
-
+/* Content */
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
-/* Filter Buttons */
-
-.filterButtons {
-
-display: flex;
-
-gap: 1rem;
-
-margin-top: 1.25rem;
-
+/* Month Bar */
+.monthBar {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+.monthBtn {
+  border: 1px solid #ddd;
+  background: #fff;
+  padding: 0.4rem 0.9rem;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+.monthBtn:hover {
+  background: #f2f4f8;
+}
+.activeMonth {
+  background: #0070f3;
+  color: #fff;
+  border-color: #0070f3;
 }
 
-.clearButton,
-
-.applyButton {
-
-flex: 1;
-
-padding: 0.65rem 0.85rem;
-
-border-radius: 8px;
-
-font-weight: 600;
-
-border: none;
-
-cursor: pointer;
-
-transition: all 0.2s ease;
-
-}
-
-.clearButton {
-
-background: #f2f2f2;
-
-color: #222;
-
-border: 1px solid #e6e6e6;
-
-}
-
-.clearButton:hover {
-
-background: #e5e5e5;
-
-}
-
-.applyButton {
-
-background: #157dc2;
-
-color: #fff;
-
-}
-
-.applyButton:hover {
-
-background: #0e5e93;
-
-}
-
-/* ========================
-
-SUB-DESTINATIONS PANEL
-
-======================== */
-
-.subDestinationsPanel {
-
-background: #fff;
-
-padding: 15px;
-
-border-radius: 10px;
-
-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-
-width: 250px;
-
-height: 280px;
-
-overflow-y: auto;
-
-position: absolute;
-
-top: 0;
-
-left: 100%;
-
-margin-left: 20px;
-
-z-index: 10;
-
-}
-
-.subDestinationsPanel h4 {
-
-font-size: 16px;
-
-font-weight: 600;
-
-color: #333;
-
-margin-bottom: 10px;
-
-display: flex;
-
-justify-content: space-between;
-
-}
-
-.closeIcon {
-
-cursor: pointer;
-
-color: #666;
-
-}
-
-.subDestinations {
-
-display: flex;
-
-flex-direction: column;
-
-gap: 8px;
-
-}
-
-/* ========================
-
-MONTH CAROUSEL
-
-======================== */
-
-/* .monthCarousel {
-
-overflow-x: auto;
-
-white-space: nowrap;
-
-padding: 10px 0;
-
-background: #fff;
-
-border-radius: 10px;
-
-box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-
-}
-
-.carouselInner {
-
-display: inline-flex;
-
-gap: 10px;
-
-padding: 10px;
-
-} */
-
-/* .monthButton {
-
-background: #f0f0f0;
-
-border: none;
-
-padding: 8px 16px;
-
-border-radius: 20px;
-
-cursor: pointer;
-
-font-size: 14px;
-
-font-weight: 500;
-
-transition: all 0.3s ease;
-
-} */
-
-/* .monthButton.activeMonth {
-
-background: #157dc2;
-
-color: #fff;
-
-} */
-
-/* ========================
-
-TRIPS GRID
-
-======================== */
-
+/* Trips Grid */
 .tripsGrid {
-
-display: grid;
-
-grid-template-columns: repeat(2, 1fr);
-
-gap: 20px;
-
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 1.5rem;
 }
 
+/* Trip Card */
 .tripCard {
-
-display: flex;
-
-background: #fff;
-
-border-radius: 10px;
-
-overflow: hidden;
-
-box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-
-position: relative;
-
-padding: 15px;
-
-align-items: flex-start;
-
-transition: transform 0.2s ease;
-
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease;
 }
-
 .tripCard:hover {
-
-transform: translateY(-4px);
-
-}
-
-.tripImageContainer {
-
-flex: 0 0 40%;
-
-margin-right: 15px;
-
+  transform: translateY(-5px);
 }
 
 .tripImage {
-
-width: 100%;
-
-height: 150px;
-
-object-fit: cover;
-
-border-radius: 6px;
-
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
 }
 
 .tripInfo {
-
-flex: 1;
-
-display: flex;
-
-flex-direction: column;
-
+  padding: 1rem;
 }
-
 .tripInfo h3 {
-
-font-size: 16px;
-
-font-weight: 600;
-
-margin-bottom: 8px;
-
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
 }
 
-.tripDetails {
-
-display: flex;
-
-flex-direction: column;
-
-gap: 5px;
-
-font-size: 14px;
-
-color: #555;
-
+/* Details */
+.details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1rem;
+  font-size: 0.85rem;
+  color: #555;
+  margin-bottom: 0.8rem;
+}
+.details span {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
 }
 
-.tripDetails span {
-
-display: flex;
-
-align-items: center;
-
-gap: 6px;
-
-}
-
-.tripDetails svg {
-
-color: #157dc2;
-
-}
-
-/* Price Box */
-
+/* Price */
 .priceBox {
-
-display: flex;
-
-align-items: center;
-
-gap: 10px;
-
-background: #f5f5f5;
-
-padding: 6px 10px;
-
-border-radius: 6px;
-
-margin-top: 10px;
-
-font-size: 14px;
-
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
 }
-
 .oldPrice {
-
-text-decoration: line-through;
-
-color: #777;
-
-font-size: 13px;
-
+  text-decoration: line-through;
+  color: #888;
+  font-size: 0.9rem;
+}
+.newPrice {
+  color: #0070f3;
+  font-size: 1rem;
+  font-weight: 600;
 }
 
-.currentPrice {
-
-font-weight: 600;
-
-color: #333;
-
+/* Button */
+.viewBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1rem;
+  background: #0070f3;
+  color: #fff;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+.viewBtn:hover {
+  background: #0059c9;
 }
 
-/* Arrow */
+/* Responsive */
+@media (max-width: 992px) {
+  .main {
+    display: flex;
+    flex-direction: column;
+  }
 
-.arrow {
+  /* Sidebar becomes a horizontal filter bar */
+  .sidebar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+  }
 
-position: absolute;
+  .filterSection {
+    flex: 1 1 45%;
+    margin-bottom: 0;
+  }
 
-bottom: 15px;
+  .destinations {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
 
-right: 15px;
-
-font-size: 18px;
-
-cursor: pointer;
-
-background: #000;
-
-padding: 6px 8px;
-
-border-radius: 50%;
-
-transform: rotate(-45deg);
-
+  .buttons {
+    flex: 1 1 100%;
+    justify-content: flex-end;
+  }
 }
 
-.arrow svg {
-
-color: #fff;
-
-}
-
-/* ========================
-
-RESPONSIVE
-
-======================== */
-
-.desktopOnly {
-
-display: block;
-
-}
-
-@media (max-width: 1024px) {
-
-.desktopOnly { display: none; }
-
-.mobileTabs { display: flex; }
-
-}
-
-.mobileTabs {
-
-display: none;
-
-margin: 10px 0;
-
-overflow-x: auto;
-
-gap: 10px;
-
-}
-
-.mobileTabs button {
-
-padding: 8px 16px;
-
-border-radius: 20px;
-
-border: none;
-
-background: #f0f0f0;
-
-cursor: pointer;
-
-font-size: 14px;
-
-font-weight: 500;
-
-}
-
-.mobileTabs .activeTab {
-
-background: #157dc2;
-
-color: #fff;
-
-}
-
-.resetTab {
-
-background: #ff4d4f !important;
-
-color: #fff !important;
-
-}
-
-/* Mobile Panels */
-
-.mobilePanel {
-
-background: #fff;
-
-border-radius: 10px;
-
-padding: 15px;
-
-margin-bottom: 15px;
-
-box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-
-}
-
-@media (max-width: 770px) {
-
-.mainContent { flex-direction: column; }
-
-.subDestinationsPanel {
-
-position: static;
-
-margin-left: 0;
-
-width: 100%;
-
-height: auto;
-
-}
-
-.monthCarousel { order: -1; }
-
-.mobileTabs { order: 0; }
-
-.tripsGrid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-
-.tripCard { flex-direction: row; padding: 10px; }
-
-.tripImageContainer { flex: 0 0 40%; height: 150px; }
-
-.tripInfo h3 { font-size: 14px; }
-
-.tripDetails { font-size: 12px; gap: 4px; }
-
-.priceBox { font-size: 12px; padding: 4px 6px; }
-
-.arrow { font-size: 14px; padding: 4px 6px; }
-
-}
-
-@media (max-width: 590px) {
-
-.tripsGrid { grid-template-columns: 1fr; }
-
-}
-
-.monthCarousel {
-
-width: 100%;
-
-overflow: hidden; /* Prevent extra scroll on parent */
-
-}
-
-.carouselInner {
-
-display: flex;
-
-flex-wrap: wrap;
-
-gap: 16px;
-
-max-width: 100%;
-
-}
-
-.monthWrapper {
-
-display: flex;
-
-flex-direction: column;
-
-align-items: center;
-
-}
-
-.monthButton {
-
-background: #eee;
-
-border: none;
-
-padding: 8px 16px;
-
-border-radius: 6px;
-
-cursor: pointer;
-
-transition: all 0.2s ease;
-
-}
-
-.activeMonth {
-
-background: #157dc2;
-
-color: #fff;
-
-}
-
-.datesListWrapper {
-
-width: 100%;
-
-max-width: 100%;      /* ✅ Prevent overflow */
-
-overflow-x: auto;     /* ✅ Enable horizontal scroll */
-
-overflow-y: hidden;
-
-white-space: nowrap;  /* ✅ Single row */
-
-margin-top: 10px;
-
-box-sizing: border-box;
-
-border: 1px solid #ddd; /* 🔍 debug */
-
-}
-
-.datesListWrapper::-webkit-scrollbar {
-
-height: 6px;
-
-}
-
-.datesListWrapper::-webkit-scrollbar-thumb {
-
-background: #999;
-
-border-radius: 10px;
-
-}
-
-.datesListWrapper::-webkit-scrollbar-track {
-
-background: #f1f1f1;
-
-}
-
-.datesList {
-
-display: flex;
-
-flex-wrap: nowrap;   /* ✅ No wrapping */
-
-gap: 12px;
-
-min-width: max-content; /* ✅ Forces scroll instead of expanding parent */
-
-}
-
-.dateItem {
-
-flex: 0 0 auto;      /* ✅ Prevent shrinking */
-
-display: flex;
-
-flex-direction: column;
-
-align-items: center;
-
-min-width: 60px;
-
-background: #f7f7f7;
-
-padding: 6px 10px;
-
-border-radius: 8px;
-
-font-size: 14px;
-
-cursor: pointer;
-
-}
-
-.dateItem strong {
-
-font-size: 14px;
-
-font-weight: 600;
-
-}
-
-.dateItem small {
-
-font-size: 11px;
-
-color: #666;
-
-}
-
-.separator {
-
-font-size: 16px;
-
-color: #aaa;
-
-align-self: center;
-
-}
-
-/* Mobile Filters Toggle */
-
-.mobileFilters {
-
-display: none; /* hidden on desktop */
-
-margin-bottom: 15px;
-
-}
-
-.mobileFilterToggle {
-
-display: block;
-
-padding: 12px 16px;
-
-background: #157dc2;
-
-color: #fff;
-
-font-weight: 600;
-
-border-radius: 8px;
-
-border: none;
-
-width: 100%;
-
-text-align: left;
-
-cursor: pointer;
-
-}
-
-/* Show only on mobile */
-
-@media (max-width: 770px) {
-
-.mobileFilters {
-
-display: block;
-
-}
+@media (max-width: 600px) {
+  .filterSection {
+    flex: 1 1 100%;
+  }
+  .buttons {
+    justify-content: center;
+  }
 }

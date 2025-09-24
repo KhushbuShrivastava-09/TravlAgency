@@ -624,12 +624,12 @@ const Navbar = () => {
               transition={{ duration: 0.3 }}
               className={styles.modalContent}
             >
-              <button
+              {/* <button
                 className={styles.closeButton}
                 onClick={closeCorporateModal}
               >
                 &times;
-              </button>
+              </button> */}
               <h2 className={styles.modalTitle}>Corporate Booking</h2>
               <form
                 className={styles.modalForm}
@@ -744,9 +744,9 @@ const Navbar = () => {
               transition={{ duration: 0.3 }}
               className={styles.modalContent}
             >
-              <button className={styles.closeButton} onClick={closeLoginModal}>
+              {/* <button className={styles.closeButton} onClick={closeLoginModal}>
                 &times;
-              </button>
+              </button> */}
               <h2 className={styles.modalTitle}>Log In</h2>
               <form className={styles.modalForm} onSubmit={handleLoginSubmit}>
                 <div className={styles.formGroup}>
@@ -809,12 +809,12 @@ const Navbar = () => {
               transition={{ duration: 0.3 }}
               className={styles.modalContent}
             >
-              <button
+              {/* <button
                 className={styles.closeButton}
                 onClick={closeRegisterModal}
               >
                 &times;
-              </button>
+              </button> */}
               <h2 className={styles.modalTitle}>Register</h2>
               <form
                 className={styles.modalForm}
@@ -914,12 +914,12 @@ const Navbar = () => {
               transition={{ duration: 0.3 }}
               className={styles.modalContent}
             >
-              <button
+              {/* <button
                 className={styles.closeButton}
                 onClick={closeForgotPasswordModal}
               >
                 &times;
-              </button>
+              </button> */}
               <h2 className={styles.modalTitle}>Forgot Password</h2>
               <form
                 className={styles.modalForm}

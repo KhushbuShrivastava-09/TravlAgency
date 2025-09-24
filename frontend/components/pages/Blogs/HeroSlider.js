@@ -10,18 +10,17 @@ import styles from "../../styles/Blogs/HeroSlider.module.css";
 const HeroSlider = ({ slides }) => {
   return (
     <div className={styles.sliderWrapper}>
-      <Swiper
-        modules={[Autoplay, Navigation, Pagination]}
-        autoplay={{ delay: 4000, disableOnInteraction: false }}
-        loop={true}
-        navigation={true}
-        pagination={{ clickable: true }}
-        className={styles.swiper}
-      >
+     <Swiper
+  modules={[Autoplay, Navigation, Pagination]}
+  autoplay={{ delay: 5000, disableOnInteraction: false }}
+  loop={true}
+  navigation
+  pagination={{ clickable: true }}
+  className={styles.swiper}
+>
         {slides.map((slide, index) => (
           <SwiperSlide key={index}>
             <div className={styles.slideContent}>
-              {/* Left: Image */}
               <div className={styles.imageWrapper}>
                 <Image
                   src={slide.image}
@@ -29,9 +28,9 @@ const HeroSlider = ({ slides }) => {
                   fill
                   className={styles.image}
                 />
+                <div className={styles.overlay}></div>
               </div>
 
-              {/* Right: Text Content */}
               <div className={styles.textWrapper}>
                 <h2 className={styles.title}>{slide.title}</h2>
                 <div className={styles.tags}>
@@ -45,7 +44,7 @@ const HeroSlider = ({ slides }) => {
                   {slide.date} • Written by <strong>{slide.author}</strong>
                 </p>
                 <a href={slide.link} className={styles.readMore}>
-                  {slide.readTime} → 
+                  {slide.readTime} →
                 </a>
               </div>
             </div>
