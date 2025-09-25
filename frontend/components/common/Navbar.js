@@ -29,16 +29,16 @@ const Navbar = () => {
         { name: 'Europe', link: '/trips' },
         { name: 'Asia', link: '/trips' },
         { name: 'America', link: '/trips' },
-        { name: 'Europe', link: '/international/europe' },
+        { name: 'Europe', link: '//trips' },
         { name: 'Asia', link: '/trips' },
         { name: 'America', link: '/trips' },
-        { name: 'Europe', link: '/international/europe' },
+        { name: 'Europe', link: '//trips' },
         { name: 'Asia', link: '/trips' },
         { name: 'America', link: '/trips' },
-        { name: 'Europe', link: '/international/europe' },
+        { name: 'Europe', link: '//trips' },
         { name: 'Asia', link: '/trips' },
         { name: 'America', link: '/trips' },
-        { name: 'Europe', link: '/international/europe' },
+        { name: 'Europe', link: '//trips' },
         { name: 'Asia', link: '/trips' },
         { name: 'America', link: '/trips' },
       ]
@@ -46,25 +46,25 @@ const Navbar = () => {
     {
       name: 'India Trips',
       subcategories: [
-        { name: 'North India', link: '/india/' },
-        { name: 'South India', link: '/india/south' },
-        { name: 'East India', link: '/india/east' }
+        { name: 'North India', link: '/trips' },
+        { name: 'South India', link: '/trips' },
+        { name: 'East India', link: '/trips' }
       ]
     },
     {
       name: 'Weekend Trips',
       subcategories: [
-        { name: 'Hill Stations', link: '/weekend/hills' },
-        { name: 'Beaches', link: '/weekend/beach' },
-        { name: 'City Breaks', link: '/weekend/city' }
+        { name: 'Hill Stations', link: '/trips' },
+        { name: 'Beaches', link: '/trips' },
+        { name: 'City Breaks', link: '/trips' }
       ]
     },
     {
       name: 'Group Tours',
       subcategories: [
-        { name: 'Family Tours', link: '/group/family' },
-        { name: 'Friends Tours', link: '/group/friends' },
-        { name: 'Corporate Tours', link: '/group/corporate' }
+        { name: 'Family Tours', link: '/trips' },
+        { name: 'Friends Tours', link: '/trips' },
+        { name: 'Corporate Tours', link: '/trips' }
       ]
     }
   ];
